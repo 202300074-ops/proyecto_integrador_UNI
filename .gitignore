@@ -1,0 +1,45 @@
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Builds
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Sistema y editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Cobertura y pruebas
+coverage/
+.nyc_output/
+
+# Temporales
+tmp/
+temp/
+*.tmp
+
+# Evidencias pesadas (se guardan fuera del repo si superan 50 MB)
+assets/video/*.mp4
+assets/video/*.mov
+assets/audio/*.wav
+assets/models/*.blend1
