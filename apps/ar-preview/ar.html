@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="Experiencia de realidad aumentada del meliponario Sak P'o' Kaab sobre una etiqueta impresa."
+    />
+    <title>Meliponario AR · Sak P'o' Kaab</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/ar.css" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+  </head>
+  <body>
+    <div id="ar-ui">
+      <header class="ar-topbar">
+        <div class="ar-brand">
+          <p class="ar-eyebrow">Sak P'o' Kaab · realidad aumentada</p>
+          <h1>Meliponario en casa</h1>
+        </div>
+        <nav class="ar-nav" aria-label="Acciones de la experiencia">
+          <button id="video-button" class="ar-button" type="button" disabled>Ver cosecha</button>
+          <button id="target-button" class="ar-button" type="button">Ver etiqueta</button>
+          <a class="ar-button ar-button-quiet" href="/">Visor 3D</a>
+        </nav>
+      </header>
+
+      <div class="scan-frame" aria-hidden="true">
+        <span class="scan-corner scan-corner-tl"></span>
+        <span class="scan-corner scan-corner-tr"></span>
+        <span class="scan-corner scan-corner-bl"></span>
+        <span class="scan-corner scan-corner-br"></span>
+      </div>
+
+      <div class="ar-status-wrap">
+        <p id="ar-status" class="ar-status" data-state="loading" role="status">
+          Iniciando cámara…
+        </p>
+        <p id="ar-hint" class="ar-hint">
+          Apunta al centro de la etiqueta impresa, con buena luz y sin reflejos.
+        </p>
+        <button id="ar-retry" class="ar-button ar-retry" type="button" hidden>Reintentar</button>
+      </div>
+    </div>
+
+    <aside id="target-panel" class="target-panel" hidden aria-label="Etiqueta objetivo">
+      <div class="target-card">
+        <button id="target-close" class="target-close" type="button" aria-label="Cerrar etiqueta">Cerrar</button>
+        <p class="ar-eyebrow">Etiqueta objetivo</p>
+        <h2>Imprime esta etiqueta</h2>
+        <img src="/targets/etiqueta-sakpokaab.png" alt="Etiqueta de Sak P'o' Kaab con una abeja y el texto Meliponario Artesanal" />
+        <p>
+          Imprímela en A5 o A4, sin recortar el marco. Mantenla plana y con luz
+          pareja. También puedes abrirla en otra pantalla para probar.
+        </p>
+        <a class="ar-button ar-button-solid" href="/targets/etiqueta-sakpokaab.png" target="_blank" rel="noreferrer">
+          Abrir imagen en tamaño completo
+        </a>
+      </div>
+    </aside>
+
+    <aside id="video-panel" class="target-panel" hidden aria-label="Video de la cosecha">
+      <div class="video-card">
+        <button id="video-close" class="target-close" type="button" aria-label="Volver a la realidad aumentada">Volver a AR</button>
+        <p class="ar-eyebrow">Recreación didáctica</p>
+        <h2>De la colonia al frasco</h2>
+        <video
+          id="harvest-video"
+          data-src="/video/cosecha-melipona-recreacion-mobile.mp4"
+          controls
+          playsinline
+          preload="none"
+          poster="/video/cosecha-poster.png"
+        >
+          Tu navegador no puede reproducir este video.
+        </video>
+        <p id="video-play-hint" class="video-play-hint" hidden>
+          Si no empieza automáticamente, toca ▶. Pulsa Volver a AR para regresar
+          a la cámara.
+        </p>
+        <p>
+          Al iniciar, el video sigue hasta el final aunque la etiqueta salga de
+          cuadro. Animación original con narración sintética; no es metraje
+          documental.
+        </p>
+        <p class="video-sources">
+          Fuentes:
+          <a href="https://www.nature.org/content/dam/tnc/nature/en/documents/mexico/Manejo_tradicional_de_la_abeja_de_los_pueblos_mayas.pdf" target="_blank" rel="noreferrer">TNC México</a>
+          ·
+          <a href="https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/libros2023/CD008608.pdf" target="_blank" rel="noreferrer">SEMARNAT 2023</a>
+        </p>
+      </div>
+    </aside>
+
+    <a-scene
+      id="ar-scene"
+      mindar-image="imageTargetSrc: /targets/etiqueta-sakpokaab.mind; maxTrack: 1; uiScanning: no; uiLoading: no; uiError: no;"
+      color-space="sRGB"
+      renderer="colorManagement: true; physicallyCorrectLights: true; antialias: true"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false"
+    >
+      <a-assets timeout="20000">
+        <a-asset-item id="bee-model" src="/models/abeja.glb"></a-asset-item>
+        <a-asset-item id="hive-model" src="/models/jobon.glb"></a-asset-item>
+      </a-assets>
+
+      <a-entity light="type: ambient; color: #fff7e8; intensity: 0.85"></a-entity>
+      <a-entity
+        light="type: hemisphere; color: #fff6e4; groundColor: #2f4a32; intensity: 0.75"
+      ></a-entity>
+      <a-entity
+        light="type: directional; color: #fff1cf; intensity: 1.35"
+        position="1 2 2"
+      ></a-entity>
+      <a-entity
+        light="type: directional; color: #d1e1ff; intensity: 0.45"
+        position="-2 1 1"
+      ></a-entity>
+
+      <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+      <a-entity id="ar-target" mindar-image-target="targetIndex: 0">
+        <a-entity id="ar-diorama" position="0 -0.5 0.12" scale="0.82 0.82 0.82">
+          <a-circle
+            radius="0.46"
+            rotation="-90 0 0"
+            segments="48"
+            material="color: #7d9c5a; roughness: 1; flatShading: true"
+          ></a-circle>
+          <a-circle
+            radius="0.2"
+            position="0.02 0.004 0.06"
+            rotation="-90 0 0"
+            segments="32"
+            material="color: #a98254; roughness: 1; opacity: 0.9; transparent: true"
+          ></a-circle>
+
+          <a-entity position="-0.17 0 -0.12" scale="0.12 0.12 0.12">
+            <a-cylinder
+              position="0 1.55 0"
+              radius="0.24"
+              height="3.1"
+              segments-radial="7"
+              material="color: #6a482e; roughness: 1; flatShading: true"
+            ></a-cylinder>
+            <a-cylinder
+              position="0.42 2.65 0.1"
+              rotation="0 0 -28"
+              radius="0.13"
+              height="1.55"
+              segments-radial="7"
+              material="color: #745134; roughness: 1; flatShading: true"
+            ></a-cylinder>
+            <a-cylinder
+              position="-0.38 2.35 0.12"
+              rotation="0 0 31"
+              radius="0.11"
+              height="1.25"
+              segments-radial="7"
+              material="color: #745134; roughness: 1; flatShading: true"
+            ></a-cylinder>
+            <a-icosahedron
+              position="0 3.55 0"
+              radius="1.0"
+              detail="0"
+              material="color: #4f7a3c; roughness: 1; flatShading: true"
+              foliage-sway="amount: 0.012; speed: 0.0011"
+            ></a-icosahedron>
+            <a-icosahedron
+              position="-0.72 3.05 0.22"
+              radius="0.7"
+              detail="0"
+              material="color: #5f8b48; roughness: 1; flatShading: true"
+              foliage-sway="amount: 0.016; speed: 0.0013"
+            ></a-icosahedron>
+            <a-icosahedron
+              position="0.72 3.2 -0.12"
+              radius="0.82"
+              detail="0"
+              material="color: #426d34; roughness: 1; flatShading: true"
+              foliage-sway="amount: 0.013; speed: 0.001"
+            ></a-icosahedron>
+            <a-icosahedron
+              position="0.18 4.05 0.35"
+              radius="0.6"
+              detail="0"
+              material="color: #6d944f; roughness: 1; flatShading: true"
+              foliage-sway="amount: 0.015; speed: 0.0014"
+            ></a-icosahedron>
+          </a-entity>
+
+          <a-entity
+            id="ar-hive"
+            gltf-model="#hive-model"
+            position="0.02 0.02 0.06"
+            rotation="0 -62 0"
+            scale="0.2 0.2 0.2"
+          ></a-entity>
+
+          <a-entity
+            flower="petals: #f5e3a0; center: #c9892f; height: 0.12; size: 0.45; sway: 0.02"
+            position="-0.32 0 0.15"
+          ></a-entity>
+          <a-entity
+            flower="petals: #efc7d7; center: #d6a33a; height: 0.11; size: 0.42; sway: 0.02"
+            position="0.3 0 0.18"
+          ></a-entity>
+          <a-entity
+            flower="petals: #f2d36e; center: #b97522; height: 0.1; size: 0.4; sway: 0.018"
+            position="0.22 0 -0.2"
+          ></a-entity>
+          <a-entity
+            flower="petals: #d8c6ef; center: #d8a637; height: 0.13; size: 0.46; sway: 0.022"
+            position="-0.25 0 -0.18"
+          ></a-entity>
+          <a-entity
+            flower="petals: #f7d9c0; center: #c7832c; height: 0.11; size: 0.4; sway: 0.018"
+            position="0.38 0 0.02"
+          ></a-entity>
+
+          <a-entity grass-clump="count: 7; radius: 0.12; color: #6f8f48" position="-0.35 0 0.3" scale="0.32 0.32 0.32"></a-entity>
+          <a-entity grass-clump="count: 6; radius: 0.1; color: #78984f" position="0.35 0 0.31" scale="0.3 0.3 0.3"></a-entity>
+          <a-entity grass-clump="count: 7; radius: 0.12; color: #648743" position="0.0 0 -0.32" scale="0.32 0.32 0.32"></a-entity>
+          <a-entity grass-clump="count: 5; radius: 0.1; color: #7a9a51" position="-0.38 0 -0.08" scale="0.28 0.28 0.28"></a-entity>
+
+          <a-dodecahedron
+            position="0.3 0.03 -0.28"
+            radius="0.035"
+            scale="1 0.65 0.9"
+            material="color: #8a7a62; roughness: 1; flatShading: true"
+          ></a-dodecahedron>
+          <a-dodecahedron
+            position="-0.3 0.025 0.3"
+            radius="0.03"
+            scale="1 0.6 0.85"
+            material="color: #9b8a70; roughness: 1; flatShading: true"
+          ></a-dodecahedron>
+
+          <a-entity
+            id="ar-bee-a"
+            class="ar-bee"
+            gltf-model="#bee-model"
+            animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.35"
+            scale="0.55 0.55 0.55"
+            bee-wander="center: 0.02 0.25 0.08; radiusX: 0.16; radiusZ: 0.1; height: 0.05; speed: 0.55; phase: 0"
+          ></a-entity>
+          <a-entity
+            id="ar-bee-b"
+            class="ar-bee"
+            gltf-model="#bee-model"
+            animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.2"
+            scale="0.48 0.48 0.48"
+            bee-wander="center: -0.18 0.34 -0.02; radiusX: 0.13; radiusZ: 0.09; height: 0.06; speed: 0.4; phase: 2.1"
+          ></a-entity>
+          <a-entity
+            id="ar-bee-c"
+            class="ar-bee"
+            gltf-model="#bee-model"
+            animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.5"
+            scale="0.6 0.6 0.6"
+            bee-wander="center: 0.2 0.2 0.16; radiusX: 0.11; radiusZ: 0.12; height: 0.04; speed: 0.65; phase: 4.2"
+          ></a-entity>
+        </a-entity>
+      </a-entity>
+    </a-scene>
+
+    <script type="module" src="/src/ar.js"></script>
+  </body>
+</html>

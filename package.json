@@ -12,6 +12,7 @@
     "dev:api": "npm run dev --workspace @sak-po-kaab/server",
     "dev:store": "npm run dev --workspace @sak-po-kaab/store",
     "build": "npm run build --workspace @sak-po-kaab/store",
+    "test:commerce": "npm run test:commerce --workspace @sak-po-kaab/server",
     "start": "npm run start --workspace @sak-po-kaab/server",
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",

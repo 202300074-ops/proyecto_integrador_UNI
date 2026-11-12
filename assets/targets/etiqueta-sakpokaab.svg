@@ -1,0 +1,210 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600">
+  <defs>
+    <polygon id="hex" points="0,-46 40,-23 40,23 0,46 -40,23 -40,-23"/>
+    <clipPath id="abdomen-clip">
+      <ellipse cx="0" cy="82" rx="92" ry="140"/>
+    </clipPath>
+    <clipPath id="thorax-clip">
+      <ellipse cx="0" cy="-45" rx="82" ry="74"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="1600" fill="#123b2a"/>
+  <g fill="#7fa36a" opacity="0.12">
+    <circle cx="110" cy="260" r="7"/>
+    <circle cx="1090" cy="300" r="5"/>
+    <circle cx="180" cy="1240" r="6"/>
+    <circle cx="1040" cy="1180" r="8"/>
+    <circle cx="90" cy="880" r="5"/>
+    <circle cx="1110" cy="820" r="6"/>
+    <circle cx="310" cy="180" r="4"/>
+    <circle cx="890" cy="140" r="5"/>
+    <circle cx="250" cy="1080" r="4"/>
+    <circle cx="950" cy="1050" r="5"/>
+  </g>
+
+  <rect x="36" y="36" width="1128" height="1528" fill="none" stroke="#e2a63a" stroke-width="12"/>
+  <rect x="58" y="58" width="1084" height="1484" fill="none" stroke="#f6e8c8" stroke-width="3"/>
+
+  <g stroke="#e2a63a" stroke-width="4" fill="none" opacity="0.9">
+    <g transform="translate(86 86)">
+      <circle r="16" fill="#e2a63a" stroke="none"/>
+      <path d="M0 -36 V-22 M0 22 V36 M-36 0 H-22 M22 0 H36 M-25 -25 L-16 -16 M16 16 L25 25 M-25 25 L-16 16 M16 -16 L25 -25"/>
+    </g>
+    <g transform="translate(1114 86)">
+      <circle r="16" fill="#e2a63a" stroke="none"/>
+      <path d="M0 -36 V-22 M0 22 V36 M-36 0 H-22 M22 0 H36 M-25 -25 L-16 -16 M16 16 L25 25 M-25 25 L-16 16 M16 -16 L25 -25"/>
+    </g>
+    <g transform="translate(86 1514)">
+      <circle r="16" fill="#e2a63a" stroke="none"/>
+      <path d="M0 -36 V-22 M0 22 V36 M-36 0 H-22 M22 0 H36 M-25 -25 L-16 -16 M16 16 L25 25 M-25 25 L-16 16 M16 -16 L25 -25"/>
+    </g>
+    <g transform="translate(1114 1514)">
+      <circle r="16" fill="#e2a63a" stroke="none"/>
+      <path d="M0 -36 V-22 M0 22 V36 M-36 0 H-22 M22 0 H36 M-25 -25 L-16 -16 M16 16 L25 25 M-25 25 L-16 16 M16 -16 L25 -25"/>
+    </g>
+  </g>
+
+  <text x="600" y="150" text-anchor="middle" fill="#e2a63a" font-family="Segoe UI, Arial, sans-serif" font-size="27" font-weight="600" letter-spacing="9">MELIPONARIO ARTESANAL</text>
+  <text x="600" y="190" text-anchor="middle" fill="#f6e8c8" font-family="Segoe UI, Arial, sans-serif" font-size="19" letter-spacing="7">PENÍNSULA DE YUCATÁN · MÉXICO</text>
+
+  <g transform="translate(600 650)">
+    <circle r="326" fill="#173d2b" stroke="#e2a63a" stroke-width="10"/>
+    <circle r="304" fill="none" stroke="#f6e8c8" stroke-width="2" stroke-dasharray="3 13"/>
+    <g fill="none" stroke="#e2a63a" stroke-width="2" opacity="0.45">
+      <use href="#hex" transform="translate(-260 -150)"/>
+      <use href="#hex" transform="translate(-170 -150)"/>
+      <use href="#hex" transform="translate(-80 -150)"/>
+      <use href="#hex" transform="translate(10 -150)"/>
+      <use href="#hex" transform="translate(100 -150)"/>
+      <use href="#hex" transform="translate(190 -150)"/>
+      <use href="#hex" transform="translate(280 -150)"/>
+      <use href="#hex" transform="translate(-215 -60)"/>
+      <use href="#hex" transform="translate(-125 -60)"/>
+      <use href="#hex" transform="translate(-35 -60)"/>
+      <use href="#hex" transform="translate(55 -60)"/>
+      <use href="#hex" transform="translate(145 -60)"/>
+      <use href="#hex" transform="translate(235 -60)"/>
+      <use href="#hex" transform="translate(-260 30)"/>
+      <use href="#hex" transform="translate(-170 30)"/>
+      <use href="#hex" transform="translate(-80 30)"/>
+      <use href="#hex" transform="translate(10 30)"/>
+      <use href="#hex" transform="translate(100 30)"/>
+      <use href="#hex" transform="translate(190 30)"/>
+      <use href="#hex" transform="translate(280 30)"/>
+      <use href="#hex" transform="translate(-215 120)"/>
+      <use href="#hex" transform="translate(-125 120)"/>
+      <use href="#hex" transform="translate(-35 120)"/>
+      <use href="#hex" transform="translate(55 120)"/>
+      <use href="#hex" transform="translate(145 120)"/>
+      <use href="#hex" transform="translate(235 120)"/>
+      <use href="#hex" transform="translate(-260 210)"/>
+      <use href="#hex" transform="translate(-170 210)"/>
+      <use href="#hex" transform="translate(-80 210)"/>
+      <use href="#hex" transform="translate(10 210)"/>
+      <use href="#hex" transform="translate(100 210)"/>
+      <use href="#hex" transform="translate(190 210)"/>
+      <use href="#hex" transform="translate(280 210)"/>
+    </g>
+
+    <g transform="translate(0 12) scale(1.08)">
+      <g fill="#f6e8c8" stroke="#1a1a16" stroke-width="6" stroke-linejoin="round">
+        <path d="M-46 -32 C-120 -176, -252 -196, -304 -96 C-338 -30, -286 42, -206 54 C-142 64, -82 36, -46 -32 Z"/>
+        <path d="M46 -32 C120 -176, 252 -196, 304 -96 C338 -30, 286 42, 206 54 C142 64, 82 36, 46 -32 Z"/>
+      </g>
+      <g fill="none" stroke="#1a1a16" stroke-width="3" opacity="0.75">
+        <path d="M-70 -42 C-132 -134, -226 -156, -282 -92"/>
+        <path d="M-92 -18 C-158 -92, -238 -108, -290 -56"/>
+        <path d="M-108 12 C-170 -48, -236 -62, -278 -22"/>
+        <path d="M70 -42 C132 -134, 226 -156, 282 -92"/>
+        <path d="M92 -18 C158 -92, 238 -108, 290 -56"/>
+        <path d="M108 12 C170 -48, 236 -62, 278 -22"/>
+      </g>
+      <g fill="#1a1a16" stroke="#1a1a16" stroke-width="8" stroke-linecap="round">
+        <path d="M-72 12 L-150 96 L-188 90"/>
+        <path d="M-80 42 L-166 130 L-202 132"/>
+        <path d="M-66 72 L-140 164 L-176 176"/>
+        <path d="M72 12 L150 96 L188 90"/>
+        <path d="M80 42 L166 130 L202 132"/>
+        <path d="M66 72 L140 164 L176 176"/>
+      </g>
+      <ellipse cx="0" cy="82" rx="92" ry="140" fill="#e2a63a" stroke="#1a1a16" stroke-width="6"/>
+      <g clip-path="url(#abdomen-clip)" fill="#1a1a16">
+        <rect x="-110" y="8" width="220" height="30"/>
+        <rect x="-110" y="66" width="220" height="30"/>
+        <rect x="-110" y="124" width="220" height="30"/>
+        <rect x="-110" y="182" width="220" height="30"/>
+      </g>
+      <ellipse cx="-34" cy="38" rx="18" ry="52" fill="#f0c65c" opacity="0.55"/>
+      <ellipse cx="0" cy="-45" rx="82" ry="74" fill="#e2a63a" stroke="#1a1a16" stroke-width="6"/>
+      <g clip-path="url(#thorax-clip)" stroke="#1a1a16" stroke-width="3" opacity="0.45">
+        <path d="M-96 -78 C-40 -38, 34 -38, 96 -78"/>
+        <path d="M-96 -44 C-40 -4, 34 -4, 96 -44"/>
+        <path d="M-96 -10 C-40 30, 34 30, 96 -10"/>
+      </g>
+      <circle cx="0" cy="-142" r="57" fill="#1a1a16"/>
+      <ellipse cx="-23" cy="-152" rx="13" ry="17" fill="#f6e8c8"/>
+      <ellipse cx="23" cy="-152" rx="13" ry="17" fill="#f6e8c8"/>
+      <circle cx="-23" cy="-150" r="5" fill="#1a1a16"/>
+      <circle cx="23" cy="-150" r="5" fill="#1a1a16"/>
+      <g fill="none" stroke="#1a1a16" stroke-width="9" stroke-linecap="round">
+        <path d="M-24 -186 C-52 -228, -84 -238, -106 -218"/>
+        <path d="M24 -186 C52 -228, 84 -238, 106 -218"/>
+      </g>
+      <circle cx="-106" cy="-218" r="7" fill="#e2a63a"/>
+      <circle cx="106" cy="-218" r="7" fill="#e2a63a"/>
+      <path d="M0 216 L-16 248 L16 248 Z" fill="#1a1a16"/>
+      <path d="M-46 -30 C-70 -46, -74 -62, -58 -76" fill="none" stroke="#f6e8c8" stroke-width="3" opacity="0.8"/>
+      <path d="M46 -30 C70 -46, 74 -62, 58 -76" fill="none" stroke="#f6e8c8" stroke-width="3" opacity="0.8"/>
+    </g>
+  </g>
+
+  <g transform="translate(600 1110)">
+    <text text-anchor="middle" fill="#f6e8c8" font-family="Georgia, 'Times New Roman', serif" font-size="106" font-weight="600" letter-spacing="4">SAK P'O' KAAB</text>
+  </g>
+  <text x="600" y="1172" text-anchor="middle" fill="#e2a63a" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="12">MIEL DE MELIPONA</text>
+  <line x1="250" y1="1212" x2="950" y2="1212" stroke="#e2a63a" stroke-width="3"/>
+  <rect x="588" y="1200" width="24" height="24" transform="rotate(45 600 1212)" fill="#e2a63a"/>
+  <text x="600" y="1265" text-anchor="middle" fill="#f6e8c8" font-family="Segoe UI, Arial, sans-serif" font-size="23" letter-spacing="5">MELIPONARIO ARTESANAL · YUCATÁN</text>
+  <text x="600" y="1305" text-anchor="middle" fill="#e2a63a" font-family="Segoe UI, Arial, sans-serif" font-size="19" letter-spacing="3">ABEJAS NATIVAS · YUCATÁN</text>
+
+  <g fill="none" stroke="#f6e8c8" stroke-width="3">
+    <circle cx="240" cy="1436" r="76"/>
+    <circle cx="240" cy="1436" r="62" stroke-dasharray="2 10"/>
+    <circle cx="960" cy="1436" r="76" stroke="#e2a63a"/>
+    <circle cx="960" cy="1436" r="62" stroke="#e2a63a" stroke-dasharray="2 10"/>
+  </g>
+  <text x="240" y="1426" text-anchor="middle" fill="#f6e8c8" font-family="Georgia, serif" font-size="25" font-weight="600">ABEJA</text>
+  <text x="240" y="1458" text-anchor="middle" fill="#f6e8c8" font-family="Segoe UI, Arial, sans-serif" font-size="13" letter-spacing="2">MELIPONA</text>
+  <text x="960" y="1426" text-anchor="middle" fill="#e2a63a" font-family="Georgia, serif" font-size="24" font-weight="600">SAK P'O'</text>
+  <text x="960" y="1458" text-anchor="middle" fill="#e2a63a" font-family="Segoe UI, Arial, sans-serif" font-size="17" letter-spacing="3">KAAB</text>
+
+  <g transform="translate(600 1436)" fill="#e2a63a">
+    <circle r="7"/>
+    <path d="M-30 -8 C-18 -24, 18 -24, 30 -8 C18 8, -18 8, -30 -8 Z" fill="none" stroke="#e2a63a" stroke-width="3"/>
+    <circle cx="-14" cy="-8" r="3" fill="#123b2a"/>
+    <circle cx="14" cy="-8" r="3" fill="#123b2a"/>
+  </g>
+
+  <g opacity="0.9" fill="#2f5d3f" stroke="#f6e8c8" stroke-width="2">
+    <path d="M132 470 C96 410, 122 346, 186 326 C208 386, 190 444, 132 470 Z"/>
+    <path d="M132 470 C108 424, 116 382, 150 354" fill="none" stroke="#f6e8c8" stroke-width="2"/>
+    <path d="M1068 470 C1104 410, 1078 346, 1014 326 C992 386, 1010 444, 1068 470 Z"/>
+    <path d="M1068 470 C1092 424, 1084 382, 1050 354" fill="none" stroke="#f6e8c8" stroke-width="2"/>
+    <path d="M166 880 C112 844, 108 780, 156 742 C190 796, 194 850, 166 880 Z"/>
+    <path d="M166 880 C142 850, 138 812, 154 780" fill="none" stroke="#f6e8c8" stroke-width="2"/>
+    <path d="M1034 880 C1088 844, 1092 780, 1044 742 C1010 796, 1006 850, 1034 880 Z"/>
+    <path d="M1034 880 C1058 850, 1062 812, 1046 780" fill="none" stroke="#f6e8c8" stroke-width="2"/>
+  </g>
+
+  <g fill="#e2a63a" opacity="0.85">
+    <circle cx="600" cy="1212" r="5"/>
+    <circle cx="600" cy="1010" r="3"/>
+    <circle cx="360" cy="1328" r="3"/>
+    <circle cx="840" cy="1328" r="3"/>
+  </g>
+
+  <g fill="#f6e8c8" opacity="0.9">
+    <rect x="500" y="1468" width="4" height="28"/>
+    <rect x="510" y="1468" width="2" height="28"/>
+    <rect x="518" y="1468" width="6" height="28"/>
+    <rect x="530" y="1468" width="2" height="28"/>
+    <rect x="538" y="1468" width="4" height="28"/>
+    <rect x="548" y="1468" width="7" height="28"/>
+    <rect x="561" y="1468" width="2" height="28"/>
+    <rect x="569" y="1468" width="4" height="28"/>
+    <rect x="579" y="1468" width="2" height="28"/>
+    <rect x="587" y="1468" width="6" height="28"/>
+    <rect x="599" y="1468" width="3" height="28"/>
+    <rect x="608" y="1468" width="5" height="28"/>
+    <rect x="619" y="1468" width="2" height="28"/>
+    <rect x="627" y="1468" width="4" height="28"/>
+    <rect x="637" y="1468" width="7" height="28"/>
+    <rect x="650" y="1468" width="2" height="28"/>
+    <rect x="658" y="1468" width="4" height="28"/>
+    <rect x="668" y="1468" width="6" height="28"/>
+    <rect x="680" y="1468" width="2" height="28"/>
+    <rect x="688" y="1468" width="5" height="28"/>
+  </g>
+  <text x="600" y="1520" text-anchor="middle" fill="#f6e8c8" font-family="Segoe UI, Arial, sans-serif" font-size="15" letter-spacing="4">SAK P'O' KAAB</text>
+</svg>

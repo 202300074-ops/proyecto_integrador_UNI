@@ -5,6 +5,13 @@ export const CATEGORY_LABELS = {
   candle: 'Vela'
 };
 
+export const PRODUCT_IMAGES = {
+  'miel-de-melipona': '/productos/miel-de-melipona.webp',
+  'jabon-sak-po': '/productos/jabon-sak-po.webp',
+  'balsamo-xunan': '/productos/balsamo-xunan.webp',
+  'vela-jobon': '/productos/vela-jobon.webp'
+};
+
 const currency = new Intl.NumberFormat('es-MX', {
   style: 'currency',
   currency: 'MXN',
@@ -68,14 +75,27 @@ export default function ProductCard({ product, onSelect }) {
     (sum, variant) => sum + Number(variant.stock),
     0
   );
+  const image = PRODUCT_IMAGES[product.slug];
+  const imageFit = product.slug === 'jabon-sak-po' ? 'object-cover' : 'object-contain';
 
   return (
     <article className="card group flex flex-col overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-      <div className="relative flex h-44 items-center justify-center overflow-hidden bg-gradient-to-br from-honey-100 via-cream to-honey-200">
-        <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(201,130,42,0.35),transparent_45%),radial-gradient(circle_at_80%_70%,rgba(31,59,44,0.18),transparent_40%)]" />
-        <div className="relative transition duration-300 group-hover:scale-105">
-          <ProductGlyph category={product.category} />
-        </div>
+      <div className={`relative flex ${image ? 'h-56' : 'h-44'} items-center justify-center overflow-hidden bg-cream`}>
+        {image ? (
+          <img
+            src={image}
+            alt={`${product.name} de Sak P'o' Kaab`}
+            className={`h-full w-full ${imageFit} transition duration-500 group-hover:scale-[1.03]`}
+            loading="lazy"
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 opacity-50 [background-image:radial-gradient(circle_at_20%_20%,rgba(201,130,42,0.35),transparent_45%),radial-gradient(circle_at_80%_70%,rgba(31,59,44,0.18),transparent_40%)]" />
+            <div className="relative transition duration-300 group-hover:scale-105">
+              <ProductGlyph category={product.category} />
+            </div>
+          </>
+        )}
         {product.has_ar ? (
           <span className="absolute right-4 top-4 rounded-full bg-forest-800 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-cream">
             Etiqueta AR

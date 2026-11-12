@@ -3,6 +3,7 @@ import cors from 'cors';
 import { config } from './env.js';
 import { pingDb } from './db.js';
 import productsRouter from './routes/products.js';
+import commerceRouter from './routes/commerce.js';
 import { notFound, errorHandler } from './middleware/error.js';
 
 const app = express();
@@ -31,6 +32,7 @@ app.get('/api/health', async (req, res) => {
 });
 
 app.use('/api/products', productsRouter);
+app.use('/api', commerceRouter);
 
 app.use(notFound);
 app.use(errorHandler);

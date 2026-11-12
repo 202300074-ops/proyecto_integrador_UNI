@@ -82,8 +82,325 @@ Siguiente:
 - Implementar la etiqueta AR y el video.
 - Completar el carrito y los cupones.
 
+## 2026-11-04. Instalación de Blender/FFmpeg y blockout 3D
+
+Objetivo: dejar listas las herramientas de modelado y video y generar una base
+3D para la abeja y el jobón.
+
+Hecho:
+
+- Se instalaron Blender 5.2.3 LTS y FFmpeg 9.0.2 con `winget`.
+- Se verificó que Blender abre en modo headless y que FFmpeg responde con la
+  ruta completa; el PATH del usuario quedó actualizado.
+- Se escribió `scripts/blender_blockout.py`.
+- El script generó `assets/models/blockout.blend`, `abeja.glb` y `jobon.glb`.
+- Se renderizaron tres previews: escena general, abeja y jobón.
+- Se importaron los GLB en Blender para verificar que abren y que tienen el
+  tamaño esperado.
+
+Problemas:
+
+- La primera versión del jobón tenía una tapa que tapaba la entrada y no dejaba
+  ver los panales. Se movió y luego se quitó del blockout.
+- Las alas de la abeja eran demasiado grandes y tapaban la cabeza. Se redujeron
+  y se movieron hacia atrás.
+- La cámara del primer acercamiento a la abeja estaba demasiado cerca; se
+  corrigió la distancia y la lente.
+
+Decisión:
+
+- El blockout es solo una base. Joshua debe refinarlo manualmente en Blender y
+  documentar el proceso para cumplir con la autoría.
+- No se usa ningún modelo de terceros para la abeja ni para el jobón.
+
+Siguiente en esa etapa:
+
+- Abrir `blockout.blend` y refinar la abeja y el jobón.
+- Agregar texturas y materiales definitivos.
+- Crear el rig y la animación de alas.
+- Preparar el video de cosecha con FFmpeg.
+
+## 2026-11-04. Modelo estilizado, GLB y renders EEVEE
+
+Objetivo: desarrollar una versión estilizada de la abeja y el jobón, exportar los
+modelos para WebAR y preparar evidencia visual.
+
+Hecho:
+
+- Se escribió `scripts/blender_model.py`, que genera `assets/models/modelo.blend`,
+  `abeja.glb` y `jobon.glb`, además de previews Workbench.
+- La abeja incluye abdomen segmentado, cabeza, ojos, antenas, seis patas, alas
+  con venas y animación. El GLB registra un clip `SakPoKaab` y 9,908 triángulos.
+- El jobón incluye tronco hueco, piquera, soportes, tapa y panales con miel; su
+  GLB tiene 14,852 triángulos.
+- Ambos GLB se importaron en una escena limpia de Blender: la abeja cargó 21
+  mallas y el jobón una malla; se encontró el clip `SakPoKaab`.
+- Se corrigió la exportación de animación con
+  `export_anim_scene_split_object=False`; sin esa opción se exportaban clips
+  separados por ala.
+- Se escribió `scripts/blender_render_eevee.py` y se generaron los cuatro renders
+  `final-*.png` en `docs/evidencias/2026-11-04/`.
+- Se configuró explícitamente el nodo de mundo en el script de render, ya que
+  `modelo.blend` no tenía `scene.world`; también se ajustaron exposición,
+  iluminación, piso y posición de las flores.
+
+Problemas y pendientes:
+
+- La primera versión de los renders tenía el fondo oscuro. El fondo crema ya se
+  genera correctamente; los acercamientos todavía muestran una transición entre
+  el piso y el mundo que puede pulirse si se requiere un fondo totalmente limpio.
+- Los GLB todavía no se han integrado ni probado en A-Frame/MindAR o en teléfono.
+- La escena base fue generada mediante scripts asistidos por IA. Joshua debe
+  hacer y registrar un pase manual significativo en Blender antes de presentarla
+  como trabajo propio y debe poder explicar las decisiones del modelo.
+
+Siguiente:
+
+- Abrir `assets/models/modelo.blend`, hacer cambios propios y guardar capturas
+  del proceso de edición.
+- Probar `abeja.glb` y su clip en una escena A-Frame y luego en el teléfono.
+- Revisar el encuadre final de los acercamientos y documentar la versión aprobada.
+
+## 2026-11-05. Visor A-Frame para validar GLB
+
+Objetivo: comprobar que los GLB pueden servirse desde el proyecto y dejar un
+visor A-Frame local para revisar su carga y la animación.
+
+Hecho:
+
+- Se creó `apps/ar-preview`, visor A-Frame con la abeja y el jobón desde
+  `assets/models/`; la abeja usa `animation-mixer` con el clip `SakPoKaab`.
+- Se configuró Vite para servir los GLB en desarrollo y copiarlos al build sin
+  duplicar los archivos fuente dentro del repositorio.
+- `npm --prefix apps/ar-preview run test:smoke` confirmó respuesta HTTP del HTML
+  y de los dos GLB, incluyendo firma GLB válida.
+- `npm --prefix apps/ar-preview run build` compiló el visor y empaquetó ambos
+  modelos.
+
+Pendiente:
+
+- Revisar el visor visualmente en navegador; las dependencias de A-Frame y
+  aframe-extras se cargan por CDN.
+- El visor no activa cámara ni tracking MindAR. Falta una imagen de etiqueta,
+  generar su archivo `.mind` e integrar el seguimiento.
+- Probar bajo HTTPS en un teléfono cuando exista el target.
+
+## 2026-11-05. Meliponario estilizado y vuelo de abejas
+
+Objetivo: convertir el visor en una escena más viva, con el jobón integrado en un
+entorno y varias abejas en movimiento.
+
+Hecho:
+
+- Se agregó un árbol low-poly, un arbusto, flores, pasto, rocas y colinas de fondo
+  construidos con primitivas de A-Frame.
+- El jobón se colocó al pie del árbol y se giró para mostrar su boca y los paneles
+  interiores hacia la cámara.
+- Se agregaron cuatro abejas con el mismo GLB, cada una con una trayectoria
+  distinta mediante el componente `bee-wander`; el componente también orienta la
+  abeja hacia su dirección de avance y añade un balanceo suave.
+- Se añadieron componentes para el viento en las flores (`flower`), el pasto
+  (`grass-clump`) y el follaje (`foliage-sway`), además de pequeñas motas de polen
+  animadas.
+- Se documentaron referencias visuales en `docs/referencias-3d.md`.
+
+Verificación:
+
+- `npm --prefix apps/ar-preview run build` compiló la escena.
+- `npm --prefix apps/ar-preview run test:smoke` confirmó el HTML y los dos GLB.
+
+## 2026-11-08. Verificación visual del visor
+
+- Se revisó la escena con Chrome headless y WebGL por SwiftShader. La captura
+  completa está en `docs/evidencias/2026-11-08/visor-escena.png` y el acercamiento
+  del jobón en `docs/evidencias/2026-11-08/visor-jobon.png`.
+- La verificación por DevTools confirmó que `scene.time` avanzó, que las cuatro
+  abejas cambiaron de posición y que el `mixer` de animación avanzó; no hubo
+  errores de consola.
+- Se ajustaron la cámara (FOV 66), la escala del jobón (0.82) y la densidad de
+  flores y pasto para que la escena se leyera mejor.
+- Se añadieron cuatro flores y cuatro matas de pasto en primer plano y se
+  corrigió el favicon que provocaba un 404.
+
+## 2026-11-08. Etiqueta objetivo y primera prueba MindAR
+
+- Se diseñó `assets/targets/etiqueta-sakpokaab.svg`, se rasterizó a
+  `etiqueta-sakpokaab.png` (1200 × 1600) y se compiló con MindAR Image Targets
+  Compiler 1.2.5 a `etiqueta-sakpokaab.mind` (índice de target 0).
+- Se creó `/ar.html` con MindAR, cámara, estado de escaneo, vista de la etiqueta y
+  un diorama a escala con jobón, árbol, cinco flores y tres abejas animadas.
+- La prueba usó una cámara de Chrome que reprodujo el PNG como video. DevTools
+  confirmó `targetFound: true`, tracking activo y carga del clip `SakPoKaab`.
+  Evidencia: `docs/evidencias/2026-11-08/ar-target-detectado.png`.
+- `npm --prefix apps/ar-preview run build` y `npm --prefix apps/ar-preview run
+  test:smoke` pasaron con la página AR y el target compilado.
+
+## 2026-11-08. Recreación didáctica de la cosecha
+
+- Se investigaron descripciones del manejo tradicional del jobón en fuentes de
+  The Nature Conservancy México y SEMARNAT. El guion aclara que las prácticas
+  cambian entre comunidades y que el video no es metraje documental.
+- Se generó una locución sintética es-MX con Microsoft Sabina y una animación
+  original de seis escenas usando Python/Pillow + FFmpeg.
+- Salida: `assets/video/cosecha-melipona-recreacion.mp4`, 53.4 s, 1280 × 720,
+  24 fps, H.264 Baseline/AAC, 3.5 MB. La pista se normalizó; FFmpeg midió -16.7 dB
+  de volumen medio y -1.5 dB de pico máximo.
+- Para la AR se generó `assets/video/cosecha-melipona-recreacion-mobile.mp4`,
+  640 × 360 y 1.34 MB, con el mismo audio/duración.
+- Se corrigió la codificación de tildes en el script PowerShell para que la voz
+  sintética reciba `Yucatán` y el resto del guion en UTF-8 correcto.
+- El botón **Ver cosecha** abre el reproductor modal en `/ar.html` cuando se
+  detecta la etiqueta. Vite sirve el MP4 con solicitudes HTTP por rango.
+- Tras feedback de fluidez, se ajustó el MP4 a H.264 Baseline con keyframes cada
+  2 s. La AR descarga la variante móvil completa antes de habilitar el botón; al
+  reproducir, MindAR pausa el tracking y lo reanuda al cerrar el modal. Una pérdida
+  simulada del target ya no interrumpe el video.
+- `npm --prefix apps/ar-preview run build` y `npm --prefix apps/ar-preview run
+  test:smoke` pasaron. Chrome headless confirmó target detectado, modal abierto y
+  reproducción avanzando después de simular `targetLost`; storyboard en
+  `docs/evidencias/2026-11-08/storyboard-cosecha.png`.
+
+Límite actual: la narración es sintética y no se usó testimonio ni material de una
+comunidad.
+
+## 2026-11-08. Validación en teléfono y fauna adicional en el visor
+
+- Joshua confirmó que la etiqueta y el video funcionan en el Galaxy A22 y que la
+  reproducción ya no se traba. Falta archivar una captura o grabación como
+  evidencia formal de esa prueba.
+- Se agregaron cinco animales low-poly al visor A-Frame: dos mariposas, una
+  libélula, un colibrí y una lagartija. Las mariposas, la libélula y el colibrí
+  usan `bee-wander` para sus trayectorias y un nuevo componente `wing-flap` para
+  batir las alas; la lagartija mueve la cola con `foliage-sway`.
+- La escena actualizada se verificó con Chrome headless y WebGL por SwiftShader.
+  El estado reportó “Escena lista: 4 abejas, mariposas, libélula, colibrí y
+  lagartija”; las cinco entidades de fauna estaban visibles y no hubo errores de
+  consola. Evidencia: `docs/evidencias/2026-11-08/visor-fauna.png` y
+  `visor-fauna-escena.png`.
+- `npm --prefix apps/ar-preview run build` y `test:smoke` pasaron.
+- Joshua usó lmik3 para mejorar los renders con un acabado estilizado. Ese apoyo
+  debe registrarse como asistencia visual; no sustituye las modificaciones
+  manuales en Blender ni la evidencia del proceso de autoría.
+- Se creó `/vr.html` con A-Frame 1.8, botón de entrada a WebXR, cuatro hotspots
+  informativos, panel anclado a la cámara y tres puntos de teletransporte. Reutiliza
+  el jobón y la fauna de la escena estilizada.
+- Se generó una narración sintética es-MX de ~43 s con control reproducir/pausar
+  en la barra y dentro de la escena. El MP3 es de 96 kbit/s mono; guion y fuentes
+  están en `docs/referencias-vr.md`.
+- Chrome headless confirmó A-Frame 1.8, cuatro hotspots, tres zonas de movimiento,
+  apertura/cierre del panel y teletransporte hasta el punto jardín, sin errores de
+  consola. Evidencia: `docs/evidencias/2026-11-08/vr-meliponario.png` y
+  `vr-hotspot-info.png`.
+- Chrome headless también reprodujo la narración hasta 2.98 s y la pausó con el
+  control; el MP3 llegó a `readyState: 4` y no hubo errores.
+- El build ahora incluye `vr.html`; el smoke test comprueba rutas, hotspots,
+  teletransporte, fauna y archivo de audio.
+
+## 2026-11-10. Carrito, cupón y pedido simulado
+
+Objetivo: cerrar el flujo básico de compra y dejar evidencia verificable.
+
+Hecho:
+
+- Se implementó `CartPanel.jsx` con variantes, cantidades, subtotal, cupón,
+  formulario de entrega y confirmación de pedido.
+- La API expone `POST /api/coupons/validate` y `POST /api/orders`. El pedido usa
+  transacción, bloquea el stock, descuenta inventario y registra
+  `coupon_redemptions` y `order_status_history`.
+- Pruebas de API: `BIENVENIDA10` aplica 10 % desde $200; un subtotal de $150
+  responde `coupon_minimum_not_met`; una cantidad mayor al stock responde `409`;
+  un pedido válido responde `201` y devuelve número, subtotal, descuento y total.
+- `npm run test:commerce` automatiza esos casos, elimina el pedido sintético al
+  terminar y restaura inventario y contador del cupón.
+- Una prueba de UI en Chrome headless agregó una variante, abrió el carrito,
+  aplicó el cupón y confirmó un pedido de $320 con descuento de $32 y total de
+  $288, sin errores de consola ni solicitudes fallidas.
+- La misma prueba a 390 px reportó `innerWidth = 390`, `scrollWidth = 390` y panel
+  de 390; no hubo desbordamiento horizontal.
+- Evidencias: `docs/evidencias/2026-11-10/carrito-cupon.png`,
+  `pedido-simulado.png`, `carrito-cupon-movil.png` y
+  `pedido-simulado-movil.png`.
+- Se agregó un favicon SVG local para eliminar el `404` de `/favicon.ico`.
+
+Verificación:
+
+- Después de la limpieza, `orders` quedó vacío, `BIENVENIDA10` volvió a
+  `used_count = 0` y el stock de las variantes se restauró.
+- Build de tienda y raíz pasan; el flujo se probó contra la API y MySQL locales.
+
+Problemas:
+
+- La primera captura mostró un `404` de favicon. Se agregó
+  `apps/store/public/favicon.svg` y una etiqueta `link` en `index.html`.
+- El script temporal de limpieza necesitó ajustar la importación ESM en Windows;
+  después se verificó directamente en MySQL que no quedaran pedidos de prueba.
+
+Decisión:
+
+- Los pedidos sintéticos de las pruebas no se conservan en la base; las capturas
+  y el resultado del smoke test son la evidencia.
+- El pago sigue siendo simulado y así se declara en la interfaz.
+
+## 2026-11-10. Renders de producto e integración en la tienda
+
+Objetivo: sustituir los glifos del catálogo por imágenes de producto coherentes
+con la identidad de Sak P'o' Kaab.
+
+Hecho:
+
+- Se construyó un estudio crema reutilizable en Blender 5.2.3 LTS con Cycles CPU,
+  cámara con DOF, ciclorama, luces de estudio y materiales procedurales.
+- Se renderizó la miel a 1600 × 2000 y 40 muestras en 554.2 s; el usuario aprobó
+  el resultado. La escena quedó en `assets/models/producto-miel.blend`.
+- Se generaron previews de jabón, bálsamo y vela a 640 × 800 y 16 muestras. Tras
+  ajustar el encuadre del bálsamo para que la tapa acostada no quedara cortada, se
+  renderizaron los finales a 1600 × 2000 y 32 muestras: jabón 329.3 s, bálsamo
+  343.2 s y vela 560.5 s.
+- Los cuatro PNG están en `docs/evidencias/2026-11-10/producto-*-final.png`; las
+  escenas, en `assets/models/producto-*.blend`.
+- Se generaron versiones WebP de 800 × 1000 en `apps/store/public/productos/` y se
+  integraron en `ProductCard.jsx` y en la ficha de `App.jsx`.
+
+Verificación:
+
+- `npm --prefix apps/store run build` pasó después de integrar las imágenes.
+- La captura de Chrome headless mostró las cuatro tarjetas con sus imágenes,
+  precios y stock, sin errores de carga; quedó en
+  `docs/evidencias/2026-11-10/tienda-productos.png`.
+- La emulación móvil por DevTools reportó `innerWidth = 390`, `scrollWidth = 390`,
+  las cuatro imágenes con `naturalWidth = 800` y ninguna solicitud fallida.
+  Evidencia: `docs/evidencias/2026-11-10/tienda-productos-movil.png`.
+- Las cuatro URLs WebP respondieron `200 image/webp`.
+- `npm run test:commerce` pasó contra una instancia estable de la API en el puerto
+  3001 y limpió su pedido sintético.
+- Los archivos WebP pesan entre 8.7 KB y 13.6 KB; los PNG originales se conservan
+  como evidencia.
+
+Problemas:
+
+- La primera versión de la miel estaba sobreexpuesta; se corrigió exposición y
+  balance de luces.
+- La etiqueta de la vela se ve algo suave por la profundidad de campo y el vidrio;
+  se aceptó para la tarjeta, pero puede repetirse con foco frontal si se necesita
+  una lectura más nítida.
+- La imagen horizontal del jabón deja aire arriba en formato 4:5; en la tarjeta se
+  ve completa y el encuadre se puede recortar por CSS si hace falta.
+- `npm run test:commerce` falló dos veces con `ECONNREFUSED`/`ECONNRESET` porque
+  el watcher de desarrollo reinició la API durante la prueba. Se repitió con
+  `node server/src/index.js` en el puerto 3001 y pasó.
+
+Decisión:
+
+- Usar las mismas imágenes en catálogo y ficha para mantener consistencia visual.
+- Mantener los PNG a resolución completa como evidencia y publicar WebP ligeros.
+
 ## Pendientes inmediatos
 
 - Confirmar el horario de fin de semana.
-- Instalar Blender y FFmpeg.
-- Hacer el primer commit del Bloque 1 cuando el asistente lo indique.
+- Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de
+  las modificaciones propias. Registrar lmik3 como apoyo de render, si se usa.
+- Archivar la evidencia de la prueba de etiqueta y video en el Galaxy A22.
+- Probar carrito y checkout en el Galaxy A22 y guardar evidencia.
+- Probar `/vr.html` en un visor/teléfono WebXR real y ajustar comodidad/escala.
+- Validar narración y controles de audio en un dispositivo WebXR real.
+- Hacer el commit solo cuando Joshua lo solicite.

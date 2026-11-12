@@ -25,14 +25,58 @@ Bloque 1 completado:
 - API REST en Express con catálogo, variantes, stock y estado de salud.
 - Catálogo web en React + Vite + Tailwind, con filtros, ficha de producto y
   diseño adaptable a teléfono.
-- Evidencias de ejecución y pruebas en `docs/evidencias/2026-10-28/`.
+- Evidencias de ejecución y pruebas en `docs/evidencias/2026-10-28/` y
+  `docs/evidencias/2026-11-10/`.
+
+Sprint 2:
+
+- Blender 5.2.3 y FFmpeg 9.0.2 instalados y verificados.
+- Escena estilizada generada por `scripts/blender_model.py` en
+  `assets/models/modelo.blend`, con exportaciones `abeja.glb` y `jobon.glb`.
+- El GLB de la abeja contiene el clip `SakPoKaab`; el jobón incluye panales y
+  cavidad interior.
+- Renders EEVEE generados por `scripts/blender_render_eevee.py` en
+  `docs/evidencias/2026-11-04/`.
+- La escena generada por scripts aún requiere el pase manual y documentado de
+  Joshua para sustentar la autoría.
+- Guía del pase manual: `docs/pase-manual-3d.md`; skills de apoyo:
+  `docs/skills-3d.md`.
+- Visor A-Frame con meliponario estilizado, cuatro abejas, dos mariposas, una
+  libélula, un colibrí, una lagartija, jobón, árbol, flores, pasto y colinas:
+  `npm --prefix apps/ar-preview run dev` (puerto 5174).
+- Recorrido inmersivo en `/vr.html`: A-Frame 1.8, cuatro hotspots informativos y
+  teletransporte por mirada entre inicio, jardín y jobón. Incluye narración
+  sintética con control de reproducción; la prueba con casco WebXR físico queda
+  pendiente.
+- Experiencia MindAR en `http://localhost:5174/ar.html`; target e instrucciones de
+  impresión en `assets/targets/`. La etiqueta y el video se validaron en el Galaxy
+  A22.
+- Recreación didáctica original de la cosecha, 720p con narración sintética:
+  `assets/video/cosecha-melipona-recreacion.mp4`. Ya está disponible desde el
+  botón **Ver cosecha** cuando MindAR detecta la etiqueta.
+- Referencias visuales y criterios de estilo en `docs/referencias-3d.md`.
+- Guion y fuentes del video: `docs/referencias-video.md`; storyboard en
+  `docs/evidencias/2026-11-08/storyboard-cosecha.png`.
+- Guion y fuentes de la narración VR: `docs/referencias-vr.md`; audio en
+  `assets/audio/narracion-recorrido-vr.mp3`.
+- Carrito adaptable con variantes, cantidades, subtotal, cupón `BIENVENIDA10` y
+  checkout simulado. El pedido se guarda en `orders` y `order_items`, descuenta
+  stock y registra la redención del cupón y el historial de estado.
+- API de compra: `POST /api/coupons/validate` y `POST /api/orders`, con
+  validaciones Zod, transacción y bloqueo de inventario.
+- Cuatro renders de producto en `docs/evidencias/2026-11-10/producto-*-final.png`
+  (1600 × 2000), integrados como WebP en las tarjetas y la ficha de la tienda.
+- Revisión visual en escritorio: `docs/evidencias/2026-11-08/visor-escena.png`.
+  Fauna adicional: `docs/evidencias/2026-11-08/visor-fauna.png`.
+  Captura de MindAR: `docs/evidencias/2026-11-08/ar-target-detectado.png`.
 
 Pendiente para los siguientes sprints:
 
-- Etiqueta de realidad aumentada con A-Frame + MindAR.
-- Meliponario virtual con A-Frame/WebXR.
-- Carrito, cupones y pago simulado.
-- Video de cosecha con Python + FFmpeg y modelo 3D de la abeja y el jobón.
+- Hacer el pase manual de los modelos y documentar las modificaciones propias.
+- Archivar la evidencia de la validación de AR/video en el Galaxy A22.
+- Validar el recorrido WebXR con un casco físico y guardar evidencia.
+- Probar narración y controles de audio en el dispositivo WebXR.
+- Probar carrito y checkout en teléfono y documentar la demo de defensa.
 - Documentación final, bitácora de IA y presentación de defensa.
 
 ## Tecnologías
@@ -107,6 +151,7 @@ Pendiente para los siguientes sprints:
 | `npm run dev:api` | API con `node --watch`. |
 | `npm run dev:store` | Vite en el puerto 5173. |
 | `npm run build` | Compila la tienda en `apps/store/dist`. |
+| `npm run test:commerce` | Prueba cupón, mínimo, stock y pedido; limpia sus datos. |
 | `npm start` | API en modo producción. |
 | `npm run db:up` | Levanta MySQL en segundo plano. |
 | `npm run db:down` | Detiene MySQL sin borrar datos. |
@@ -119,6 +164,8 @@ Pendiente para los siguientes sprints:
 | GET | `/api/health` | Estado de la API y de MySQL. |
 | GET | `/api/products` | Productos activos con sus variantes. |
 | GET | `/api/products/:slug` | Un producto por slug o `404`. |
+| POST | `/api/coupons/validate` | Valida código y subtotal; devuelve descuento. |
+| POST | `/api/orders` | Crea un pedido simulado y descuenta stock. |
 
 Ejemplo de respuesta de salud:
 
@@ -180,9 +227,20 @@ npm run db:reset
 - Prueba de diseño móvil a 390 px: `scrollWidth = 390`, sin desbordamiento
   horizontal; el diálogo de producto también se mantiene dentro del ancho.
 - Filtro "Jabones": muestra únicamente el producto de jabón.
+- Cupón `BIENVENIDA10`: 10 % desde $200; un subtotal de $150 responde
+  `coupon_minimum_not_met`.
+- Pedido simulado: subtotal $320, descuento $32 y total $288; el stock se
+  descuenta dentro de una transacción.
+- `npm run test:commerce` valida cupón, mínimo, stock insuficiente y pedido; al
+  terminar elimina el pedido de prueba y restaura inventario y contador del cupón.
+- Flujo UI en Chrome headless: agregar variante, abrir carrito, aplicar cupón y
+  confirmar pedido; capturas en `docs/evidencias/2026-11-10/`.
+- Flujo móvil a 390 px: `innerWidth = 390`, `scrollWidth = 390` y panel de 390;
+  capturas `carrito-cupon-movil.png` y `pedido-simulado-movil.png`.
 
 Las capturas y el JSON de la API están en
-`docs/evidencias/2026-10-28/`.
+`docs/evidencias/2026-10-28/`; la compra simulada, en
+`docs/evidencias/2026-11-10/`.
 
 ## Fuentes de la lengua maya
 

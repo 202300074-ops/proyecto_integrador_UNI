@@ -37,9 +37,15 @@ coverage/
 tmp/
 temp/
 *.tmp
+__pycache__/
+*.py[cod]
+.pytest_cache/
 
 # Evidencias pesadas (se guardan fuera del repo si superan 50 MB)
 assets/video/*.mp4
 assets/video/*.mov
 assets/audio/*.wav
+!assets/video/cosecha-melipona-recreacion.mp4
+!assets/video/cosecha-melipona-recreacion-mobile.mp4
+!assets/audio/narracion-cosecha.wav
 assets/models/*.blend1

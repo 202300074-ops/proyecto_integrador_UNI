@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { getProducts } from './api.js';
-import ProductCard, { CATEGORY_LABELS } from './components/ProductCard.jsx';
+import ProductCard, { CATEGORY_LABELS, PRODUCT_IMAGES } from './components/ProductCard.jsx';
+import CartPanel from './components/CartPanel.jsx';
 
 const FILTERS = [
   { id: 'all', label: 'Todo' },
@@ -34,7 +35,10 @@ function BrandMark({ className = 'h-10 w-10' }) {
   );
 }
 
-function ProductDialog({ product, onClose }) {
+function ProductDialog({ product, onClose, onAddToCart, onOpenCart }) {
+  const [notice, setNotice] = useState('');
+  const image = PRODUCT_IMAGES[product.slug];
+
   useEffect(() => {
     const onKeyDown = (event) => {
       if (event.key === 'Escape') onClose();
@@ -78,6 +82,14 @@ function ProductDialog({ product, onClose }) {
           </button>
         </div>
 
+        {image ? (
+          <img
+            src={image}
+            alt={`${product.name} de Sak P'o' Kaab`}
+            className="mt-4 h-56 w-full rounded-2xl bg-cream object-contain sm:h-64"
+          />
+        ) : null}
+
         <p className="mt-4 text-sm leading-relaxed text-charcoal/75">
           {product.description}
         </p>
@@ -94,7 +106,7 @@ function ProductDialog({ product, onClose }) {
           {product.variants.map((variant) => (
             <li
               key={variant.id}
-              className="flex items-center justify-between gap-4 py-3"
+              className="flex flex-wrap items-center justify-between gap-3 py-3"
             >
               <div>
                 <p className="text-sm font-semibold text-forest-900">{variant.name}</p>
@@ -102,17 +114,36 @@ function ProductDialog({ product, onClose }) {
                   {variant.sku} · {variant.stock} en inventario
                 </p>
               </div>
-              <p className="font-display text-lg text-forest-900">
-                {currency.format(Number(variant.price))}
-              </p>
+              <div className="flex items-center gap-3">
+                <p className="font-display text-lg text-forest-900">
+                  {currency.format(Number(variant.price))}
+                </p>
+                <button
+                  type="button"
+                  data-add-variant={variant.id}
+                  disabled={Number(variant.stock) < 1}
+                  onClick={() => {
+                    const added = onAddToCart(product, variant);
+                    setNotice(added ? `${variant.name} agregado al carrito.` : 'No queda inventario disponible de esa variante.');
+                  }}
+                  className="btn-primary !px-3 !py-2 text-[11px] disabled:cursor-not-allowed disabled:opacity-45"
+                >
+                  {Number(variant.stock) > 0 ? 'Agregar' : 'Agotado'}
+                </button>
+              </div>
             </li>
           ))}
         </ul>
 
-        <p className="mt-6 rounded-2xl border border-honey-300/60 bg-honey-50 p-4 text-xs leading-relaxed text-honey-900">
-          El carrito y el pago simulado se habilitan en el Sprint 2. Esta pantalla ya
-          consume el inventario real de MySQL.
-        </p>
+        {notice ? <p role="status" className="mt-4 rounded-xl bg-honey-50 p-3 text-xs text-forest-900">{notice}</p> : null}
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-honey-300/60 bg-honey-50 p-4">
+          <p className="max-w-xs text-xs leading-relaxed text-honey-900">
+            El inventario se vuelve a validar en el servidor al registrar el pedido. El pago es simulado.
+          </p>
+          <button type="button" data-open-cart onClick={onOpenCart} className="btn-ghost !px-4 !py-2 text-xs">
+            Ver carrito
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -124,6 +155,46 @@ export default function App() {
   const [error, setError] = useState('');
   const [filter, setFilter] = useState('all');
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [cart, setCart] = useState([]);
+  const [cartOpen, setCartOpen] = useState(false);
+
+  function addToCart(product, variant) {
+    const variantId = Number(variant.id);
+    const existing = cart.find((item) => item.variantId === variantId);
+    if (existing && existing.quantity >= Number(variant.stock)) return false;
+
+    setCart((current) => {
+      const currentItem = current.find((item) => item.variantId === variantId);
+      if (currentItem) {
+        return current.map((item) => item.variantId === variantId
+          ? { ...item, quantity: Math.min(item.quantity + 1, Number(variant.stock)) }
+          : item);
+      }
+      return [...current, {
+        variantId,
+        productId: Number(product.id),
+        productName: product.name,
+        variantName: variant.name,
+        sku: variant.sku,
+        price: Number(variant.price),
+        stock: Number(variant.stock),
+        quantity: 1
+      }];
+    });
+    return true;
+  }
+
+  function changeCartQuantity(variantId, quantity) {
+    if (quantity < 1) {
+      setCart((current) => current.filter((item) => item.variantId !== variantId));
+      return;
+    }
+    setCart((current) => current.map((item) => item.variantId === variantId
+      ? { ...item, quantity: Math.min(quantity, item.stock) }
+      : item));
+  }
+
+  const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
   useEffect(() => {
     let active = true;
@@ -179,9 +250,14 @@ export default function App() {
             </a>
           </nav>
 
-          <a href="#catálogo" className="btn-primary shrink-0 !px-5 !py-2.5 text-xs">
-            Comprar
-          </a>
+          <button
+            type="button"
+            onClick={() => setCartOpen(true)}
+            className="btn-primary shrink-0 !px-5 !py-2.5 text-xs"
+            aria-label={`Abrir carrito, ${cartCount} artículos`}
+          >
+            Carrito ({cartCount})
+          </button>
         </div>
       </header>
 
@@ -431,6 +507,20 @@ export default function App() {
         <ProductDialog
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
+          onAddToCart={addToCart}
+          onOpenCart={() => {
+            setSelectedProduct(null);
+            setCartOpen(true);
+          }}
+        />
+      ) : null}
+      {cartOpen ? (
+        <CartPanel
+          items={cart}
+          onChangeQuantity={changeCartQuantity}
+          onRemove={(variantId) => setCart((current) => current.filter((item) => item.variantId !== variantId))}
+          onClose={() => setCartOpen(false)}
+          onOrderCreated={() => setCart([])}
         />
       ) : null}
     </div>
