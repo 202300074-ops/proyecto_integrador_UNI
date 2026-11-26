@@ -96,12 +96,13 @@ Completado (Sprint 2):
 - `scripts/blender_render_eevee.py` genera los cuatro renders EEVEE `final-*.png`
   en `docs/evidencias/2026-11-04/`.
 - `apps/ar-preview` contiene un meliponario estilizado en A-Frame con jobón,
-  árbol, flores, pasto, colinas, cuatro abejas en vuelo y fauna adicional: dos
-  mariposas, una libélula, un colibrí y una lagartija. La prueba HTTP sirve ambos
-  GLB y el build compila el visor. `/ar.html` integra cámara y MindAR con
-  `assets/targets/etiqueta-sakpokaab.mind`; el target se validó con cámara virtual
-  y en el Galaxy A22. `/vr.html` usa A-Frame 1.8 con cuatro hotspots, tres zonas
-  de teletransporte, panel de información y narración sintética con control
+  árboles, flores, pasto, colinas, un lago con peces, seis abejas en vuelo y fauna
+  adicional: dos mariposas, una libélula, un colibrí y una lagartija. La prueba HTTP
+  sirve ambos GLB y el build compila el visor. `/ar.html` integra cámara y MindAR
+  con `assets/targets/etiqueta-sakpokaab.mind`; el target se validó con cámara
+  virtual y en el Galaxy A22. `/vr.html` usa A-Frame 1.8 con una granja explorable
+  en 360° (colisiones de `vr-explore`), cinco hotspots, cinco zonas de
+  teletransporte, panel de información y narración sintética con control
   reproducir/pausar.
 - `assets/video/cosecha-melipona-recreacion.mp4` es una animación original 720p,
   con narración sintética es-MX, generada con Python/Pillow y FFmpeg. La AR usa

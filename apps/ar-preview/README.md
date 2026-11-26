@@ -37,18 +37,43 @@ el navegador lo solicite.
 ## Recorrido VR
 
 - `/vr.html` usa A-Frame 1.8 y activa el botón de entrada a WebXR.
-- Cuatro hotspots muestran información del jobón, las abejas, la fauna y el
-  cuidado del meliponario. En casco se activan mirando el punto dorado; en
-  escritorio se puede apuntar con la vista y usar WASD para caminar.
-- Tres marcas del suelo permiten teletransportarse entre el inicio, el jardín y
-  el jobón.
+- La granja ocupa un claro de 44 unidades de radio rodeado de árboles, colinas y
+  maleza. El visitante puede caminar en 360° con WASD o flechas; `vr-explore`
+  aplica límites de la granja y colisiones contra troncos, palapa y lago.
+- Cinco hotspots muestran información del jobón, las abejas, la fauna, el cuidado
+  del meliponario y un detalle escondido. En casco se activan mirando el punto
+  dorado; en escritorio se apunta con la vista.
+- Cinco marcas del suelo permiten teletransportarse entre el inicio, el jardín, el
+  jobón, la palapa y el lago.
+- El lago tiene peces animados y el entorno suma abejas ambientales, mariposas,
+  libélula, colibrí y lagartija distribuidos por toda la granja.
 - El panel informativo está dentro de la escena para que también se vea en VR.
 - La narración es sintética; **Escuchar recorrido** y el botón AUDIO del visor
   permiten reproducirla, pausarla y retomarla.
 - Guion y fuentes: `docs/referencias-vr.md`; el servidor sirve
   `assets/audio/narracion-recorrido-vr.mp3` en `/audio/narracion-recorrido-vr.mp3`.
 - La compatibilidad de WebXR depende del teléfono/casco y de que la página se
-  abra por HTTPS; falta validar la entrada con un visor físico.
+  abra por HTTPS; la validación hecha hasta ahora es headless, falta probar la
+  entrada con un visor físico.
+
+### Probar WebXR en el teléfono
+
+WebXR exige un contexto seguro. Si abres `http://<IP-LAN>:5174/vr.html` en el
+teléfono, Chrome muestra “Access this site over HTTPS to enter VR mode”. Opciones:
+
+- **USB (recomendado):** activa la depuración USB, conecta el teléfono y ejecuta
+  `adb reverse tcp:5174 tcp:5174`; después abre
+  `http://localhost:5174/vr.html`. `localhost` es contexto seguro y no necesita
+  certificados.
+- **Sin USB:** en Chrome del teléfono abre `chrome://flags`, activa “Insecure
+  origins treated as secure”, agrega `http://192.168.1.107:5174` (tu IP) y
+  reinicia el navegador. Es un ajuste de prueba, no de producción.
+- **Túnel HTTPS:** `cloudflared tunnel --url http://localhost:5174` o `ngrok http
+  5174` si no hay USB ni acceso a flags.
+
+En pantallas táctiles aparece un joystick para caminar; en escritorio se usa WASD
+o flechas. La entrada WebXR sigue dependiendo de que el dispositivo exponga un
+modo inmersivo compatible.
 
 ## Etiqueta objetivo
 

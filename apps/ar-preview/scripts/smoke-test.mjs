@@ -37,8 +37,17 @@ try {
   assert.match(vrHtml, /vr-lizard/, 'página VR debe incluir una lagartija');
   assert.match(vrHtml, /vr-audio-toggle/, 'página VR debe incluir control de narración');
   assert.match(vrHtml, /narracion-recorrido-vr\.mp3/, 'página VR debe cargar narración');
-  assert.equal((vrHtml.match(/vr-hotspot=/g) ?? []).length, 4, 'página VR debe incluir cuatro hotspots');
-  assert.equal((vrHtml.match(/vr-teleport=/g) ?? []).length, 3, 'página VR debe incluir tres zonas de teletransporte');
+  assert.match(vrHtml, /id="vr-farm-ground"/, 'página VR debe tener terreno que rodea al visitante');
+  assert.match(vrHtml, /id="vr-pond"/, 'página VR debe incluir el lago');
+  assert.match(vrHtml, /id="vr-fish-a"/, 'página VR debe incluir peces visibles en el lago');
+  assert.match(vrHtml, /id="vr-easter-egg"/, 'página VR debe incluir un detalle escondido');
+  assert.match(vrHtml, /vr-explore=/, 'cámara debe permitir explorar con colisiones');
+  assert.match(vrHtml, /id="vr-touch-pad"/, 'página VR debe ofrecer joystick táctil');
+  assert.match(vrHtml, /id="vr-touch-knob"/, 'joystick táctil debe tener perilla visible');
+  assert.ok((vrHtml.match(/class="vr-tree"/g) ?? []).length >= 8, 'escena debe distribuir árboles alrededor del visitante');
+  assert.ok((vrHtml.match(/class="vr-ambient-bee"/g) ?? []).length >= 4, 'escena debe añadir abejas ambientales ligeras');
+  assert.equal((vrHtml.match(/vr-hotspot=/g) ?? []).length, 5, 'página VR debe incluir cuatro hotspots y el huevo escondido');
+  assert.equal((vrHtml.match(/vr-teleport=/g) ?? []).length, 5, 'página VR debe incluir cinco zonas de teletransporte');
 
   const vrAudio = await fetch(`${origin}/audio/narracion-recorrido-vr.mp3`);
   assert.equal(vrAudio.status, 200, 'audio narrado VR debe responder 200');

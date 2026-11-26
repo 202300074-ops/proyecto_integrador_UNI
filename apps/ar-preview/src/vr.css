@@ -74,6 +74,60 @@ a-scene {
   inset: 0;
 }
 
+.vr-touch {
+  position: fixed;
+  z-index: 6;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+  touch-action: none;
+}
+
+.vr-touch-label {
+  color: #fdf8ea;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 45%);
+}
+
+.vr-touch-pad {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  background: rgb(39 54 35 / 55%);
+  touch-action: none;
+  backdrop-filter: blur(6px);
+}
+
+.vr-touch-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin: -1.5rem 0 0 -1.5rem;
+  border-radius: 50%;
+  background: rgb(243 215 140 / 92%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 28%);
+}
+
+@media (pointer: coarse) {
+  .vr-touch {
+    display: flex;
+  }
+
+  .vr-help {
+    max-width: calc(100% - 9.5rem);
+  }
+}
+
 .hotspot {
   cursor: pointer;
 }

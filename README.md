@@ -41,13 +41,17 @@ Sprint 2:
   Joshua para sustentar la autoría.
 - Guía del pase manual: `docs/pase-manual-3d.md`; skills de apoyo:
   `docs/skills-3d.md`.
-- Visor A-Frame con meliponario estilizado, cuatro abejas, dos mariposas, una
-  libélula, un colibrí, una lagartija, jobón, árbol, flores, pasto y colinas:
-  `npm --prefix apps/ar-preview run dev` (puerto 5174).
-- Recorrido inmersivo en `/vr.html`: A-Frame 1.8, cuatro hotspots informativos y
-  teletransporte por mirada entre inicio, jardín y jobón. Incluye narración
-  sintética con control de reproducción; la prueba con casco WebXR físico queda
-  pendiente.
+- Visor A-Frame con meliponario estilizado, seis abejas, dos mariposas, una
+  libélula, un colibrí, una lagartija, jobón, árboles, flores, pasto, colinas y
+  un lago con peces: `npm --prefix apps/ar-preview run dev` (puerto 5174).
+- Recorrido inmersivo en `/vr.html`: A-Frame 1.8, granja explorable en 360° con
+  colisiones, cinco hotspots informativos, un detalle escondido y teletransporte
+  por mirada entre inicio, jardín, jobón, palapa y lago. Incluye narración
+  sintética con control de reproducción y joystick táctil. La prueba con casco
+  WebXR físico queda pendiente.
+- WebXR exige contexto seguro: en el teléfono conviene `adb reverse tcp:5174
+  tcp:5174` y abrir `http://localhost:5174/vr.html`; por IP LAN Chrome bloquea la
+  entrada a VR.
 - Experiencia MindAR en `http://localhost:5174/ar.html`; target e instrucciones de
   impresión en `assets/targets/`. La etiqueta y el video se validaron en el Galaxy
   A22.

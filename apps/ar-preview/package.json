@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5174",
     "build": "vite build",
-    "test:smoke": "node scripts/smoke-test.mjs",
+    "test:smoke": "node scripts/smoke-test.mjs && node scripts/vr-navigation-test.mjs",
     "preview": "vite preview --host 0.0.0.0 --port 4174"
   },
   "devDependencies": {

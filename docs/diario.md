@@ -508,6 +508,45 @@ Decisión:
 - Mantener el panel como demostración local y sin datos personales; no convertirlo
   en administración de pedidos reales.
 
+## 2026-11-26. Granja VR explorable en 360°
+
+Objetivo: ampliar `/vr.html` para que el recorrido no se limite al frente de la
+escena y se sienta como una granja melipona acogedora y explorable; la AR se
+mantiene acotada a la etiqueta.
+
+Cambios:
+
+- Terreno circular de 44 unidades de radio (`vr-farm-ground`), niebla más abierta
+  y nueve colinas alrededor del claro.
+- Trece árboles con el componente `farm-tree` distribuidos en todas las
+  direcciones, además de arbustos, flores, pasto y rocas.
+- Componente `vr-explore` sobre el rig de cámara: caminata con WASD/flechas,
+  límite de la granja y colisiones contra troncos, palapa y lago mediante
+  `src/vr-navigation.js`.
+- Lago con banco de tierra, agua translúcida y tres peces animados
+  (`pond-fish`); nueva zona de teletransporte **LAGO**.
+- Cuatro abejas ambientales ligeras (`ambient-bee`), seis abejas GLB y fauna
+  repartida por toda la granja (mariposas, libélula, colibrí y lagartija).
+- Palapa con jobones adicionales y un detalle escondido (`vr-easter-egg`) que
+  añade el quinto hotspot.
+- Cinco teletransportes: inicio, jardín, jobón, palapa y lago.
+- Joystick táctil para caminar en teléfono; en escritorio se conserva WASD o
+  flechas. Se corrigió la velocidad del movimiento diagonal.
+- Al abrir `/vr.html` desde el Galaxy A22 por `http://192.168.1.107:5174`, Chrome
+  bloqueó la entrada a VR por contexto inseguro. Se documentó el uso de
+  `adb reverse tcp:5174 tcp:5174` con `http://localhost:5174` y la alternativa de
+  un túnel HTTPS; la entrada WebXR física sigue sin validarse.
+
+Verificación:
+
+- `npm --prefix apps/ar-preview run test:smoke` pasó con `AR_PREVIEW_SMOKE_OK` y
+  `VR_NAVIGATION_OK`; la prueba de navegación valida límites, colisiones y que
+  los cinco destinos de teletransporte caen en suelo libre.
+- `npm --prefix apps/ar-preview run build` y `npm run build` pasaron.
+
+Límite: la validación es headless y de navegación; la comodidad, escala y entrada
+WebXR siguen pendientes de un visor físico.
+
 ## Pendientes inmediatos
 
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de

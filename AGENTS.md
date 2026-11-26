@@ -21,6 +21,9 @@
 - Base de datos: `npm run db:up`; API y tienda: `npm run dev`.
 - Tienda: `http://localhost:5173`; API: `http://localhost:3000/api`.
 - AR/VR: `npm --prefix apps/ar-preview run dev` en `http://localhost:5174`.
+- WebXR exige contexto seguro: en el teléfono usa `adb reverse tcp:5174 tcp:5174`
+  y abre `http://localhost:5174/vr.html`; por IP LAN (`http://192.168.1.107:5174`)
+  Chrome bloquea la entrada a VR.
 - Build: `npm run build`.
 - Prueba de compra: `npm run test:commerce`.
 - Si la prueba de comercio falla con `ECONNREFUSED` o `ECONNRESET`, el watcher
@@ -54,8 +57,10 @@
   y verificados en la captura final del catálogo.
 - AR/video validados funcionalmente por Joshua en Galaxy A22; falta archivar
   evidencia formal.
-- VR con A-Frame 1.8, cuatro hotspots, tres teletransportes, panel y narración
-  sintética; validación headless pasó, falta WebXR físico.
+- VR con A-Frame 1.8: granja explorable en 360° con colisiones, trece árboles,
+  cinco hotspots (incluye detalle escondido), cinco teletransportes, lago con
+  peces, abejas ambientales y narración sintética; validación headless y de
+  navegación pasó, falta WebXR físico.
 - Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en

@@ -38,9 +38,10 @@ Python y FFmpeg.
 La tienda permite consultar cuatro productos, elegir variantes, agregar al
 carrito, aplicar el cupón `BIENVENIDA10`, simular un pedido y descontar stock
 dentro de una transacción. La experiencia AR reconoce una etiqueta impresa y
-muestra una abeja animada y un video. La experiencia VR recorre un meliponario
-estilizado con hotspots, teletransportes y narración. El video explica el proceso
-de cosecha como recreación didáctica.
+muestra una abeja animada y un video. La experiencia VR permite recorrer en 360°
+una granja estilizada con colisiones, vegetación circundante, un lago con peces,
+cinco hotspots (uno escondido), cinco teletransportes y narración. El video
+explica el proceso de cosecha como recreación didáctica.
 
 El proyecto se verificó con pruebas de API, una prueba automatizada de comercio,
 build de producción, smoke test del visor AR/VR y capturas en escritorio y

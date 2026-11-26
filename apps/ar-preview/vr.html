@@ -19,12 +19,21 @@
     </nav>
 
     <aside class="vr-help" aria-label="Instrucciones">
-      <strong>Recorrido del meliponario</strong>
+      <strong>Meliponario exploratorio</strong>
       <span>En casco: mira un punto dorado para activarlo.</span>
-      <span>En pantalla: arrastra para apuntar y mantén la vista en un punto dorado.</span>
-      <span>Usa las marcas del suelo para cambiar de zona.</span>
+      <span>Escritorio: arrastra para mirar y usa WASD o flechas.</span>
+      <span>Teléfono: arrastra para mirar y usa el joystick para caminar.</span>
+      <span>Rodea árboles, jobones y el lago; usa los portales para ir a otras zonas.</span>
       <span>El botón AUDIO reproduce o pausa la narración.</span>
     </aside>
+
+    <div class="vr-touch" id="vr-touch" aria-label="Joystick de movimiento">
+      <span class="vr-touch-label">MOVER</span>
+      <div class="vr-touch-pad" id="vr-touch-pad" aria-label="Arrastra para caminar" role="application">
+        <span class="vr-touch-knob" id="vr-touch-knob"></span>
+      </div>
+    </div>
+
 
     <audio id="vr-tour-audio" src="/audio/narracion-recorrido-vr.mp3" preload="auto"></audio>
 
@@ -33,8 +42,8 @@
       renderer="colorManagement: true; physicallyCorrectLights: true; antialias: true"
       vr-mode-ui="enabled: true"
       webxr="optionalFeatures: local-floor, bounded-floor"
-      background="color: #dbe6cf"
-      fog="type: exponential; color: #dbe6cf; density: 0.012"
+      background="color: #d5e4d4"
+      fog="type: exponential; color: #d5e4d4; density: 0.006"
       loading-screen="dotsColor: #c8892c; backgroundColor: #dbe6cf"
     >
       <a-assets timeout="20000">
@@ -42,34 +51,62 @@
         <a-asset-item id="vr-hive-model" src="/models/jobon.glb"></a-asset-item>
       </a-assets>
 
-      <a-sky color="#dbe6cf"></a-sky>
-      <a-entity light="type: ambient; color: #fff3d8; intensity: 0.85"></a-entity>
-      <a-entity light="type: hemisphere; color: #fff6e4; groundColor: #5f6f45; intensity: 0.9"></a-entity>
-      <a-entity light="type: directional; color: #ffe8c2; intensity: 1.8" position="-3 6 3"></a-entity>
-      <a-entity light="type: directional; color: #d1e1ff; intensity: 0.55" position="4 3 -4"></a-entity>
+      <a-sky color="#d5e4d4"></a-sky>
+      <a-entity light="type: ambient; color: #fff4dc; intensity: 0.82"></a-entity>
+      <a-entity light="type: hemisphere; color: #fff5df; groundColor: #596f43; intensity: 0.95"></a-entity>
+      <a-entity light="type: directional; color: #ffe7bd; intensity: 1.65" position="-4 8 -2"></a-entity>
+      <a-entity light="type: directional; color: #d7e5ff; intensity: 0.4" position="5 5 6"></a-entity>
 
       <a-circle
-        position="0 -0.015 -3"
+        id="vr-farm-ground"
+        position="0 -0.025 -5"
         rotation="-90 0 0"
-        radius="18"
-        segments="64"
-        material="color: #89a767; roughness: 1; flatShading: true"
+        radius="44"
+        segments="96"
+        material="color: #8aa86a; roughness: 1; flatShading: true"
       ></a-circle>
-      <a-cone position="-5 1.3 -11" radius-bottom="5" radius-top="0.45" height="3" segments-radial="6" material="color: #7b9660; roughness: 1; flatShading: true"></a-cone>
-      <a-cone position="5 1.1 -12" radius-bottom="4.5" radius-top="0.35" height="2.5" segments-radial="6" material="color: #8aa36c; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="-7 1.3 -27" radius-bottom="8" radius-top="0.5" height="3.8" segments-radial="7" material="color: #76925c; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="8 1.1 -30" radius-bottom="9" radius-top="0.45" height="3.2" segments-radial="7" material="color: #849e66; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="-29 1.2 -17" radius-bottom="7" radius-top="0.4" height="3.5" segments-radial="7" material="color: #7b9660; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="29 1.4 -18" radius-bottom="8" radius-top="0.45" height="4" segments-radial="7" material="color: #809c63; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="-32 1.1 3" radius-bottom="7.5" radius-top="0.4" height="3.4" segments-radial="7" material="color: #78945e; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="32 1.2 4" radius-bottom="7" radius-top="0.4" height="3.5" segments-radial="7" material="color: #87a26a; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="-25 1.5 25" radius-bottom="8" radius-top="0.4" height="4" segments-radial="7" material="color: #76925c; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="-7 1.25 34" radius-bottom="8" radius-top="0.45" height="3.6" segments-radial="7" material="color: #829b65; roughness: 1; flatShading: true"></a-cone>
+      <a-cone position="17 1.35 30" radius-bottom="8.5" radius-top="0.45" height="3.8" segments-radial="7" material="color: #78935e; roughness: 1; flatShading: true"></a-cone>
 
-      <a-entity id="vr-tree" position="1.6 0 -5.1">
-        <a-cylinder position="0 1.5 0" radius="0.25" height="3" segments-radial="7" material="color: #6a482e; roughness: 1; flatShading: true"></a-cylinder>
-        <a-cylinder position="0.4 2.6 0.1" rotation="0 0 -28" radius="0.13" height="1.5" segments-radial="7" material="color: #745134; roughness: 1; flatShading: true"></a-cylinder>
-        <a-icosahedron position="0 3.6 0" radius="1.15" detail="0" material="color: #4f7a3c; roughness: 1; flatShading: true" foliage-sway="amount: 0.018; speed: 0.0011"></a-icosahedron>
-        <a-icosahedron position="-0.75 3.1 0.2" radius="0.78" detail="0" material="color: #5f8b48; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0013"></a-icosahedron>
-        <a-icosahedron position="0.75 3.2 -0.1" radius="0.85" detail="0" material="color: #426d34; roughness: 1; flatShading: true" foliage-sway="amount: 0.017; speed: 0.001"></a-icosahedron>
+      <a-entity id="vr-tree" class="vr-tree" position="1.6 0 -5.1" farm-tree="height: 4.1; crownRadius: 1.25; variant: 1"></a-entity>
+      <a-entity id="vr-tree-west" class="vr-tree" position="-9 0 -8" farm-tree="height: 4.4; crownRadius: 1.4; leafColor: #4d7540; variant: 2"></a-entity>
+      <a-entity id="vr-tree-east" class="vr-tree" position="9 0 -11" farm-tree="height: 4.7; crownRadius: 1.5; leafColor: #5f8847; variant: 1"></a-entity>
+      <a-entity id="vr-tree-edge-west" class="vr-tree" position="-16 0 -2" farm-tree="height: 5.2; crownRadius: 1.6; leafColor: #426d38; variant: 3"></a-entity>
+      <a-entity id="vr-tree-edge-east" class="vr-tree" position="16 0 -5" farm-tree="height: 4.8; crownRadius: 1.5; leafColor: #638b48; variant: 0"></a-entity>
+      <a-entity id="vr-tree-back-west" class="vr-tree" position="-10 0 8" farm-tree="height: 4.6; crownRadius: 1.45; leafColor: #587e42; variant: 1"></a-entity>
+      <a-entity id="vr-tree-back-east" class="vr-tree" position="11 0 9" farm-tree="height: 5; crownRadius: 1.55; leafColor: #446f3a; variant: 2"></a-entity>
+      <a-entity id="vr-tree-back-center" class="vr-tree" position="-5 0 18" farm-tree="height: 4.3; crownRadius: 1.4; leafColor: #688c4e; variant: 0"></a-entity>
+      <a-entity id="vr-tree-back-center-east" class="vr-tree" position="8 0 20" farm-tree="height: 4.8; crownRadius: 1.5; leafColor: #4e7540; variant: 2"></a-entity>
+      <a-entity id="vr-tree-far-west" class="vr-tree" position="-21 0 4" farm-tree="height: 5.2; crownRadius: 1.6; leafColor: #537b43; variant: 1"></a-entity>
+      <a-entity id="vr-tree-far-east" class="vr-tree" position="22 0 3" farm-tree="height: 4.7; crownRadius: 1.45; leafColor: #688b4c; variant: 3"></a-entity>
+      <a-entity id="vr-tree-back-edge-west" class="vr-tree" position="-18 0 21" farm-tree="height: 4.6; crownRadius: 1.4; leafColor: #456f3b; variant: 0"></a-entity>
+      <a-entity id="vr-tree-back-edge-east" class="vr-tree" position="18 0 22" farm-tree="height: 5.3; crownRadius: 1.65; leafColor: #5b8043; variant: 2"></a-entity>
+
+      <a-entity id="vr-palapa" position="-10 0 -7">
+        <a-cylinder position="-1.1 1.25 -0.9" radius="0.08" height="2.5" segments-radial="6" material="color: #735236; roughness: 1; flatShading: true"></a-cylinder>
+        <a-cylinder position="1.1 1.25 -0.9" radius="0.08" height="2.5" segments-radial="6" material="color: #735236; roughness: 1; flatShading: true"></a-cylinder>
+        <a-cylinder position="-1.1 1.25 0.9" radius="0.08" height="2.5" segments-radial="6" material="color: #735236; roughness: 1; flatShading: true"></a-cylinder>
+        <a-cylinder position="1.1 1.25 0.9" radius="0.08" height="2.5" segments-radial="6" material="color: #735236; roughness: 1; flatShading: true"></a-cylinder>
+        <a-cone position="0 3 0" radius-bottom="2.2" radius-top="0.15" height="1.2" segments-radial="6" material="color: #8f8150; roughness: 1; flatShading: true"></a-cone>
+        <a-box position="0 0.58 0.1" width="1.7" height="0.12" depth="0.42" material="color: #8a6240; roughness: 1; flatShading: true"></a-box>
       </a-entity>
 
-      <a-entity position="-2.4 0 -4.3">
+      <a-entity id="vr-shrub-a" position="-2.4 0 -4.3">
         <a-icosahedron position="0 0.55 0" radius="0.65" detail="0" material="color: #5d8440; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0012"></a-icosahedron>
         <a-icosahedron position="0.4 0.35 0.1" radius="0.44" detail="0" material="color: #6c934b; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0013"></a-icosahedron>
         <a-icosahedron position="-0.35 0.34 -0.12" radius="0.42" detail="0" material="color: #4f7639; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0011"></a-icosahedron>
+      </a-entity>
+      <a-entity id="vr-shrub-back" position="-14 0 15">
+        <a-icosahedron position="0 0.55 0" radius="0.75" detail="0" material="color: #5d8440; roughness: 1; flatShading: true" foliage-sway="amount: 0.025; speed: 0.0011"></a-icosahedron>
+        <a-icosahedron position="0.48 0.42 0.18" radius="0.5" detail="0" material="color: #6c934b; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0013"></a-icosahedron>
+        <a-icosahedron position="-0.42 0.36 -0.12" radius="0.46" detail="0" material="color: #4f7639; roughness: 1; flatShading: true" foliage-sway="amount: 0.02; speed: 0.0011"></a-icosahedron>
       </a-entity>
 
       <a-entity
@@ -79,35 +116,77 @@
         rotation="0 -62 0"
         scale="0.95 0.95 0.95"
       ></a-entity>
+      <a-entity id="vr-hive-west" gltf-model="#vr-hive-model" position="-8 0.02 -3" rotation="0 25 0" scale="0.55 0.55 0.55"></a-entity>
+      <a-entity id="vr-hive-palapa" gltf-model="#vr-hive-model" position="-10.8 0.02 -4.1" rotation="0 -18 0" scale="0.48 0.48 0.48"></a-entity>
+      <a-entity id="vr-hive-east" gltf-model="#vr-hive-model" position="8 0.02 -7" rotation="0 -135 0" scale="0.56 0.56 0.56"></a-entity>
+      <a-entity id="vr-hive-grove" gltf-model="#vr-hive-model" position="2 0.02 11" rotation="0 155 0" scale="0.52 0.52 0.52"></a-entity>
 
       <a-entity id="vr-bee-a" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.2" scale="1.7 1.7 1.7" bee-wander="center: -0.3 1.25 -3.2; radiusX: 1; radiusZ: 0.65; height: 0.24; speed: 0.4; phase: 0"></a-entity>
       <a-entity id="vr-bee-b" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.35" scale="1.4 1.4 1.4" bee-wander="center: -1.4 1.55 -3.4; radiusX: 0.8; radiusZ: 0.5; height: 0.25; speed: 0.34; phase: 2.1"></a-entity>
       <a-entity id="vr-bee-c" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.25" scale="1.3 1.3 1.3" bee-wander="center: 0.9 1.3 -3.6; radiusX: 0.75; radiusZ: 0.55; height: 0.22; speed: 0.38; phase: 4.2"></a-entity>
       <a-entity id="vr-bee-d" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.4" scale="1.15 1.15 1.15" bee-wander="center: -0.15 0.95 -2.65; radiusX: 0.5; radiusZ: 0.32; height: 0.16; speed: 0.48; phase: 1.2"></a-entity>
+      <a-entity id="vr-bee-e" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.15" scale="0.92 0.92 0.92" bee-wander="center: -8 1.8 -4; radiusX: 1.6; radiusZ: 1.1; height: 0.3; speed: 0.3; phase: 1.7"></a-entity>
+      <a-entity id="vr-bee-f" class="vr-bee" gltf-model="#vr-bee-model" animation-mixer="clip: SakPoKaab; loop: repeat; timeScale: 1.28" scale="0.88 0.88 0.88" bee-wander="center: 2 2.1 11; radiusX: 1.7; radiusZ: 1.2; height: 0.32; speed: 0.28; phase: 3.7"></a-entity>
+      <a-entity id="vr-ambient-bee-a" class="vr-ambient-bee" ambient-bee bee-wander="center: 7 1.35 -9; radiusX: 1.8; radiusZ: 1.3; height: 0.28; speed: 0.35; phase: 0.8; bank: 0.08"></a-entity>
+      <a-entity id="vr-ambient-bee-b" class="vr-ambient-bee" ambient-bee bee-wander="center: -10 1.6 -5; radiusX: 1.5; radiusZ: 1.2; height: 0.3; speed: 0.32; phase: 2.2; bank: 0.08"></a-entity>
+      <a-entity id="vr-ambient-bee-c" class="vr-ambient-bee" ambient-bee bee-wander="center: -5 1.75 13; radiusX: 1.7; radiusZ: 1.4; height: 0.35; speed: 0.3; phase: 4.5; bank: 0.08"></a-entity>
+      <a-entity id="vr-ambient-bee-d" class="vr-ambient-bee" ambient-bee bee-wander="center: 12 1.45 8; radiusX: 1.5; radiusZ: 1.2; height: 0.28; speed: 0.34; phase: 5.2; bank: 0.08"></a-entity>
 
-      <a-entity id="vr-butterfly-a" class="vr-fauna" bee-wander="center: -1.5 1.15 -2.15; radiusX: 0.45; radiusZ: 0.3; height: 0.2; speed: 0.3; phase: 0.6; bank: 0.04">
+      <a-entity id="vr-pond-bank" position="8 0 -18">
+        <a-ring rotation="-90 0 0" radius-inner="5.35" radius-outer="6.4" segments-theta="64" material="color: #b49a66; roughness: 1; flatShading: true"></a-ring>
+        <a-circle position="0 -0.16 0" rotation="-90 0 0" radius="5.45" segments="64" material="color: #3a655b; roughness: 1; flatShading: true"></a-circle>
+        <a-circle id="vr-pond" position="0 0.03 0" rotation="-90 0 0" radius="5.45" segments="64" material="color: #57978e; roughness: 0.25; opacity: 0.62; transparent: true; side: double; depthWrite: false"></a-circle>
+        <a-circle position="0 0.045 0" rotation="-90 0 0" radius="5.1" segments="64" material="color: #75b0a1; roughness: 0.2; opacity: 0.2; transparent: true; side: double; depthWrite: false"></a-circle>
+        <a-entity position="-2.7 0.07 0.6"><a-circle rotation="-90 0 0" radius="0.55" segments="12" material="color: #628b4a; roughness: 1; flatShading: true"></a-circle><a-circle position="0 0.012 0" rotation="-90 0 0" radius="0.1" material="color: #e5b34e; roughness: 1"></a-circle></a-entity>
+        <a-entity position="2.6 0.07 -0.7"><a-circle rotation="-90 0 0" radius="0.48" segments="12" material="color: #739858; roughness: 1; flatShading: true"></a-circle><a-circle position="0 0.012 0" rotation="-90 0 0" radius="0.085" material="color: #edc76b; roughness: 1"></a-circle></a-entity>
+        <a-entity id="vr-fish-a" class="vr-fish" pond-fish="center: -0.3 -0.02 0.2; radiusX: 1.6; radiusZ: 1.15; speed: 0.3; phase: 0">
+          <a-sphere position="0 0 0" radius="0.16" scale="0.82 0.46 1.5" material="color: #d88b4e; roughness: 0.75; flatShading: true"></a-sphere>
+          <a-sphere position="0 0.025 -0.15" radius="0.035" material="color: #fff0d1; roughness: 0.6"></a-sphere>
+          <a-sphere position="0 0.03 -0.17" radius="0.017" material="color: #26362c; roughness: 0.6"></a-sphere>
+          <a-cone position="0 0 0.22" rotation="90 0 0" radius-bottom="0.1" radius-top="0.015" height="0.19" segments-radial="5" material="color: #b76c3f; roughness: 1; flatShading: true"></a-cone>
+        </a-entity>
+        <a-entity id="vr-fish-b" class="vr-fish" pond-fish="center: 0.3 0 0; radiusX: 1.2; radiusZ: 1.8; speed: 0.24; phase: 2.3" scale="0.82 0.82 0.82">
+          <a-sphere radius="0.16" scale="0.8 0.5 1.35" material="color: #789d72; roughness: 0.8; flatShading: true"></a-sphere>
+          <a-sphere position="0 0.025 -0.14" radius="0.032" material="color: #fff0d1; roughness: 0.6"></a-sphere>
+          <a-sphere position="0 0.03 -0.16" radius="0.016" material="color: #26362c; roughness: 0.6"></a-sphere>
+          <a-cone position="0 0 0.21" rotation="90 0 0" radius-bottom="0.1" radius-top="0.015" height="0.17" segments-radial="5" material="color: #648764; roughness: 1; flatShading: true"></a-cone>
+        </a-entity>
+        <a-entity id="vr-fish-c" class="vr-fish" pond-fish="center: 0 -0.03 -0.1; radiusX: 2.1; radiusZ: 0.7; speed: 0.2; phase: 4.4" scale="0.68 0.68 0.68">
+          <a-sphere radius="0.15" scale="0.78 0.52 1.4" material="color: #d6b85c; roughness: 0.8; flatShading: true"></a-sphere>
+          <a-sphere position="0 0.025 -0.13" radius="0.03" material="color: #fff0d1; roughness: 0.6"></a-sphere>
+          <a-sphere position="0 0.03 -0.15" radius="0.015" material="color: #26362c; roughness: 0.6"></a-sphere>
+          <a-cone position="0 0 0.2" rotation="90 0 0" radius-bottom="0.09" radius-top="0.012" height="0.16" segments-radial="5" material="color: #bd9b40; roughness: 1; flatShading: true"></a-cone>
+        </a-entity>
+      </a-entity>
+
+      <a-entity id="vr-butterfly-a" class="vr-fauna" bee-wander="center: -2 1.15 -8; radiusX: 0.85; radiusZ: 0.55; height: 0.22; speed: 0.3; phase: 0.6; bank: 0.04">
         <a-cylinder rotation="90 0 0" radius="0.008" height="0.12" segments-radial="5" material="color: #3d3024; roughness: 1; flatShading: true"></a-cylinder>
         <a-entity position="0.01 0 0" wing-flap="amount: 0.9; frequency: 9; side: 1"><a-circle position="0.055 0 0" rotation="-90 0 0" radius="0.06" scale="0.82 1 1" material="color: #f2b84b; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
         <a-entity position="-0.01 0 0" wing-flap="amount: 0.9; frequency: 9; side: -1"><a-circle position="-0.055 0 0" rotation="-90 0 0" radius="0.06" scale="0.82 1 1" material="color: #f2b84b; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
       </a-entity>
-      <a-entity id="vr-butterfly-b" class="vr-fauna" bee-wander="center: 1.9 1.2 -2.7; radiusX: 0.35; radiusZ: 0.4; height: 0.16; speed: 0.26; phase: 2.5; bank: 0.035">
+      <a-entity id="vr-butterfly-b" class="vr-fauna" bee-wander="center: 4 1.2 -10; radiusX: 0.7; radiusZ: 0.65; height: 0.2; speed: 0.26; phase: 2.5; bank: 0.035">
         <a-cylinder rotation="90 0 0" radius="0.007" height="0.1" segments-radial="5" material="color: #4b354b; roughness: 1; flatShading: true"></a-cylinder>
         <a-entity position="0.01 0 0" wing-flap="amount: 0.8; frequency: 8; phase: 1; side: 1"><a-circle position="0.05 0 0" rotation="-90 0 0" radius="0.052" scale="0.8 1 1" material="color: #d98cb4; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
         <a-entity position="-0.01 0 0" wing-flap="amount: 0.8; frequency: 8; phase: 1; side: -1"><a-circle position="-0.05 0 0" rotation="-90 0 0" radius="0.052" scale="0.8 1 1" material="color: #d98cb4; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
       </a-entity>
-      <a-entity id="vr-dragonfly" class="vr-fauna" bee-wander="center: 0.5 1.5 -2.8; radiusX: 0.8; radiusZ: 0.48; height: 0.2; speed: 0.37; phase: 3.3; bank: 0.02">
+      <a-entity id="vr-butterfly-c" class="vr-fauna" bee-wander="center: -12 1.25 12; radiusX: 1.1; radiusZ: 0.85; height: 0.24; speed: 0.22; phase: 1.2; bank: 0.035">
+        <a-cylinder rotation="90 0 0" radius="0.007" height="0.1" segments-radial="5" material="color: #4b354b; roughness: 1; flatShading: true"></a-cylinder>
+        <a-entity position="0.01 0 0" wing-flap="amount: 0.8; frequency: 8; phase: 2; side: 1"><a-circle position="0.05 0 0" rotation="-90 0 0" radius="0.052" scale="0.8 1 1" material="color: #e6bb68; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
+        <a-entity position="-0.01 0 0" wing-flap="amount: 0.8; frequency: 8; phase: 2; side: -1"><a-circle position="-0.05 0 0" rotation="-90 0 0" radius="0.052" scale="0.8 1 1" material="color: #e6bb68; opacity: 0.84; transparent: true; side: double; flatShading: true"></a-circle></a-entity>
+      </a-entity>
+      <a-entity id="vr-dragonfly" class="vr-fauna" bee-wander="center: 8 1.25 -16; radiusX: 1.6; radiusZ: 1.2; height: 0.22; speed: 0.37; phase: 3.3; bank: 0.02">
         <a-cylinder rotation="90 0 0" radius="0.008" height="0.22" segments-radial="5" material="color: #2f6b73; roughness: 1; flatShading: true"></a-cylinder>
         <a-entity position="0.006 0 0" wing-flap="amount: 0.22; frequency: 13; side: 1"><a-plane position="0.08 0 0" rotation="-90 0 0" width="0.16" height="0.035" material="color: #d8f0ea; opacity: 0.56; transparent: true; side: double"></a-plane></a-entity>
         <a-entity position="-0.006 0 0" wing-flap="amount: 0.22; frequency: 13; side: -1"><a-plane position="-0.08 0 0" rotation="-90 0 0" width="0.16" height="0.035" material="color: #d8f0ea; opacity: 0.56; transparent: true; side: double"></a-plane></a-entity>
       </a-entity>
-      <a-entity id="vr-hummingbird" class="vr-fauna" bee-wander="center: 2.25 1.45 -3.7; radiusX: 0.3; radiusZ: 0.25; height: 0.14; speed: 0.22; phase: 1.2; bank: 0.015">
+      <a-entity id="vr-hummingbird" class="vr-fauna" bee-wander="center: -10 1.55 -6; radiusX: 0.7; radiusZ: 0.6; height: 0.2; speed: 0.22; phase: 1.2; bank: 0.015">
         <a-sphere radius="0.07" scale="0.65 0.65 1.1" material="color: #2f7d5c; roughness: 0.8; flatShading: true"></a-sphere>
         <a-sphere position="0 0.025 -0.07" radius="0.043" material="color: #3f9b72; roughness: 0.8; flatShading: true"></a-sphere>
         <a-cone position="0 0.01 -0.13" rotation="-90 0 0" radius-bottom="0.01" radius-top="0.002" height="0.1" segments-radial="5" material="color: #29251f; roughness: 1; flatShading: true"></a-cone>
         <a-entity position="0.01 0.02 0" wing-flap="amount: 1; frequency: 18; side: 1"><a-plane position="0.055 0 0" rotation="-90 0 0" width="0.12" height="0.05" material="color: #91d0b7; opacity: 0.62; transparent: true; side: double"></a-plane></a-entity>
         <a-entity position="-0.01 0.02 0" wing-flap="amount: 1; frequency: 18; side: -1"><a-plane position="-0.055 0 0" rotation="-90 0 0" width="0.12" height="0.05" material="color: #91d0b7; opacity: 0.62; transparent: true; side: double"></a-plane></a-entity>
       </a-entity>
-      <a-entity id="vr-lizard" class="vr-fauna" position="2.15 0.18 -4.4" rotation="0 25 0">
+      <a-entity id="vr-lizard" class="vr-fauna" position="-15 0.18 17" rotation="0 25 0">
         <a-sphere position="0 0.04 0" radius="0.075" scale="1.8 0.55 0.9" material="color: #7f8f4f; roughness: 1; flatShading: true"></a-sphere>
         <a-sphere position="0 0.05 -0.13" radius="0.05" material="color: #8d9d5c; roughness: 1; flatShading: true"></a-sphere>
         <a-entity position="0 0.02 0.14" foliage-sway="amount: 0.1; speed: 0.0015"><a-cone position="0 0 0.09" rotation="90 0 0" radius-bottom="0.025" radius-top="0.002" height="0.2" segments-radial="5" material="color: #7f8f4f; roughness: 1; flatShading: true"></a-cone></a-entity>
@@ -140,16 +219,26 @@
         <a-sphere class="clickable hotspot" radius="0.1" material="color: #efc66f; emissive: #bf8124; emissiveIntensity: 0.3" animation__pulse="property: scale; from: 1 1 1; to: 1.16 1.16 1.16; dur: 1000; dir: alternate; loop: true; easing: easeInOutSine" vr-hotspot="title: Cuidado del meliponario; body: Mantener flora nativa y cuidar el habitat ayuda a las abejas y a otros polinizadores."></a-sphere>
         <a-text value="CUIDADO" align="center" position="0 0.18 0" width="1.4" color="#3b392f"></a-text>
       </a-entity>
+      <a-entity id="vr-easter-egg" position="-13 0.28 -10">
+        <a-dodecahedron position="0 -0.12 0" radius="0.26" scale="1 0.55 1" material="color: #8b7d63; roughness: 1; flatShading: true"></a-dodecahedron>
+        <a-entity ambient-bee position="0 0.14 0" rotation="0 20 0" scale="1.6 1.6 1.6"></a-entity>
+        <a-sphere class="clickable hotspot" position="0 0.46 0" radius="0.09" material="color: #efc66f; emissive: #bf8124; emissiveIntensity: 0.3" animation__pulse="property: scale; from: 1 1 1; to: 1.16 1.16 1.16; dur: 1000; dir: alternate; loop: true; easing: easeInOutSine" vr-hotspot="title: Detalle escondido; body: Una pequena melipona dorada cuida el meliponario desde su rincon. Es un guino para quien se anima a explorar detras de la palapa."></a-sphere>
+        <a-text value="?" align="center" position="0 0.62 0" width="1.6" color="#f3d78c"></a-text>
+      </a-entity>
 
-      <a-circle class="clickable teleport-pad" position="0 0.025 -0.9" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: 0; z: 0"></a-circle>
+      <a-circle class="clickable teleport-pad" position="0 0.025 -0.9" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: 0; z: 0; zone: el inicio"></a-circle>
       <a-text value="INICIO" align="center" position="0 0.08 -0.9" rotation="-90 0 0" width="1.2" color="#3b392f"></a-text>
-      <a-circle class="clickable teleport-pad" position="1.9 0.025 -2.4" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: 1.45; z: -1.55"></a-circle>
+      <a-circle class="clickable teleport-pad" position="1.9 0.025 -2.4" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: 1.45; z: -1.55; zone: el jardin"></a-circle>
       <a-text value="JARDIN" align="center" position="1.9 0.08 -2.4" rotation="-90 0 0" width="1.2" color="#3b392f"></a-text>
-      <a-circle class="clickable teleport-pad" position="-2 0.025 -3.6" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: -1.5; z: -2.5"></a-circle>
+      <a-circle class="clickable teleport-pad" position="-2 0.025 -3.6" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: -2.4; z: -2.1; zone: el jobon"></a-circle>
       <a-text value="JOBON" align="center" position="-2 0.08 -3.6" rotation="-90 0 0" width="1.2" color="#3b392f"></a-text>
+      <a-circle class="clickable teleport-pad" position="-8.5 0.025 -3.4" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: -8.6; z: -1.6; zone: la palapa"></a-circle>
+      <a-text value="PALAPA" align="center" position="-8.5 0.08 -3.4" rotation="-90 0 0" width="1.2" color="#3b392f"></a-text>
+      <a-circle class="clickable teleport-pad" position="6.5 0.025 -12.5" rotation="-90 0 0" radius="0.24" material="color: #f0c66f; opacity: 0.8; transparent: true; side: double" vr-teleport="x: 6.5; z: -12.5; zone: el lago"></a-circle>
+      <a-text value="LAGO" align="center" position="6.5 0.08 -12.5" rotation="-90 0 0" width="1.2" color="#3b392f"></a-text>
 
-      <a-entity id="camera-rig" position="0 0 0">
-        <a-camera id="vr-camera" position="0 1.6 0" wasd-controls="acceleration: 10; fly: false" look-controls>
+      <a-entity id="camera-rig" position="0 0 0" vr-explore="speed: 2.8">
+        <a-camera id="vr-camera" position="0 1.6 0" look-controls>
           <a-entity
             id="gaze-cursor"
             class="clickable-cursor"

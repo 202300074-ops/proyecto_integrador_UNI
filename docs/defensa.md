@@ -127,14 +127,15 @@ jurado.
 
 ### Diapositiva 9. VR
 
-> El recorrido VR usa A-Frame 1.8. Incluye jobón, abejas, mariposas, libélula,
-> colibrí, lagartija, flores y colinas. Hay cuatro hotspots y tres zonas de
-> teletransporte: inicio, jardín y jobón.
+> El recorrido VR usa A-Frame 1.8. Es una granja explorable en 360° con colisiones:
+> árboles alrededor, arbustos, flores, colinas, un lago con peces, abejas
+> ambientales y fauna. Hay cinco hotspots (incluye un detalle escondido) y cinco
+> zonas de teletransporte: inicio, jardín, jobón, palapa y lago.
 >
-> En casco se apunta con la mirada durante 900 ms. En escritorio se usa el mouse.
-> La narración sintética se reproduce bajo demanda y se puede pausar. La prueba
-> headless pasó; falta validar la entrada WebXR y la comodidad en un dispositivo
-> físico.
+> En casco se apunta con la mirada durante 900 ms. En escritorio se camina con
+> WASD o flechas y se usa el mouse para mirar. La narración sintética se reproduce
+> bajo demanda y se puede pausar. La prueba headless y la de navegación pasaron;
+> falta validar la entrada WebXR y la comodidad en un dispositivo físico.
 
 > La guía menciona Unity para VR; la implementación se resolvió con A-Frame y
 > WebXR. Presento esta diferencia de forma explícita y explico el alcance que se
