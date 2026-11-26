@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Mapa conceptual de mercadotecnia digital de Sak P'o' Kaab</title>
+  <desc id="desc">Mapa de propuesta académica: posicionamiento educativo, perfiles hipotéticos, contenidos, canales, calendario y métricas por medir.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#52745d"/></marker>
+    <style>
+      .bg{fill:#f6f0e4}.node{fill:#fffdf8;stroke:#d9d0bd;stroke-width:2}.main{fill:#193b2d;stroke:#193b2d}.warm{fill:#f3e1b8;stroke:#d3ac5f}.line{fill:none;stroke:#78917b;stroke-width:2.5;marker-end:url(#arrow)}.h{font:600 23px Inter,Arial,sans-serif;fill:#20392e}.p{font:17px Inter,Arial,sans-serif;fill:#5c655d}.inverse{fill:#fff8e7}.tag{font:600 13px Inter,Arial,sans-serif;letter-spacing:2px;fill:#b47528}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="760" rx="28"/>
+  <text x="56" y="58" class="tag">PROPUESTA ACADÉMICA · NO ES CAMPAÑA PUBLICADA</text>
+  <rect class="main" x="390" y="95" width="420" height="100" rx="22"/>
+  <text x="600" y="137" text-anchor="middle" class="h inverse">Posicionamiento</text>
+  <text x="600" y="168" text-anchor="middle" class="p inverse">Explorar la historia con experiencias digitales</text>
+
+  <path class="line" d="M480 195 C420 230 280 225 210 270"/>
+  <path class="line" d="M720 195 C780 230 920 225 990 270"/>
+  <rect class="node" x="60" y="270" width="300" height="125" rx="20"/>
+  <text x="210" y="310" text-anchor="middle" class="h">Audiencia hipotética</text>
+  <text x="210" y="341" text-anchor="middle" class="p">Cultura · naturaleza</text>
+  <text x="210" y="368" text-anchor="middle" class="p">Visitantes digitales · estudiantes</text>
+  <rect class="node" x="840" y="270" width="300" height="125" rx="20"/>
+  <text x="990" y="310" text-anchor="middle" class="h">Pilares de contenido</text>
+  <text x="990" y="341" text-anchor="middle" class="p">Jobón · melipona · proceso</text>
+  <text x="990" y="368" text-anchor="middle" class="p">AR/VR · tienda simulada</text>
+
+  <path class="line" d="M210 395 C230 440 300 435 340 475"/>
+  <path class="line" d="M990 395 C970 440 900 435 860 475"/>
+  <rect class="warm" x="170" y="475" width="360" height="135" rx="20"/>
+  <text x="350" y="516" text-anchor="middle" class="h">Canales propuestos</text>
+  <text x="350" y="548" text-anchor="middle" class="p">Publicaciones educativas</text>
+  <text x="350" y="576" text-anchor="middle" class="p">Video corto · sitio · etiqueta AR</text>
+  <rect class="warm" x="670" y="475" width="360" height="135" rx="20"/>
+  <text x="850" y="516" text-anchor="middle" class="h">Calendario editorial</text>
+  <text x="850" y="548" text-anchor="middle" class="p">22 abril · 20 mayo · evergreen</text>
+  <text x="850" y="576" text-anchor="middle" class="p">Fechas con fuente · sin estacionalidad inventada</text>
+
+  <path class="line" d="M350 610 C390 650 480 650 520 670"/>
+  <path class="line" d="M850 610 C810 650 720 650 680 670"/>
+  <rect class="main" x="390" y="655" width="420" height="75" rx="18"/>
+  <text x="600" y="686" text-anchor="middle" class="h inverse">Medición posterior a línea base</text>
+  <text x="600" y="712" text-anchor="middle" class="p inverse">Alcance · CTR · AR · VR · carrito · checkout simulado</text>
+</svg>

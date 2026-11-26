@@ -4,6 +4,12 @@ Borrador basado en las interacciones reales de las sesiones de trabajo. Antes de
 entregar, Joshua debe revisarlo, corregir lo que no coincida con su memoria y
 agregar su reflexión personal en cada entrada.
 
+Este registro ampliado conserva las sesiones hasta el 25 de noviembre. Para el
+anexo de entrega se seleccionaron diez interacciones en
+`docs/anexos/bitacora-ia-entrega.md`; la sesión de cierre del 26 de noviembre está
+identificada en esa selección. Joshua debe completar la reflexión personal del
+anexo antes de entregarlo.
+
 Herramienta usada: asistente de código en la terminal (opencode).
 Modelo: DeepSeek V4.1 Flash Free.
 Fecha de las sesiones: 2026-10-28, 2026-11-04, 2026-11-05, 2026-11-08 y

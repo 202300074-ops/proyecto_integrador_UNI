@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/index.js",
-    "start": "node src/index.js",
-    "test:commerce": "node scripts/commerce-smoke-test.mjs"
+    "start": "node src/start-production.js",
+    "test:commerce": "node scripts/commerce-smoke-test.mjs",
+    "test:production-panel": "node scripts/production-panel-smoke-test.mjs"
   },
   "dependencies": {
     "cors": "^2.8.5",

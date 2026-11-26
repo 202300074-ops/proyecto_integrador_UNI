@@ -37,3 +37,8 @@ export async function createOrder(order) {
     body: JSON.stringify(order)
   });
 }
+
+export async function getDemoOrders() {
+  const { data } = await request('/orders/demo');
+  return data;
+}

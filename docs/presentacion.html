@@ -83,7 +83,7 @@
       html, body { background: #fff; overflow: visible; display: block; }
       body { display: block; }
       .stage { width: 1280px; height: 720px; transform: none !important; }
-      .slide { display: flex !important; position: relative; page-break-after: always; break-after: page; width: 1280px; height: 720px; }
+      .slide { display: flex !important; flex-direction: column; position: relative; page-break-after: always; break-after: page; width: 1280px; height: 720px; }
       .slide:last-of-type { page-break-after: auto; break-after: auto; }
       .controls, .progress { display: none !important; }
       @page { size: 13.333in 7.5in; margin: 0; }
@@ -94,9 +94,10 @@
   <div class="stage" id="stage">
     <section class="slide active cover">
       <div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div>
-      <div style="margin-top: 64px;">
-        <div class="kicker">Proyecto integrador · Multimedia y Diseño Digital</div>
-        <h1 style="margin-top: 18px;">Miel, memoria y tecnología</h1>
+        <div style="margin-top: 64px;">
+          <div class="kicker">Proyecto integrador · Multimedia y Diseño Digital</div>
+          <p class="small" style="margin-top: 10px;">Institución: confirmar nombre oficial</p>
+          <h1 style="margin-top: 18px;">Miel, memoria y tecnología</h1>
         <p class="lead">Tienda, AR, VR y video para un caso de estudio simulado de la abeja melipona.</p>
       </div>
       <div class="cover-footer">
@@ -136,9 +137,9 @@
         <div class="card"><div class="metric">8</div><div class="metric-label">Tablas</div><p style="margin-top: 14px;">Productos, stock, pedidos, cupones e historial.</p></div>
         <div class="card"><div class="metric">3</div><div class="metric-label">Experiencias</div><p style="margin-top: 14px;">Tienda, AR con etiqueta y VR navegable.</p></div>
       </div>
-      <div class="two-col">
-        <div class="card"><h3>Incluye</h3><p>Catálogo, carrito, cupón, checkout simulado, AR, VR, video y documentación.</p></div>
-        <div class="card"><h3>No incluye</h3><p>Pagos reales, login, panel admin, reseñas inventadas ni metraje documental.</p></div>
+        <div class="two-col">
+          <div class="card"><h3>Incluye</h3><p>Catálogo, carrito, cupón, checkout simulado, panel local de pedidos, AR, VR, video y mapas de mercadotecnia.</p></div>
+          <div class="card"><h3>No incluye</h3><p>Pagos reales, login, administración de pedidos reales, reseñas inventadas ni metraje documental.</p></div>
       </div>
     </section>
 
@@ -194,7 +195,7 @@
           <div class="rule"></div>
           <p class="small">Revisión móvil por CDP a 390 px: <strong>innerWidth = 390</strong> y <strong>scrollWidth = 390</strong>.</p>
         </div>
-        <div class="image-frame" style="height: 360px;"><img src="evidencias/2026-11-25/tienda-final-escritorio.png" alt="Portada de la tienda"></div>
+        <div class="image-frame" style="height: 360px;"><img src="evidencias/2026-11-26/tienda-cierre-escritorio.png" alt="Portada, catálogo y tarjetas AR/VR corregidas de la tienda" style="object-position: 50% 70%;"></div>
       </div>
     </section>
 
@@ -202,7 +203,7 @@
       <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">06 · API</div></div>
       <h2>Una API pequeña, validada y comprobable</h2>
       <div class="two-col">
-        <div class="card"><h3>Endpoints</h3><p><strong>GET</strong> /api/health<br><strong>GET</strong> /api/products<br><strong>GET</strong> /api/products/:slug<br><strong>POST</strong> /api/coupons/validate<br><strong>POST</strong> /api/orders</p></div>
+        <div class="card"><h3>Endpoints</h3><p><strong>GET</strong> /api/health<br><strong>GET</strong> /api/products<br><strong>GET</strong> /api/products/:slug<br><strong>POST</strong> /api/coupons/validate<br><strong>POST</strong> /api/orders<br><strong>GET</strong> /api/orders/demo (dev)</p></div>
         <div class="card"><h3>Verificación</h3><p>Health con <strong>db: "up"</strong>, cuatro productos, seis variantes y <strong>COMMERCE_SMOKE_OK</strong> en cupón, mínimo, stock y pedido.</p></div>
       </div>
       <div class="card" style="margin-top: 24px;"><p class="small">La prueba de comercio crea su propio pedido, verifica la transacción y al terminar restaura stock y contador del cupón. La base queda limpia.</p></div>
@@ -231,7 +232,7 @@
           <p class="lead">A-Frame 1.8, cuatro hotspots, tres zonas de teletransporte y narración sintética de ~43 s.</p>
           <div class="pill-row"><span class="pill">Jobón</span><span class="pill">Fauna</span><span class="pill">Hotspots</span><span class="pill">Audio</span></div>
           <div class="rule"></div>
-          <p class="small">La prueba headless pasó. Falta validar entrada WebXR, comodidad y audio en un dispositivo físico.</p>
+          <p class="small">La guía menciona Unity; el prototipo usa A-Frame/WebXR y falta confirmar su aceptación. También falta validar entrada, comodidad y audio en un visor físico.</p>
         </div>
       </div>
     </section>
@@ -245,13 +246,49 @@
           <div class="pill-row"><span class="pill">6 escenas</span><span class="pill">720p</span><span class="pill">Voz sintética</span><span class="pill">Fuentes citadas</span></div>
           <div class="rule"></div>
           <p class="small">Muestra la colonia, la apertura del jobón, la recolección por gravedad, el filtrado, el cierre y las reservas. Las prácticas varían entre comunidades.</p>
+          <p class="small" style="margin-top: 8px;">SRT, cama sonora original y exportación vertical están preparadas en el script; MP4 pendientes de regeneración con FFmpeg.</p>
         </div>
         <div class="image-frame" style="height: 360px;"><img src="evidencias/2026-11-08/storyboard-cosecha.png" alt="Storyboard de la cosecha"></div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">10 · Pruebas</div></div>
+      <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">10 · Mercadotecnia</div></div>
+      <h2>Mercadotecnia propuesta: sin métricas inventadas</h2>
+      <div class="two-col" style="flex: 1; align-items: stretch;">
+        <div class="card">
+          <h3>Mercadotecnia digital</h3>
+          <div class="diagram">
+            <div class="node"><strong>Posicionamiento</strong><span>Explorar la historia mediante experiencias</span></div>
+            <div class="arrow">↓</div>
+            <div class="diagram-row">
+              <div class="node"><strong>Contenido</strong><span>Jobón · melipona · recreación</span></div>
+              <div class="node"><strong>Canales</strong><span>Sitio · video · publicaciones</span></div>
+              <div class="node"><strong>Calendario</strong><span>Efemérides y contenido evergreen</span></div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node"><strong>Medición futura</strong><span>Alcance · CTR · apertura AR/VR · no hay métricas observadas</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Comercio electrónico</h3>
+          <div class="diagram">
+            <div class="node"><strong>Descubrimiento</strong><span>Contenido educativo</span></div>
+            <div class="arrow">↓</div>
+            <div class="diagram-row">
+              <div class="node"><strong>Catálogo</strong><span>4 productos conceptuales</span></div>
+              <div class="node"><strong>Ficha</strong><span>Variante · precio · stock</span></div>
+              <div class="node"><strong>Carrito</strong><span>Cantidad · cupón</span></div>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node"><strong>Checkout simulado</strong><span>Pedido `mock` · sin cobro real</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">11 · Pruebas</div></div>
       <h2>Evidencia antes que promesas</h2>
       <div class="grid-3">
         <div class="card"><div class="metric">OK</div><div class="metric-label">Build</div><p style="margin-top: 12px;">Tienda y visor compilan sin errores.</p></div>
@@ -259,13 +296,13 @@
         <div class="card"><div class="metric">OK</div><div class="metric-label">AR/VR</div><p style="margin-top: 12px;">Smoke test de visor, VR, MindAR, target, audio y video.</p></div>
       </div>
       <div class="two-col">
-        <div class="card"><h3>Evidencias</h3><p>Capturas por fecha en <strong>docs/evidencias/</strong>, con cierre final en 2026-11-25.</p></div>
-        <div class="card"><h3>Límites</h3><p>Faltan pruebas físicas de AR, checkout y WebXR, y el pase manual de los modelos.</p></div>
+        <div class="card"><h3>Evidencias</h3><p>Capturas por fecha en <strong>docs/evidencias/</strong>, con cierre final en 2026-11-26.</p></div>
+        <div class="card"><h3>Límites</h3><p>Faltan el pase manual de los modelos y evidencias de las pruebas físicas pendientes.</p></div>
       </div>
     </section>
 
     <section class="slide">
-      <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">11 · Cierre</div></div>
+      <div class="topbar"><div class="brand"><span class="brand-mark">S</span> SAK P'O' KAAB</div><div class="tag">12 · Cierre</div></div>
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
         <div class="kicker">Conclusión</div>
         <h2 style="font-size: 54px; max-width: 980px; margin-top: 16px;">Integrar tecnología sin perder la honestidad del caso</h2>

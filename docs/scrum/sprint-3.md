@@ -59,7 +59,7 @@ las evidencias y el ensayo de defensa antes de la entrega del 26–27 de noviemb
 3. Probar la narración y sus controles en WebXR físico.
 4. Archivar la evidencia de AR/video y checkout en el Galaxy A22.
 5. Completar el pase manual en Blender y registrar lmik3 solo como apoyo visual.
-6. Ensayar la presentación de 12 diapositivas durante 12–15 minutos y preparar
+6. Ensayar la presentación durante 20 minutos y preparar
    respaldos físicos del video y los GLB.
 
 ## Criterio de cierre
@@ -70,3 +70,21 @@ las evidencias y el ensayo de defensa antes de la entrega del 26–27 de noviemb
 - Memoria y evidencias describen con precisión qué fue manual, asistido por scripts
   o apoyado por herramientas de IA.
 - La demo de defensa está ensayada y cuenta con video y modelos de respaldo.
+
+## Sprint review y retrospectiva — borrador basado en el registro
+
+**Resultado observable:** la escena VR, el panel de hotspots, el teletransporte y
+la narración pasan la validación headless. La memoria, el deck y las evidencias
+finales quedaron organizados el 25 de noviembre. La prueba WebXR física, el pase
+manual de Blender y parte de la evidencia móvil siguen pendientes.
+
+**Qué funcionó:** consolidar el QA y las fuentes en un mismo cierre permite
+explicar límites reales; el smoke test detecta si faltan assets antes de la demo.
+
+**Qué mejorar:** se concentró en los últimos días la preparación de evidencia
+física, el cierre documental y el ensayo. El guion inicial de 12–15 minutos no
+coincidía con la guía actual de 20 minutos.
+
+**Acción propuesta para el sprint siguiente:** usar la guía oficial de 20 minutos,
+reservar pruebas físicas y ensayo con tiempo y hacer un cambio en vivo de práctica.
+Joshua debe revisar este borrador y añadir su reflexión personal.

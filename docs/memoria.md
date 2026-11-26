@@ -55,7 +55,7 @@ La abeja melipona, conocida en maya como `xunáan kaab`, es una abeja sin
 aguijón asociada a la meliponicultura yucateca. Su manejo tradicional emplea
 jobones: troncos huecos que protegen la colonia y sus reservas. La miel y la cera
 tienen valor cultural y productivo, pero las prácticas varían entre comunidades
-y no deben generalizarse.
+y no deben generalizarse [1], [2].
 
 El proyecto toma ese contexto como inspiración para un caso simulado de una
 cooperativa llamada **Sak P'o' Kaab**. El nombre combina `sak p'o'` (jabón) y
@@ -88,12 +88,15 @@ video.
 1. Modelar una base de datos relacional para productos, variantes, pedidos,
    cupones y stock.
 2. Implementar una API REST con validaciones y transacciones.
-3. Construir una tienda adaptable con catálogo, ficha, carrito y checkout
-   simulado.
+3. Construir una tienda adaptable con catálogo, ficha, carrito, cupón, checkout
+   simulado y vista local de pedidos de prueba.
 4. Crear una etiqueta con AR que muestre una abeja animada y un video.
 5. Construir un meliponario navegable en VR con hotspots y narración.
 6. Producir un video de cosecha con Python y FFmpeg, declarado como recreación.
 7. Documentar pruebas, evidencias, decisiones y límites del proyecto.
+8. Diseñar una animación 2D breve del símbolo de la marca.
+9. Preparar mapas conceptuales y un plan de mercadotecnia digital como propuesta
+   académica, distinguiéndolos de resultados de campaña.
 
 ### 2.4 Alcance
 
@@ -101,15 +104,20 @@ Incluido:
 
 - Catálogo de cuatro productos y seis variantes.
 - Carrito, cupón, checkout simulado, pedido e historial.
+- Panel local de pedidos `mock`, de solo lectura y sin datos personales.
 - AR con MindAR y A-Frame.
 - VR con A-Frame 1.8.
+- Símbolo 2D animado en SVG.
 - Video y audio sintético.
+- Mapas de mercadotecnia y comercio electrónico, más un plan hipotético en
+  `docs/mercadotecnia/`.
 - Documentación, evidencias y defensa.
 
 Excluido:
 
 - Pagos reales y pasarela financiera.
-- Login de usuarios y panel administrativo.
+- Login de usuarios y administración de pedidos reales. La vista local de pedidos
+  solo muestra información resumida de registros `mock`.
 - Reseñas inventadas o testimonios falsos.
 - Producción comercial real.
 - Metraje documental del meliponario.
@@ -125,7 +133,9 @@ Excluido:
 - **React + Vite + Tailwind:** permiten una interfaz rápida, adaptable y fácil de
   explicar.
 - **A-Frame + MindAR:** ambas tecnologías funcionan en web y permiten demostrar
-  AR/VR sin una aplicación nativa.
+  AR/VR sin una aplicación nativa [3], [4]. El meliponario implementado usa
+  A-Frame/WebXR y no Unity; esta diferencia debe explicarse y confirmarse con el
+  docente frente al alcance literal de la guía.
 - **GLB para web:** los modelos exportados son más ligeros y portables que un
   `.blend`.
 - **Video generado por código:** Python, Pillow y FFmpeg permiten reproducir el
@@ -150,8 +160,9 @@ Navegador
 
 Componentes:
 
-- `apps/store`: tienda React, componentes de catálogo, ficha, carrito y checkout.
-- `server`: API Express, rutas de catálogo, cupones y pedidos.
+- `apps/store`: tienda React, catálogo, ficha, carrito, checkout y panel local de
+  pedidos de prueba.
+- `server`: API Express, rutas de catálogo, cupones y pedidos simulados.
 - `db`: esquema y datos iniciales.
 - `apps/ar-preview`: visor 3D, AR y VR.
 - `assets`: modelos GLB, escenas Blender, target, video y audio.
@@ -207,6 +218,7 @@ La API Express expone:
 | `GET` | `/api/products/:slug` | Detalle de un producto. |
 | `POST` | `/api/coupons/validate` | Valida código y subtotal. |
 | `POST` | `/api/orders` | Crea pedido simulado y descuenta stock. |
+| `GET` | `/api/orders/demo` | Lista pedidos `mock`, fuera de producción y sin datos personales. |
 
 Decisiones técnicas:
 
@@ -218,6 +230,9 @@ Decisiones técnicas:
 - Respuestas de error claras para cupón mínimo, stock insuficiente y datos
   inválidos.
 - El endpoint de salud consulta la base, no solo responde “ok”.
+- `npm start` inicia la API con `NODE_ENV=production`; la ruta del panel de
+  demostración responde `404` en ese modo. El smoke test `test:production-panel`
+  verifica la desactivación.
 
 ## 7. Tienda
 
@@ -231,6 +246,12 @@ La tienda incluye:
 - Cupón `BIENVENIDA10` con 10 % de descuento desde $200.
 - Checkout simulado con datos mínimos.
 - Confirmación con número de pedido.
+- Panel **Pedidos de prueba**, visible solo en desarrollo; lista un máximo de 25
+  pedidos simulados con número parcial, estado, total, cantidad de artículos y
+  fecha. No permite mutaciones ni expone datos de contacto; la API deshabilita
+  esta ruta cuando `NODE_ENV=production`.
+- Símbolo con animación 2D ligera en SVG y alternativa de movimiento reducido;
+  fuente en `assets/animation/logo-sak-po-kaab.svg`.
 - Diseño adaptable a escritorio y teléfono.
 
 La interfaz evita prometer pagos reales: el checkout se identifica como
@@ -244,6 +265,7 @@ Los modelos principales son:
 - Abeja melipona estilizada con clip de animación `SakPoKaab`.
 - Jobón con panales y cavidad interior.
 - Cuatro escenas de producto: miel, jabón, bálsamo y vela.
+- Símbolo de marca 2D animado en SVG.
 
 La escena base se generó con `scripts/blender_model.py`, asistido por IA. Los
 renders de producto se generaron con Cycles CPU y estudio crema. La vela se
@@ -262,7 +284,7 @@ distingue entre la base asistida y la edición manual.
 La experiencia AR usa:
 
 - Target de imagen `assets/targets/etiqueta-sakpokaab.mind`.
-- MindAR 1.2 y A-Frame 1.6.
+- MindAR 1.2 y A-Frame 1.6 [3], [4], [8].
 - Abeja animada y jobón.
 - Botón **Ver cosecha** con video móvil de 640 × 360.
 - Instrucciones de impresión y uso de la etiqueta.
@@ -274,7 +296,7 @@ pendiente de archivar.
 
 ## 10. Realidad virtual
 
-El recorrido VR usa A-Frame 1.8 e incluye:
+El recorrido VR usa A-Frame 1.8 [3], [4] e incluye:
 
 - Meliponario estilizado con jobón, árbol, flores, pasto y colinas.
 - Cuatro abejas, dos mariposas, libélula, colibrí y lagartija.
@@ -304,9 +326,31 @@ El guion muestra:
 6. Reservas para la colonia.
 
 El video incluye el rótulo de recreación didáctica y no se presenta como registro
-documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNAT.
+documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNAT
+[1], [2]. El script se actualizó para generar subtítulos SRT, una cama sonora
+original y un derivado vertical para redes. La cama sonora candidata se creó en
+`assets/audio/cama-sonora-original.wav`; todavía requiere escucha y aprobación de
+Joshua. Los MP4 versionados aún no incluyen subtítulos ni música ni el derivado
+vertical: no se pudieron regenerar en la sesión del 26 de noviembre porque FFmpeg
+no estaba disponible en `PATH`.
 
-## 12. Pruebas y evidencias
+## 12. Mercadotecnia digital y comercio electrónico
+
+`docs/mercadotecnia/plan.md` contiene una propuesta académica con posicionamiento,
+perfiles hipotéticos, calendario editorial, criterios para una colaboración
+propuesta con creadores y un plan de medición. No hay campaña publicada, creadores
+contactados ni métricas observadas; los perfiles no se presentan como resultados
+de entrevistas. Las fechas sobre polinizadores se apoyan en efemérides públicas y
+no se usan para generalizar prácticas de cosecha [5], [6].
+
+Los mapas conceptuales están en `docs/mercadotecnia/mapa-mercadotecnia.svg` y
+`docs/mercadotecnia/mapa-comercio-electronico.svg`. Las métricas propuestas
+incluyen alcance, CTR, vistas de ficha, carrito, checkout simulado y éxito de AR;
+se indican fórmula y método de medición. No se instaló analítica de usuarios. Los
+eventos de comercio electrónico se describen de acuerdo con la guía de Google,
+pero no están instrumentados [7].
+
+## 13. Pruebas y evidencias
 
 Pruebas realizadas:
 
@@ -320,7 +364,12 @@ Pruebas realizadas:
   etiqueta, modelos, audio y videos.
 - Revisión móvil a 390 px: `innerWidth = 390`, `scrollWidth = 390`, sin
   desbordamiento horizontal.
-- Capturas finales en `docs/evidencias/2026-11-25/`.
+- Capturas finales base en `docs/evidencias/2026-11-25/`; la nueva captura de
+  escritorio del 26 de noviembre está en `docs/evidencias/2026-11-26/`.
+- `python -m unittest scripts.test_subtitle_utils` valida el formateo temporal y
+  ajuste de línea de subtítulos.
+- `python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils` ejecuta
+  cinco pruebas de síntesis PCM y subtítulos.
 
 Evidencias principales:
 
@@ -329,8 +378,13 @@ Evidencias principales:
 - `docs/evidencias/2026-11-08/`: AR, VR, fauna y storyboard.
 - `docs/evidencias/2026-11-10/`: compra simulada, renders de producto y catálogo.
 - `docs/evidencias/2026-11-25/`: cierre, build, smoke test y capturas finales.
+- `docs/evidencias/2026-11-26/`: cierre documental del día; las pruebas físicas
+  solo se marcarán después de capturarlas en el dispositivo.
+- Manuales y declaración: `docs/manual-tecnico.md`, `docs/manual-usuario.md` y
+  `docs/declaracion-uso-ia.md`; bitácora seleccionada en
+  `docs/anexos/bitacora-ia-entrega.md`.
 
-## 13. Limitaciones y trabajo pendiente
+## 14. Limitaciones y trabajo pendiente
 
 - El pase manual de abeja y jobón en Blender sigue pendiente de ejecución y
   documentación.
@@ -338,12 +392,18 @@ Evidencias principales:
 - El checkout en teléfono físico debe probarse y documentarse.
 - La entrada WebXR, la comodidad y el audio deben validarse en un dispositivo
   físico.
-- No hay pagos reales, login, panel administrativo ni reseñas.
+- No hay pagos reales, login, administración de pedidos reales ni reseñas. El
+  panel local de pedidos `mock` es de solo lectura y no se incluye en producción.
 - El caso es simulado y no representa una empresa o comunidad real.
 - No se realizó un estudio de mercado primario; cualquier dato de mercado debe
   citarse de fuentes reales.
+- La cama sonora original está generada pero requiere escucha/aprobación de
+  Joshua; aún no está mezclada en los MP4. La exportación vertical está definida
+  en el script, pero no se generó ni validó porque FFmpeg no está disponible.
+- La portada del PDF de la memoria conserva el marcador de institución pendiente
+  de confirmar; hay que reemplazarlo por el nombre oficial y regenerar el PDF.
 
-## 14. Conclusiones
+## 15. Conclusiones
 
 El proyecto logra integrar en una sola experiencia una tienda funcional, una base
 de datos relacional, una API transaccional, AR, VR, modelado 3D y video. La
@@ -359,22 +419,47 @@ cuáles son los límites.
 El siguiente paso es cerrar las pruebas físicas, completar el pase manual y
 ensayar la demostración con respaldos del video, los GLB y las capturas.
 
-## 15. Referencias
+## 16. Referencias
 
-- The Nature Conservancy México. *Manejo tradicional de la abeja de los pueblos
-  mayas*.
-  <https://www.nature.org/content/dam/tnc/nature/en/documents/mexico/Manejo_tradicional_de_la_abeja_de_los_pueblos_mayas.pdf>
-- SEMARNAT. *La meliponicultura en México* (2023), sección 8.7.
-  <https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/libros2023/CD008608.pdf>
-- A-Frame. *Models*.
-  <https://aframe.io/docs/1.8.0/introduction/models.html>
-- aframe-extras. *Loaders / animation-mixer*.
-  <https://github.com/c-frame/aframe-extras/blob/master/src/loaders/README.md>
-- A-Frame. *gltf-model*.
-  <https://github.com/aframevr/aframe/blob/master/docs/components/gltf-model.md>
-- Referencias visuales y criterios de estilo: `docs/referencias-3d.md`.
-- Guion y fuentes del video: `docs/referencias-video.md`.
-- Guion y fuentes del recorrido VR: `docs/referencias-vr.md`.
+[1] Secretaría de Medio Ambiente y Recursos Naturales, *La meliponicultura en
+México: un acercamiento a las prácticas tradicionales y a las perspectivas de su
+manejo contemporáneo*. México: SEMARNAT, 2023. [En línea]. Disponible:
+<https://biblioteca.semarnat.gob.mx/janium/Documentos/Ciga/libros2023/CD008608.pdf>.
+[Consultado: 26-nov-2026].
+
+[2] The Nature Conservancy México, *Manejo tradicional de la abeja de los pueblos
+mayas*. [En línea]. Disponible:
+<https://www.tncmx.org/content/dam/tnc/nature/en/documents/mexico/Manejo_tradicional_de_la_abeja_de_los_pueblos_mayas.pdf>.
+[Consultado: 26-nov-2026].
+
+[3] A-Frame, “Models,” *A-Frame Documentation*, versión 1.8.0. [En línea].
+Disponible: <https://aframe.io/docs/1.8.0/introduction/models.html>.
+[Consultado: 26-nov-2026].
+
+[4] A-Frame, “gltf-model,” *A-Frame Documentation*. [En línea]. Disponible:
+<https://aframe.io/docs/1.8.0/components/gltf-model.html>.
+[Consultado: 26-nov-2026].
+
+[5] Food and Agriculture Organization of the United Nations, “World Bee Day | 20
+May.” [En línea]. Disponible: <https://www.un.org/observances/bee-day>.
+[Consultado: 26-nov-2026].
+
+[6] United Nations, “International Mother Earth Day.” [En línea]. Disponible:
+<https://www.un.org/en/observances/earth-day>.
+[Consultado: 26-nov-2026].
+
+[7] Google, “Measure ecommerce,” *Google Analytics for Developers*. [En línea].
+Disponible:
+<https://developers.google.com/analytics/devguides/collection/ga4/ecommerce>.
+[Consultado: 26-nov-2026].
+
+[8] H. Kim, “Image Tracking Quick Start: Overview,” *MindAR Documentation*. [En
+línea]. Disponible: <https://hiukim.github.io/mind-ar-js-doc/quick-start/overview>.
+[Consultado: 26-nov-2026].
+
+Las referencias visuales y técnicas adicionales se detallan en
+`docs/referencias-3d.md`, `docs/referencias-video.md` y
+`docs/referencias-vr.md`.
 
 ## Anexo A. Comandos de verificación
 

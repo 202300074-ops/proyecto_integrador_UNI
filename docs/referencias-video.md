@@ -35,7 +35,16 @@ representación única de todas las prácticas.
 > documental.
 
 La voz se sintetiza con Microsoft Sabina (es-MX) en el equipo. No es una voz de
-meliponicultora ni se atribuye a ninguna comunidad.
+meliponicultora ni se atribuye a ninguna comunidad. El proyecto no usa una pista
+comercial de terceros; el script de render genera una cama sonora original
+sintética. Joshua debe escucharla y aprobar su uso antes de regenerar y entregar el
+MP4.
+
+El renderizador prepara subtítulos externos `.srt`, una pista de subtítulos para
+los MP4 y un derivado vertical 1080 × 1920. Los archivos MP4 existentes aún no
+contienen esa mezcla ni el derivado vertical: falta disponer de FFmpeg, regenerar y
+revisar el resultado. La exportación no debe presentarse como verificada hasta
+completar ese paso.
 
 ## Fuentes de proceso
 

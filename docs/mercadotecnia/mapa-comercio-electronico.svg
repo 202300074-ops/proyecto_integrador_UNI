@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 540" role="img" aria-labelledby="title desc">
+  <title id="title">Mapa conceptual de comercio electrónico de Sak P'o' Kaab</title>
+  <desc id="desc">Flujo de descubrimiento, catálogo conceptual, ficha, carrito, cupón, checkout simulado y confirmación; indica inventario de demostración y sin pago real.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#52745d"/></marker>
+    <style>
+      .bg{fill:#f6f0e4}.node{fill:#fffdf8;stroke:#d9d0bd;stroke-width:2}.main{fill:#193b2d;stroke:#193b2d}.warm{fill:#f3e1b8;stroke:#d3ac5f}.line{fill:none;stroke:#78917b;stroke-width:3;marker-end:url(#arrow)}.h{font:600 21px Inter,Arial,sans-serif;fill:#20392e}.p{font:16px Inter,Arial,sans-serif;fill:#5c655d}.inverse{fill:#fff8e7}.tag{font:600 13px Inter,Arial,sans-serif;letter-spacing:2px;fill:#b47528}
+    </style>
+  </defs>
+  <rect class="bg" width="1200" height="540" rx="28"/>
+  <text x="56" y="54" class="tag">FLUJO DE DEMOSTRACIÓN · SIN VENTA NI PAGO REAL</text>
+  <rect class="node" x="45" y="155" width="190" height="120" rx="20"/>
+  <text x="140" y="198" text-anchor="middle" class="h">Descubrimiento</text>
+  <text x="140" y="230" text-anchor="middle" class="p">Contenido educativo</text>
+  <path class="line" d="M235 215 H280"/>
+  <rect class="node" x="285" y="155" width="190" height="120" rx="20"/>
+  <text x="380" y="198" text-anchor="middle" class="h">Catálogo</text>
+  <text x="380" y="230" text-anchor="middle" class="p">4 productos conceptuales</text>
+  <path class="line" d="M475 215 H520"/>
+  <rect class="node" x="525" y="155" width="190" height="120" rx="20"/>
+  <text x="620" y="198" text-anchor="middle" class="h">Ficha</text>
+  <text x="620" y="230" text-anchor="middle" class="p">Variante · precio · stock</text>
+  <path class="line" d="M715 215 H760"/>
+  <rect class="node" x="765" y="155" width="190" height="120" rx="20"/>
+  <text x="860" y="198" text-anchor="middle" class="h">Carrito</text>
+  <text x="860" y="230" text-anchor="middle" class="p">Cantidad · subtotal</text>
+  <path class="line" d="M955 215 H1000"/>
+  <rect class="warm" x="1005" y="155" width="150" height="120" rx="20"/>
+  <text x="1080" y="198" text-anchor="middle" class="h">Cupón</text>
+  <text x="1080" y="230" text-anchor="middle" class="p">BIENVENIDA10</text>
+
+  <path class="line" d="M1080 275 V345 H875"/>
+  <rect class="main" x="635" y="345" width="240" height="110" rx="20"/>
+  <text x="755" y="389" text-anchor="middle" class="h inverse">Checkout de prueba</text>
+  <text x="755" y="421" text-anchor="middle" class="p inverse">Pago marcado como mock</text>
+  <path class="line" d="M635 400 H565"/>
+  <rect class="node" x="320" y="345" width="240" height="110" rx="20"/>
+  <text x="440" y="389" text-anchor="middle" class="h">Pedido simulado</text>
+  <text x="440" y="421" text-anchor="middle" class="p">Transacción · stock · estado</text>
+  <path class="line" d="M320 400 H250"/>
+  <rect class="warm" x="45" y="345" width="205" height="110" rx="20"/>
+  <text x="147" y="389" text-anchor="middle" class="h">Confirmación</text>
+  <text x="147" y="421" text-anchor="middle" class="p">Sin cobro real</text>
+  <text x="600" y="500" text-anchor="middle" class="p">El inventario y el pedido son datos demostrativos; no se ofrece producto comercial real.</text>
+</svg>

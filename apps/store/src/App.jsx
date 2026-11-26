@@ -1,7 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getProducts } from './api.js';
 import ProductCard, { CATEGORY_LABELS, PRODUCT_IMAGES } from './components/ProductCard.jsx';
 import CartPanel from './components/CartPanel.jsx';
+import OrdersPanel from './components/OrdersPanel.jsx';
+import arLabel from '../../../assets/targets/etiqueta-sakpokaab.png';
+import hivePoster from '../../../assets/video/cosecha-poster.png';
+import vrPreview from '../../../docs/evidencias/2026-11-25/vr-final.png';
+
+const AR_PREVIEW_BASE_URL = (
+  import.meta.env.VITE_AR_PREVIEW_URL || 'http://localhost:5174'
+).replace(/\/$/, '');
 
 const FILTERS = [
   { id: 'all', label: 'Todo' },
@@ -25,11 +33,13 @@ function BrandMark({ className = 'h-10 w-10' }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
+        className="brand-mark-outline"
       />
       <path
         d="M32 20c-6 7-9 12-9 17a9 9 0 0 0 18 0c0-5-3-10-9-17Z"
         fill="currentColor"
         opacity="0.9"
+        className="brand-mark-drop"
       />
     </svg>
   );
@@ -157,6 +167,8 @@ export default function App() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [ordersOpen, setOrdersOpen] = useState(false);
+  const closeOrdersPanel = useCallback(() => setOrdersOpen(false), []);
 
   function addToCart(product, variant) {
     const variantId = Number(variant.id);
@@ -322,23 +334,23 @@ export default function App() {
                   </span>
                 </div>
 
-                <div className="mt-6 grid grid-cols-3 gap-3">
-                  {Array.from({ length: 9 }).map((_, index) => (
-                    <div
-                      key={index}
-                      className="aspect-[0.86] rounded-[42%] border border-forest-800/15 bg-gradient-to-br from-honey-100 to-honey-200/70"
-                    />
-                  ))}
-                </div>
-
-                <div className="mt-6 rounded-2xl bg-forest-800 p-4 text-cream">
-                  <p className="text-[10px] uppercase tracking-[0.24em] text-cream/60">
-                    Etiqueta interactiva
+                <figure className="mt-5 overflow-hidden rounded-2xl bg-forest-900">
+                  <img
+                    src={hivePoster}
+                    alt="Ilustración didáctica de un jobón tradicional y abejas meliponas"
+                    className="block aspect-video w-full object-cover"
+                  />
+                </figure>
+                <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+                  <p className="text-[11px] leading-relaxed text-charcoal/60">
+                    Recreación didáctica · no es metraje documental
                   </p>
-                  <p className="mt-1 text-sm leading-relaxed text-cream/85">
-                    Escanea la etiqueta y observa la abeja animada y el proceso de
-                    cosecha en realidad aumentada.
-                  </p>
+                  <a
+                    href="#experiencia"
+                    className="text-xs font-semibold text-forest-800 underline decoration-forest-800/30 underline-offset-4 transition hover:decoration-forest-800"
+                  >
+                    Explorar experiencias <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               </div>
             </div>
@@ -409,7 +421,7 @@ export default function App() {
           </div>
         </section>
 
-        <section id="experiencia" className="py-16">
+        <section id="experiencia" className="scroll-mt-20 py-16">
           <div className="container-page">
             <div className="max-w-2xl">
               <p className="eyebrow">Experiencia</p>
@@ -433,12 +445,36 @@ export default function App() {
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal/65">
-                  Al escanear la etiqueta con el navegador aparece la abeja
-                  animada y el video del proceso de cosecha.
+                  Apunta la cámara del teléfono a la etiqueta para descubrir la
+                  escena animada y la recreación del proceso de cosecha.
                 </p>
-                <div className="mt-6 flex h-32 items-center justify-center rounded-2xl border border-dashed border-forest-800/20 bg-honey-50 text-xs font-medium text-forest-800/60">
-                  MindAR + A-Frame 1.6
+                <div className="mt-5 grid min-h-40 grid-cols-[6.5rem_1fr] overflow-hidden rounded-2xl bg-forest-900 sm:grid-cols-[7.5rem_1fr]">
+                  <img
+                    src={arLabel}
+                    alt="Etiqueta ilustrada de Sak P'o' Kaab que activa la experiencia de realidad aumentada"
+                    className="h-full min-h-40 w-full object-cover"
+                  />
+                  <div className="flex flex-col justify-center px-4 py-3 text-cream">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-honey-300">
+                      Para comenzar
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-cream/85">
+                      Abre el visor en tu teléfono y permite el acceso a la
+                      cámara.
+                    </p>
+                    <p className="mt-2 text-xs text-cream/55">
+                      Requiere la etiqueta impresa o abierta en otra pantalla.
+                    </p>
+                  </div>
                 </div>
+                <a
+                  href={`${AR_PREVIEW_BASE_URL}/ar.html`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary mt-5 w-full sm:w-auto"
+                >
+                  Abrir experiencia AR <span className="ml-2" aria-hidden="true">↗</span>
+                </a>
               </article>
 
               <article className="card overflow-hidden p-6">
@@ -454,9 +490,28 @@ export default function App() {
                   Un recorrido navegable por el jobón, con hotspots, narración y
                   la abeja melipona en el centro.
                 </p>
-                <div className="mt-6 flex h-32 items-center justify-center rounded-2xl border border-dashed border-forest-800/20 bg-honey-50 text-xs font-medium text-forest-800/60">
-                  A-Frame + WebXR 1.8
-                </div>
+                <figure className="mt-5 overflow-hidden rounded-2xl bg-[#dbe6cf]">
+                  <img
+                    src={vrPreview}
+                    alt="Vista del meliponario virtual con jobón, abejas, vegetación y puntos interactivos"
+                    className="h-40 w-full object-cover object-[50%_68%]"
+                  />
+                  <figcaption className="flex flex-wrap items-center justify-between gap-2 px-3 py-2 text-[10px] font-medium uppercase tracking-[0.14em] text-forest-900/70">
+                    <span>4 puntos interactivos</span>
+                    <span>Compatible con visor WebXR</span>
+                  </figcaption>
+                </figure>
+                <a
+                  href={`${AR_PREVIEW_BASE_URL}/vr.html`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-primary mt-5 w-full sm:w-auto"
+                >
+                  Recorrer el meliponario <span className="ml-2" aria-hidden="true">↗</span>
+                </a>
+                <p className="mt-3 text-xs text-charcoal/50">
+                  También puedes recorrerlo con mouse o pantalla táctil, sin visor.
+                </p>
               </article>
             </div>
           </div>
@@ -499,7 +554,18 @@ export default function App() {
             <BrandMark className="h-7 w-7 text-forest-800" />
             <span>Sak P'o' Kaab · Proyecto integrador 2026</span>
           </div>
-          <span>Multimedia y Diseño Digital · Ingeniería en Software</span>
+          <div className="flex flex-wrap items-center gap-4">
+            <span>Multimedia y Diseño Digital · Ingeniería en Software</span>
+            {import.meta.env.DEV ? (
+              <button
+                type="button"
+                onClick={() => setOrdersOpen(true)}
+                className="font-semibold text-forest-800 underline decoration-forest-800/30 underline-offset-4 hover:decoration-forest-800"
+              >
+                Pedidos de prueba
+              </button>
+            ) : null}
+          </div>
         </div>
       </footer>
 
@@ -522,6 +588,9 @@ export default function App() {
           onClose={() => setCartOpen(false)}
           onOrderCreated={() => setCart([])}
         />
+      ) : null}
+      {ordersOpen && import.meta.env.DEV ? (
+        <OrdersPanel onClose={closeOrdersPanel} />
       ) : null}
     </div>
   );

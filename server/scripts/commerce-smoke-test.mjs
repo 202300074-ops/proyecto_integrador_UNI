@@ -65,6 +65,21 @@ try {
   assert.equal(order.body.data.paymentMethod, 'mock');
   assert.equal(order.body.data.items[0].productName, variant.productName);
 
+  const panelResponse = await fetch(`${api}/orders/demo`);
+  assert.equal(panelResponse.status, 200, 'panel de demostración debe responder 200');
+  const { data: panelOrders } = await panelResponse.json();
+  assert.ok(Array.isArray(panelOrders), 'panel debe devolver una lista');
+  const panelOrder = panelOrders.find((item) => item.orderNumber.endsWith(order.body.data.orderNumber.slice(-6)));
+  assert.ok(panelOrder, 'panel debe incluir el pedido recién creado');
+  assert.deepEqual(
+    Object.keys(panelOrder).sort(),
+    ['createdAt', 'itemCount', 'orderNumber', 'status', 'total'],
+    'panel debe exponer solo los campos mínimos, sin datos personales'
+  );
+  assert.equal(panelOrder.itemCount, 1);
+  assert.equal(panelOrder.status, 'pending');
+  assert.equal(panelOrder.total, order.body.data.total);
+
   console.log(`COMMERCE_SMOKE_OK: coupon, minimum, stock lock, order ${order.body.data.orderNumber}.`);
 } finally {
   try {

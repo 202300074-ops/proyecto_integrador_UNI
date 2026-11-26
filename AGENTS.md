@@ -28,7 +28,7 @@
   con `node server/src/index.js` en el puerto 3001 y ejecutar:
   `$env:API_BASE='http://localhost:3001/api'; npm run test:commerce`.
 
-## Estado actual (2026-11-25)
+## Estado actual (2026-11-26)
 
 - Compra simulada terminada: carrito, variantes, cantidades, cupón
   `BIENVENIDA10` (10 % desde $200), checkout, pedido transaccional, descuento de
@@ -37,6 +37,16 @@
   stock/cupón.
 - Tienda con cuatro renders de producto integrados como WebP de 800 × 1000 en
   `apps/store/public/productos/`, visibles en tarjetas y ficha.
+- Panel local **Pedidos de prueba** de solo lectura; muestra hasta 25 pedidos
+  `mock` sin datos personales y no se compila ni habilita en producción.
+- Mapas conceptuales y plan de mercadotecnia en `docs/mercadotecnia/`; son una
+  propuesta académica, no una campaña ni métricas observadas.
+- Símbolo 2D animado en `assets/animation/logo-sak-po-kaab.svg` y movimiento
+  reducido respetado en la tienda.
+- Manual técnico, manual de usuario, declaración de IA y anexo de bitácora en
+  `docs/`.
+- Memoria Markdown/HTML y PDF generada; la portada conserva el campo de institución
+  pendiente de confirmar.
 - Renders finales de miel, jabón, bálsamo y vela en
   `docs/evidencias/2026-11-10/producto-*-final.png`; escenas en
   `assets/models/producto-*.blend`.
@@ -65,8 +75,11 @@
 3. Probar `/vr.html` y la narración con un visor WebXR físico.
 4. Hacer el pase manual de abeja y jobón en Blender, documentar las
    modificaciones propias y registrar lmik3 solo como apoyo visual.
-5. Ensayar la presentación PDF durante 12–15 minutos y respaldar físicamente el
-   video/GLB.
+5. Escuchar/aprobar la cama sonora candidata; regenerar con FFmpeg los MP4 con
+   SRT y exportación vertical, y revisar salida visual/audio.
+6. Ensayar 20 minutos de presentación, al menos 15 minutos de preguntas y un
+   cambio en vivo de unos 10 minutos; respaldar físicamente el video/GLB.
+7. Confirmar el nombre institucional oficial para la portada de la memoria.
 
 ## Archivos clave
 
@@ -93,5 +106,7 @@
 - No usar el modelo de terceros “Tetragonica angustula Bee” de
   Nyilonelycompany.
 - La autoría manual de los modelos debe ser de Joshua y estar documentada.
-- No agregar login, pasarela de pago real, reseñas inventadas ni panel admin.
+- No agregar login, pasarela de pago real, reseñas inventadas ni administración
+  de pedidos reales. El panel de pedidos de demostración local, de solo lectura,
+  está permitido por la guía; debe seguir sin exponer información personal.
 - No commitear secretos ni archivos `.env`.

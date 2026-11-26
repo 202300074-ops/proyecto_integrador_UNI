@@ -99,3 +99,22 @@ carrito y el cupón en su flujo básico.
 - El video se reproduce desde la experiencia AR.
 - El carrito suma variantes y el cupón aplica el descuento.
 - Todo tiene evidencia y se puede explicar en la defensa.
+
+## Sprint review y retrospectiva — borrador basado en el registro
+
+**Resultado observable:** el carrito, el cupón y el pedido simulado funcionan en
+API/UI; la etiqueta AR y el video fueron validados funcionalmente en el Galaxy
+A22 según el registro del alumno. El storyboard, la detección del target y las
+capturas de compra están vinculados en las secciones anteriores.
+
+**Qué funcionó:** separar los assets del visor y usar un smoke test facilitó
+comprobar la integración; la prueba de comercio verifica stock, cupón y limpieza
+de sus propios datos.
+
+**Qué mejorar:** la evidencia formal de las pruebas físicas se dejó para el cierre;
+el pase manual de Blender tampoco se capturó junto con la generación inicial.
+
+**Acción propuesta para el sprint siguiente:** agendar la prueba física al inicio
+del sprint y guardar capturas/notas inmediatamente. Joshua debe revisar este
+borrador y añadir su reflexión personal; no es una retrospectiva escrita por el
+alumno.

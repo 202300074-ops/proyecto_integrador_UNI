@@ -450,6 +450,64 @@ Decisión:
 - Mantener la documentación y el QA automatizable cerrados; dejar para Joshua las
   pruebas que requieren teléfono, cámara, casco y edición manual en Blender.
 
+## 2026-11-26. Ajustes frente a la guía de regularización
+
+Objetivo: contrastar el estado del repositorio con la guía y cerrar hoy las
+brechas que podían resolverse con código y documentación sin inventar pruebas ni
+datos.
+
+Hecho:
+
+- Se prepararon dos mapas conceptuales SVG y un plan de mercadotecnia con perfiles
+  hipotéticos, calendario, criterios para colaboraciones y fórmulas de medición.
+  No se presentaron entrevistas, acuerdos ni resultados como reales.
+- Se implementó un panel local de pedidos `mock`, de solo lectura, máximo 25
+  registros, sin datos personales y no disponible en producción. La prueba de
+  comercio valida el campo resumido y limpia únicamente su pedido temporal.
+- Se añadió el símbolo animado 2D en SVG con respeto a `prefers-reduced-motion`.
+- Se redactaron manual técnico, manual de usuario, declaración de IA y anexo de
+  diez interacciones seleccionadas. La reflexión personal del alumno queda
+  pendiente.
+- Se numeraron referencias y citas de la memoria; se generaron `docs/memoria.html`
+  y `docs/memoria.pdf`. La portada mantiene pendiente el nombre oficial de la
+  institución.
+- Se actualizó la presentación a 13 diapositivas y se exportó nuevamente a PDF.
+- El renderizador de video ahora prepara subtítulos SRT, una cama sonora original
+  y una exportación vertical. Se generaron el SRT y el WAV candidato.
+- Se capturó `docs/evidencias/2026-11-26/tienda-cierre-escritorio.png` con Edge
+  headless a 1440 px; la imagen incluye la portada, catálogo y tarjetas AR/VR
+  actualizadas.
+
+Verificación:
+
+- `npm run build` pasó después de los cambios en la tienda.
+- `npm run test:commerce` pasó con una API estable en el puerto 3001 como
+  `COMMERCE_SMOKE_OK`; se restauraron los datos de la prueba.
+- `npm --prefix apps/ar-preview run test:smoke` pasó como `AR_PREVIEW_SMOKE_OK`.
+- `python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils` pasó
+  cinco pruebas; `py_compile` de los scripts multimedia pasó.
+- El PDF de memoria se generó en 11 páginas y el de presentación en 13 páginas.
+
+Problemas y pendientes:
+
+- Blender y FFmpeg no se encontraron en `PATH`. No se pudo realizar el pase
+  manual de autoría de Joshua ni regenerar los MP4; los subtítulos y la cama
+  musical aún no están integrados en el video final.
+- La cama sonora se generó, pero Joshua debe escucharla y aprobarla.
+- No se hicieron pruebas físicas de Galaxy A22 ni WebXR durante esta sesión. No
+  se registran como evidencia realizada.
+- La captura móvil directa de Edge no se conservó como evidencia porque el ancho
+  mínimo de ventana en Windows no garantiza un viewport de 390 px.
+- La bitácora y la portada del PDF requieren la revisión personal del alumno y el
+  nombre institucional oficial, respectivamente.
+
+Decisión:
+
+- Registrar las estimaciones de Sprint 4 como propuestas y no reconstruir valores
+  históricos de burndown que no estén documentados.
+- Mantener el panel como demostración local y sin datos personales; no convertirlo
+  en administración de pedidos reales.
+
 ## Pendientes inmediatos
 
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de
@@ -458,5 +516,6 @@ Decisión:
   A22.
 - Probar `/vr.html` en un visor/teléfono WebXR real y ajustar comodidad/escala.
 - Validar narración y controles de audio en un dispositivo WebXR real.
-- Convertir `docs/defensa.md` en PPTX/PDF y ensayar 12–15 minutos.
+- Ensayar `docs/defensa.md` y la presentación durante 20 minutos; reservar al
+  menos 15 minutos de preguntas y practicar el cambio en vivo de unos 10 minutos.
 - Hacer el commit solo cuando Joshua lo solicite.

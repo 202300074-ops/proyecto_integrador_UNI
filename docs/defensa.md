@@ -4,7 +4,8 @@
 
 **Alumno:** Joshua Israel Cabrera Camacho
 
-**Duración objetivo:** 12–15 minutos de exposición + preguntas
+**Duración objetivo:** 20 minutos de exposición + al menos 15 minutos de preguntas
+del jurado + cambio en vivo de aproximadamente 10 minutos.
 
 **Demo:** tienda, API, AR, VR y video
 
@@ -28,18 +29,23 @@ La defensa debe demostrar tres cosas:
 
 | # | Diapositiva | Tiempo |
 | --- | --- | --- |
-| 1 | Portada: Sak P'o' Kaab, nombre, materia y fecha | 20 s |
-| 2 | Problema y contexto: melipona, jobón y caso simulado | 1 min |
-| 3 | Objetivos y alcance: qué sí y qué no incluye | 1 min |
+| 1 | Portada: Sak P'o' Kaab, nombre, materia y fecha | 0.5 min |
+| 2 | Problema y contexto: melipona, jobón y caso simulado | 1.5 min |
+| 3 | Objetivos y alcance, incluyendo límites | 1.5 min |
 | 4 | Arquitectura: React, Express, MySQL, AR/VR | 1.5 min |
-| 5 | Base de datos y flujo de compra | 1.5 min |
-| 6 | Demo de tienda: catálogo, ficha, carrito y cupón | 2.5 min |
-| 7 | Demo de API y MySQL | 1 min |
+| 5 | Base de datos y flujo transaccional | 2 min |
+| 6 | Demo de tienda: catálogo, carrito, cupón y panel local de pedidos | 3.5 min |
+| 7 | API y MySQL | 1.5 min |
 | 8 | AR: etiqueta, abeja y video | 2 min |
 | 9 | VR: meliponario, hotspots y narración | 2 min |
 | 10 | Video de cosecha y declaración de recreación | 1.5 min |
-| 11 | Pruebas, evidencias y límites | 1.5 min |
-| 12 | Conclusiones y aprendizaje | 1 min |
+| 11 | Mapas y plan de mercadotecnia: propuesta, no resultados | 1.5 min |
+| 12 | Pruebas, evidencias, Scrum y límites | 1.5 min |
+| 13 | Conclusiones y aprendizaje | 1 min |
+
+**Total de exposición:** 20 minutos. Después se reservan al menos 15 minutos para
+preguntas y aproximadamente 10 minutos para el cambio en vivo solicitado por el
+jurado.
 
 ## 3. Guion oral
 
@@ -64,11 +70,13 @@ La defensa debe demostrar tres cosas:
 
 > El objetivo general fue integrar una tienda funcional con una experiencia
 > multimedia. Los objetivos específicos fueron: base de datos, API, tienda,
-> AR, VR, video y documentación.
+> animación 2D del símbolo, AR, VR, video, mercadotecnia y documentación.
 >
-> Incluye catálogo, carrito, cupón, checkout simulado, AR, VR y video. No incluye
-> pagos reales, login, panel administrativo ni reseñas inventadas. Preferí un
-> alcance demostrable a prometer funciones que no pudiera explicar.
+> Incluye catálogo, carrito, cupón, checkout simulado, AR, VR, video y un panel
+> local de solo lectura para pedidos simulados. No incluye pagos reales, login,
+> administración de pedidos reales ni reseñas inventadas. También preparé dos
+> mapas conceptuales y un plan de mercadotecnia como propuesta, sin afirmar que se
+> haya publicado una campaña o medido resultados.
 
 ### Diapositiva 4. Arquitectura
 
@@ -128,26 +136,39 @@ La defensa debe demostrar tres cosas:
 > headless pasó; falta validar la entrada WebXR y la comodidad en un dispositivo
 > físico.
 
+> La guía menciona Unity para VR; la implementación se resolvió con A-Frame y
+> WebXR. Presento esta diferencia de forma explícita y explico el alcance que se
+> pudo validar.
+
 ### Diapositiva 10. Video
 
 > El video es una animación original de 720p generada con Python, Pillow y
 > FFmpeg. Muestra la colonia, la preparación, la apertura del jobón, la recolección
-> por gravedad, el filtrado, el cierre y las reservas.
+> por gravedad, el filtrado, el cierre y las reservas. El renderizador ya genera
+> SRT y una cama musical original, pero los MP4 todavía requieren regeneración y
+> escucha porque FFmpeg no está disponible en el entorno de cierre.
 >
 > No es metraje documental. La voz es sintética y el rótulo de recreación
 > didáctica aparece en la experiencia. Las prácticas varían entre comunidades; no
 > se presenta una receta universal.
 
-### Diapositiva 11. Pruebas y límites
+### Diapositiva 11. Mercadotecnia digital y comercio electrónico
+
+> Los mapas muestran la relación entre posicionamiento, contenido educativo,
+> canales, calendario y medición, y el flujo desde el catálogo hasta el checkout
+> simulado. El plan es una propuesta: no se hicieron entrevistas ni se contactó a
+> creadores. Las métricas indican qué medir y no se presentan como resultados.
+
+### Diapositiva 12. Pruebas y límites
 
 > Verifiqué API, build de tienda, build del visor, smoke test de AR/VR y diseño
 > móvil. Las capturas están organizadas por fecha en `docs/evidencias/`.
 >
-> Los límites son claros: falta el pase manual de los modelos en Blender, la
-> evidencia formal de AR en teléfono, el checkout en teléfono y la prueba WebXR
-> física. No hay pagos reales ni panel administrativo. El caso es simulado.
+> Los límites son claros: falta el pase manual de los modelos en Blender y la
+> validación física que no esté respaldada por evidencia. El panel de pedidos solo
+> es de demostración local; no se gestionan pedidos reales. El caso es simulado.
 
-### Diapositiva 12. Conclusiones
+### Diapositiva 13. Conclusiones
 
 > El proyecto integra una tienda funcional, una base de datos relacional, una API
 > transaccional, AR, VR y video. Lo más valioso fue aprender a conectar esas
@@ -162,7 +183,7 @@ La defensa debe demostrar tres cosas:
 ### Antes de empezar
 
 ```powershell
-cd C:\Users\tiojo\dev\proyecto_integrador_UNI
+cd C:\Users\SISTEMAS-01\Desktop\proyecto_integrador_UNI
 npm run db:up
 npm run dev
 ```
@@ -181,7 +202,7 @@ URLs:
 - AR: <http://localhost:5174/ar.html> (requiere HTTPS y cámara)
 - VR: <http://localhost:5174/vr.html>
 
-### Secuencia de 5 minutos
+### Secuencia de demo técnica
 
 1. Abrir la portada y señalar la identidad visual.
 2. Ir al catálogo y filtrar por **Jabones**.
@@ -189,10 +210,13 @@ URLs:
 4. Agregar una variante al carrito.
 5. Abrir el carrito, aplicar `BIENVENIDA10` y mostrar el descuento.
 6. Confirmar el pedido y mostrar el número de pedido.
-7. Abrir `/api/health` y `/api/products` en otra pestaña.
-8. Abrir el visor 3D y el recorrido VR.
-9. Abrir el video o la captura de AR si no hay cámara disponible.
-10. Cerrar con arquitectura, autoría y límites.
+7. En desarrollo, abrir **Pedidos de prueba** y explicar que es de solo lectura y
+   omite datos personales.
+8. Abrir `/api/health` y `/api/products` en otra pestaña.
+9. Abrir el visor 3D y el recorrido VR.
+10. Abrir el video o la evidencia de AR si no hay cámara disponible.
+11. Mostrar los mapas de mercadotecnia y aclarar que no son resultados medidos.
+12. Cerrar con arquitectura, autoría y límites.
 
 ### Plan de respaldo
 
@@ -272,7 +296,9 @@ sin inflar resultados.
 - [ ] Memoria y guion revisados.
 - [x] Presentación en PDF y versión navegable HTML.
 - [ ] Confirmar si la materia solicita también formato PPTX.
-- [ ] Ensayo cronometrado de 12–15 minutos.
+- [ ] Ensayo cronometrado de 20 minutos.
+- [ ] Ensayo de preguntas durante al menos 15 minutos.
+- [ ] Practicar un cambio pequeño en vivo en aproximadamente 10 minutos.
 - [ ] Plan de respaldo si falla internet, cámara o MySQL.
 
 ## 7. Frases que no se deben decir

@@ -62,6 +62,9 @@ Sprint 2:
 - Carrito adaptable con variantes, cantidades, subtotal, cupón `BIENVENIDA10` y
   checkout simulado. El pedido se guarda en `orders` y `order_items`, descuenta
   stock y registra la redención del cupón y el historial de estado.
+- Panel **Pedidos de prueba** en modo desarrollo: solo lectura, máximo 25 pedidos
+  `mock`, identificador parcial y sin datos personales. La ruta no está habilitada
+  en producción.
 - API de compra: `POST /api/coupons/validate` y `POST /api/orders`, con
   validaciones Zod, transacción y bloqueo de inventario.
 - Cuatro renders de producto en `docs/evidencias/2026-11-10/producto-*-final.png`
@@ -74,12 +77,25 @@ Sprint 2:
 Cierre documental:
 
 - Memoria del proyecto: `docs/memoria.md`.
+- Manual técnico y manual de usuario: `docs/manual-tecnico.md` y
+  `docs/manual-usuario.md`.
+- Declaración de IA y anexo seleccionado de bitácora:
+  `docs/declaracion-uso-ia.md` y `docs/anexos/bitacora-ia-entrega.md`.
+- Mapas conceptuales y plan de mercadotecnia:
+  `docs/mercadotecnia/` (propuesta; no presenta métricas ni colaboraciones como
+  hechos).
+- Memoria en PDF: `docs/memoria.pdf`; versión HTML imprimible:
+  `docs/memoria.html`.
 - Guion, demo, preguntas y checklist de defensa: `docs/defensa.md`.
-- Presentación navegable de 12 diapositivas: `docs/presentacion.html`; versión
+- Presentación navegable de 13 diapositivas: `docs/presentacion.html`; versión
   PDF lista para entregar en `docs/presentacion.pdf`.
 - Evidencias de la revisión final: `docs/evidencias/2026-11-25/`.
+- Captura de escritorio tras las correcciones visuales: `docs/evidencias/2026-11-26/`.
 - QA final: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
-- `npm run build`, `npm run test:commerce` y el smoke test de AR/VR pasan.
+- `npm run build`, `npm run test:commerce`, los smoke tests AR/VR y las pruebas
+  unitarias de utilidades multimedia están disponibles.
+- Para regenerar la memoria PDF: `python -m pip install -r requirements-docs.txt`
+  y `python scripts/render_memory_pdf.py` (configura `INSTITUTION_NAME` primero).
 - Revisión móvil por CDP a 390 px sin desbordamiento horizontal.
 
 Pendiente de cierre:
@@ -90,6 +106,10 @@ Pendiente de cierre:
 - Probar narración y controles de audio en el dispositivo WebXR.
 - Ensayar la presentación PDF y la demostración; preparar respaldos físicos del
   video y los GLB.
+- Confirmar el nombre oficial de la institución para reemplazar el marcador de
+  portada del PDF.
+- Escuchar y aprobar la cama sonora; instalar FFmpeg, regenerar los MP4 con SRT y
+  exportación vertical, y revisar los resultados antes de presentarlos.
 
 ## Tecnologías
 
@@ -164,6 +184,7 @@ Pendiente de cierre:
 | `npm run dev:store` | Vite en el puerto 5173. |
 | `npm run build` | Compila la tienda en `apps/store/dist`. |
 | `npm run test:commerce` | Prueba cupón, mínimo, stock y pedido; limpia sus datos. |
+| `npm --workspace @sak-po-kaab/server run test:production-panel` | Verifica que el endpoint de pedidos de demostración responda `404` en producción. |
 | `npm start` | API en modo producción. |
 | `npm run db:up` | Levanta MySQL en segundo plano. |
 | `npm run db:down` | Detiene MySQL sin borrar datos. |

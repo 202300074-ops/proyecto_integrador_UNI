@@ -2,6 +2,7 @@ import { randomBytes } from 'node:crypto';
 import { Router } from 'express';
 import { z } from 'zod';
 import { pool } from '../db.js';
+import { config } from '../env.js';
 
 const router = Router();
 
@@ -241,6 +242,38 @@ router.post('/orders', async (req, res, next) => {
     next(error);
   } finally {
     connection?.release();
+  }
+});
+
+router.get('/orders/demo', async (req, res, next) => {
+  if (config.nodeEnv === 'production') {
+    return res.status(404).json({ error: 'not_found' });
+  }
+
+  try {
+    const [rows] = await pool.query(
+      `SELECT o.id, o.order_number, o.status, o.total, o.created_at,
+              COUNT(oi.id) AS item_count
+       FROM orders o
+       LEFT JOIN order_items oi ON oi.order_id = o.id
+       WHERE o.payment_method = ?
+       GROUP BY o.id
+       ORDER BY o.created_at DESC, o.id DESC
+       LIMIT 25`,
+      ['mock']
+    );
+
+    res.json({
+      data: rows.map((row) => ({
+        orderNumber: `…${String(row.order_number).slice(-6)}`,
+        status: row.status,
+        total: Number(row.total),
+        itemCount: Number(row.item_count),
+        createdAt: new Date(row.created_at).toISOString()
+      }))
+    });
+  } catch (error) {
+    next(error);
   }
 });
 

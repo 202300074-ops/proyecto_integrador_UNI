@@ -123,7 +123,7 @@ Cierre documental (2026-11-25):
 
 - Memoria consolidada en `docs/memoria.md`.
 - Guion, demo, preguntas y checklist en `docs/defensa.md`.
-- Presentación navegable en `docs/presentacion.html` y PDF de 12 diapositivas en
+- Presentación navegable en `docs/presentacion.html` y PDF de 13 diapositivas en
   `docs/presentacion.pdf`.
 - Evidencias finales en `docs/evidencias/2026-11-25/`.
 - QA: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
@@ -131,12 +131,29 @@ Cierre documental (2026-11-25):
   `npm --prefix apps/ar-preview run test:smoke` pasan.
 - Revisión móvil por CDP a 390 px: `innerWidth = 390`, `scrollWidth = 390`.
 
+Cierre de criterios y correcciones (2026-11-26):
+
+- Plan y mapas conceptuales de mercadotecnia en `docs/mercadotecnia/`.
+- Panel local de pedidos `mock` de solo lectura, sin datos personales y desactivado
+  en producción.
+- Símbolo SVG animado con movimiento reducido; manuales y declaración de IA.
+- Memoria citada y exportada a PDF; deck actualizado a 13 diapositivas/PDF.
+- Captura desktop de tienda actualizada en `docs/evidencias/2026-11-26/`.
+- Renderer prepara SRT, cama sonora original y salida vertical. No se regeneraron
+  MP4 porque FFmpeg no está en `PATH`; la cama sonora requiere escucha de Joshua.
+- En esta sesión se observó Node 20.20.2, Python 3.13.15 y no se encontraron
+  Blender ni FFmpeg en `PATH`; la prueba física y el pase manual 3D siguen siendo
+  responsabilidad de Joshua.
+
 Pendiente:
 
 - Pase manual de los modelos en Blender y documentación de la autoría.
 - Evidencia formal de AR/video y checkout en el Galaxy A22.
 - Prueba física de WebXR, narración y comodidad.
-- Ensayar la presentación PDF y la demo; preparar respaldos físicos del video y
+- Escuchar y aprobar la cama sonora; regenerar los MP4 con SRT y exportación
+  vertical cuando FFmpeg esté disponible.
+- Ensayar la presentación PDF durante 20 minutos, al menos 15 minutos de preguntas
+  y un cambio en vivo de unos 10 minutos; preparar respaldos físicos del video y
   los GLB.
 
 ## Siguientes pasos concretos
@@ -146,8 +163,10 @@ Pendiente:
 2. Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
 3. Validar hotspots, teletransporte y narración de `/vr.html` con un visor VR
    físico.
-4. Convertir `docs/defensa.md` en PPTX/PDF y ensayar 12–15 minutos.
-5. Revisar la memoria y las evidencias antes de la entrega.
+4. Confirmar el nombre institucional y regenerar `docs/memoria.pdf` con la portada
+   completa.
+5. Ensayar 20 minutos de exposición, 15 minutos de preguntas y el cambio en vivo.
+6. Revisar la memoria y las evidencias antes de la entrega.
 
 ## Riesgos
 

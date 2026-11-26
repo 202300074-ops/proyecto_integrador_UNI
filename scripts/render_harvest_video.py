@@ -11,11 +11,17 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
 
+from audio_bed import write_original_music
+from subtitle_utils import build_srt
+
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIO = ROOT / "assets" / "audio" / "narracion-cosecha.wav"
 OUTPUT = ROOT / "assets" / "video" / "cosecha-melipona-recreacion.mp4"
 OUTPUT_MOBILE = ROOT / "assets" / "video" / "cosecha-melipona-recreacion-mobile.mp4"
+OUTPUT_SOCIAL = ROOT / "assets" / "video" / "cosecha-melipona-recreacion-social-vertical.mp4"
+SUBTITLES = ROOT / "assets" / "video" / "cosecha-melipona-recreacion.srt"
+AUDIO_BED = ROOT / "assets" / "audio" / "cama-sonora-original.wav"
 POSTER = ROOT / "assets" / "video" / "cosecha-poster.png"
 WIDTH, HEIGHT, FPS = 1280, 720, 24
 
@@ -509,10 +515,6 @@ def main() -> None:
             "Falta la narración. Ejecuta primero: "
             "powershell -ExecutionPolicy Bypass -File scripts/generate_harvest_narration.ps1"
         )
-    ffmpeg = shutil.which("ffmpeg")
-    if not ffmpeg:
-        raise SystemExit("No se encontró ffmpeg en PATH.")
-
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     audio_seconds = audio_duration(AUDIO)
     hold_seconds = 2.5
@@ -521,6 +523,21 @@ def main() -> None:
     scene_durations = [audio_seconds * scene["weight"] / weight_sum for scene in SCENES]
     scene_durations[-1] += hold_seconds
     frame_count = math.ceil(video_seconds * FPS)
+    subtitle_texts = [scene["body"] for scene in SCENES]
+    subtitle_texts[-1] = (
+        f"{subtitle_texts[-1]} Esta animación es una recreación didáctica, "
+        "no metraje documental."
+    )
+    SUBTITLES.write_text(build_srt(subtitle_texts, scene_durations), encoding="utf-8")
+    write_original_music(AUDIO_BED, video_seconds)
+
+    ffmpeg = shutil.which("ffmpeg")
+    if not ffmpeg:
+        raise SystemExit(
+            f"Se generaron subtítulos en {SUBTITLES} y música original en {AUDIO_BED}, "
+            "pero no se encontró ffmpeg en PATH. "
+            "No se regeneraron los videos."
+        )
 
     storyboard_path = ROOT / "docs" / "evidencias" / "2026-11-08" / "storyboard-cosecha.png"
     storyboard_path.parent.mkdir(parents=True, exist_ok=True)
@@ -584,28 +601,57 @@ def main() -> None:
 
         mux_command = [
             ffmpeg, "-y", "-hide_banner", "-loglevel", "error",
-            "-i", str(silent_video), "-i", str(AUDIO),
-            "-filter_complex", "[1:a]loudnorm=I=-16:TP=-1.5:LRA=11,apad=pad_dur=2.5[a]",
-            "-map", "0:v:0", "-map", "[a]", "-c:v", "copy", "-c:a", "aac",
+            "-i", str(silent_video), "-i", str(AUDIO), "-i", str(AUDIO_BED), "-i", str(SUBTITLES),
+            "-filter_complex",
+            "[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[voice];"
+            "[2:a]volume=0.3[music];"
+            "[voice][music]amix=inputs=2:duration=longest:dropout_transition=2,"
+            "loudnorm=I=-16:TP=-1.5:LRA=11[a]",
+            "-map", "0:v:0", "-map", "[a]", "-map", "3:0", "-c:v", "copy", "-c:a", "aac",
+            "-c:s", "mov_text",
             "-b:a", "160k", "-ar", "48000", "-shortest", "-movflags", "+faststart", str(OUTPUT),
         ]
         subprocess.run(mux_command, check=True)
 
         mobile_command = [
             ffmpeg, "-y", "-hide_banner", "-loglevel", "error",
-            "-i", str(silent_video), "-i", str(AUDIO),
+            "-i", str(silent_video), "-i", str(AUDIO), "-i", str(AUDIO_BED), "-i", str(SUBTITLES),
             "-filter_complex",
-            "[0:v]scale=640:360:flags=bicubic[v];[1:a]loudnorm=I=-16:TP=-1.5:LRA=11,apad=pad_dur=2.5[a]",
-            "-map", "[v]", "-map", "[a]", "-c:v", "libx264", "-preset", "veryfast",
+            "[0:v]scale=640:360:flags=bicubic[v];"
+            "[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[voice];"
+            "[2:a]volume=0.3[music];"
+            "[voice][music]amix=inputs=2:duration=longest:dropout_transition=2,"
+            "loudnorm=I=-16:TP=-1.5:LRA=11[a]",
+            "-map", "[v]", "-map", "[a]", "-map", "3:0", "-c:v", "libx264", "-preset", "veryfast",
             "-crf", "23", "-profile:v", "baseline", "-level:v", "3.0",
             "-g", str(FPS * 2), "-keyint_min", str(FPS), "-sc_threshold", "0",
-            "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-ar", "48000",
+            "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-ar", "48000", "-c:s", "mov_text",
             "-shortest", "-movflags", "+faststart", str(OUTPUT_MOBILE),
         ]
         subprocess.run(mobile_command, check=True)
 
+        social_command = [
+            ffmpeg, "-y", "-hide_banner", "-loglevel", "error",
+            "-i", str(OUTPUT),
+            "-filter_complex",
+            "[0:v]split=2[bg][fg];"
+            "[bg]scale=1080:1920:force_original_aspect_ratio=increase,"
+            "crop=1080:1920,boxblur=30:10,eq=brightness=-0.18[background];"
+            "[fg]scale=1080:608:force_original_aspect_ratio=decrease[foreground];"
+            "[background][foreground]overlay=(W-w)/2:(H-h)/2,format=yuv420p[video]",
+            "-map", "[video]", "-map", "0:a:0", "-map", "0:s:0",
+            "-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+            "-profile:v", "baseline", "-level:v", "4.0", "-r", str(FPS),
+            "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-c:s", "mov_text",
+            "-shortest", "-movflags", "+faststart", str(OUTPUT_SOCIAL),
+        ]
+        subprocess.run(social_command, check=True)
+
     print(f"VIDEO_OK: {OUTPUT} ({OUTPUT.stat().st_size:,} bytes)")
     print(f"VIDEO_MOBILE_OK: {OUTPUT_MOBILE} ({OUTPUT_MOBILE.stat().st_size:,} bytes)")
+    print(f"VIDEO_SOCIAL_OK: {OUTPUT_SOCIAL} ({OUTPUT_SOCIAL.stat().st_size:,} bytes)")
+    print(f"SUBTITLES_OK: {SUBTITLES}")
+    print(f"MUSIC_BED_OK: {AUDIO_BED} ({AUDIO_BED.stat().st_size:,} bytes)")
     print(f"POSTER_OK: {POSTER}")
     print(f"STORYBOARD_OK: {storyboard_path}")
 

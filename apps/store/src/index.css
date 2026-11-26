@@ -41,3 +41,42 @@ body {
 .field {
   @apply w-full rounded-2xl border border-charcoal/15 bg-white px-4 py-3 text-sm text-charcoal outline-none transition focus:border-forest-700 focus:ring-2 focus:ring-forest-700/15;
 }
+
+.brand-mark-outline {
+  stroke-dasharray: 160;
+  animation: brand-mark-draw 1.5s ease-out both;
+}
+
+.brand-mark-drop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: brand-mark-pulse 4.5s ease-in-out 1.5s infinite;
+}
+
+@keyframes brand-mark-draw {
+  from {
+    stroke-dashoffset: 160;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes brand-mark-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark-outline,
+  .brand-mark-drop {
+    animation: none;
+  }
+}
