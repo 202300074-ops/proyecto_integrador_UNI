@@ -304,18 +304,19 @@ def studio(name):
     return scene, mats
 
 
-def setup_camera(location, target, lens=85, fstop=6.3):
+def setup_camera(location, target, lens=85, fstop=6.3, focus_target=None):
     bpy.ops.object.camera_add(location=location)
     camera = bpy.context.object
     camera.name = "Camara_Producto"
     camera.data.lens = lens
     camera.data.sensor_width = 36
     camera.data.dof.use_dof = True
-    camera.data.dof.focus_distance = (Vector(target) - Vector(location)).length
+    focus_point = focus_target or target
+    camera.data.dof.focus_distance = (Vector(focus_point) - Vector(location)).length
     camera.data.dof.aperture_fstop = fstop
     look_at(camera, target)
     bpy.context.scene.camera = camera
-    bpy.ops.object.empty_add(location=target)
+    bpy.ops.object.empty_add(location=focus_point)
     focus = bpy.context.object
     focus.name = "Foco_Producto"
     camera.data.dof.focus_object = focus
@@ -400,7 +401,13 @@ def build_candle(mats):
     text("Vela_Producto", "CERA DE MELIPONA", 0.0023, (0, -0.0630, 0.0365), mats["ink"])
     text("Vela_Peso", "200 g", 0.0022, (0, -0.0630, 0.0290), mats["ink"])
 
-    setup_camera((0.135, -0.425, 0.160), (0, 0, 0.055), lens=90, fstop=6.3)
+    setup_camera(
+        (0.135, -0.425, 0.160),
+        (0, 0, 0.055),
+        lens=90,
+        fstop=7.1,
+        focus_target=(0, -0.063, 0.040),
+    )
 
 
 JOBS = {

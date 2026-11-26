@@ -119,22 +119,35 @@ Completado (Sprint 2):
   y las versiones WebP de 800 × 1000 se usan en las tarjetas y la ficha de la
   tienda desde `apps/store/public/productos/`.
 
+Cierre documental (2026-11-25):
+
+- Memoria consolidada en `docs/memoria.md`.
+- Guion, demo, preguntas y checklist en `docs/defensa.md`.
+- Presentación navegable en `docs/presentacion.html` y PDF de 12 diapositivas en
+  `docs/presentacion.pdf`.
+- Evidencias finales en `docs/evidencias/2026-11-25/`.
+- QA: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
+- `npm run build`, `npm run test:commerce` y
+  `npm --prefix apps/ar-preview run test:smoke` pasan.
+- Revisión móvil por CDP a 390 px: `innerWidth = 390`, `scrollWidth = 390`.
+
 Pendiente:
 
-- Sprint 2: pase manual de los modelos, evidencia de la prueba en teléfono y
-  prueba de carrito/checkout en el Galaxy A22.
-- Sprint 3: probar `/vr.html` y su audio con visor WebXR físico, cerrar
-  documentación y preparar la defensa.
+- Pase manual de los modelos en Blender y documentación de la autoría.
+- Evidencia formal de AR/video y checkout en el Galaxy A22.
+- Prueba física de WebXR, narración y comodidad.
+- Ensayar la presentación PDF y la demo; preparar respaldos físicos del video y
+  los GLB.
 
 ## Siguientes pasos concretos
 
 1. Abrir `assets/models/modelo.blend`, hacer modificaciones manuales propias y
    guardar capturas del proceso para sustentar la autoría.
-2. Archivar la evidencia de la validación de AR/video en el Galaxy A22.
-3. Probar carrito y checkout en el Galaxy A22 y guardar evidencia.
-4. Validar hotspots, teletransporte y narración de `/vr.html` con un visor VR
+2. Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
+3. Validar hotspots, teletransporte y narración de `/vr.html` con un visor VR
    físico.
-5. Cerrar documentación, evidencias, bitácora y presentación.
+4. Convertir `docs/defensa.md` en PPTX/PDF y ensayar 12–15 minutos.
+5. Revisar la memoria y las evidencias antes de la entrega.
 
 ## Riesgos
 

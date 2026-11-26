@@ -28,7 +28,7 @@
   con `node server/src/index.js` en el puerto 3001 y ejecutar:
   `$env:API_BASE='http://localhost:3001/api'; npm run test:commerce`.
 
-## Estado actual (2026-11-11)
+## Estado actual (2026-11-25)
 
 - Compra simulada terminada: carrito, variantes, cantidades, cupón
   `BIENVENIDA10` (10 % desde $200), checkout, pedido transaccional, descuento de
@@ -40,6 +40,8 @@
 - Renders finales de miel, jabón, bálsamo y vela en
   `docs/evidencias/2026-11-10/producto-*-final.png`; escenas en
   `assets/models/producto-*.blend`.
+- La vela se re-renderizó con foco frontal en la etiqueta; PNG/WebP actualizados
+  y verificados en la captura final del catálogo.
 - AR/video validados funcionalmente por Joshua en Galaxy A22; falta archivar
   evidencia formal.
 - VR con A-Frame 1.8, cuatro hotspots, tres teletransportes, panel y narración
@@ -48,6 +50,12 @@
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
   `docs/evidencias/2026-11-10/`.
+- Memoria consolidada en `docs/memoria.md`; guion y checklist de defensa en
+  `docs/defensa.md`; presentación HTML y PDF en `docs/presentacion.html` y
+  `docs/presentacion.pdf`.
+- QA final del 2026-11-25: MySQL `healthy`, API `db: "up"`, build de tienda y
+  visor, `COMMERCE_SMOKE_OK`, `AR_PREVIEW_SMOKE_OK` y móvil a 390 px sin
+  desbordamiento. Evidencias en `docs/evidencias/2026-11-25/`.
 
 ## Pendientes inmediatos
 
@@ -57,10 +65,8 @@
 3. Probar `/vr.html` y la narración con un visor WebXR físico.
 4. Hacer el pase manual de abeja y jobón en Blender, documentar las
    modificaciones propias y registrar lmik3 solo como apoyo visual.
-5. Consolidar memoria, conclusiones, diapositivas, ensayo de defensa y respaldos
-   del video/GLB.
-6. Revisar si la etiqueta de la vela necesita un render con foco frontal más
-   nítido; en la tarjeta actual se lee suave por el DOF y el vidrio.
+5. Ensayar la presentación PDF durante 12–15 minutos y respaldar físicamente el
+   video/GLB.
 
 ## Archivos clave
 

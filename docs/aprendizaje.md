@@ -52,9 +52,15 @@ Preguntas posibles:
 
 Preguntas posibles:
 
-- ¿Dónde se guarda el carrito? (Todavía no existe; se implementa en el Sprint 2).
+- ¿Dónde se guarda el carrito? (En el estado de React; el pedido se confirma
+  contra la API).
 - ¿Qué pasa si la API tarda?
 - ¿Cómo se maneja un error de red?
+- ¿Cómo se evita modificar el stock si falla el pedido? (Transacción y rollback).
+- ¿Por qué el cupón se valida en la API y no solo en el frontend?
+- ¿Qué diferencia hay entre subtotal, descuento y total?
+- ¿Qué pasa si dos personas compran la última variante al mismo tiempo?
+  (Bloqueo de inventario dentro de la transacción).
 
 ## 4. Pruebas y evidencia
 
@@ -96,11 +102,13 @@ Preguntas posibles:
 
 1. Abrir la tienda y mostrar la portada.
 2. Filtrar por "Jabones" y abrir la ficha de producto.
-3. Mostrar que los precios y el stock vienen de MySQL.
-4. Mostrar `GET /api/health` y `GET /api/products` en el navegador o terminal.
-5. Mostrar la etiqueta AR (cuando esté lista) y el video.
-6. Mostrar el meliponario VR (cuando esté listo).
-7. Cerrar con la arquitectura, las decisiones de autoría y lo que falta.
+3. Agregar una variante al carrito y mostrar cantidades y subtotal.
+4. Aplicar `BIENVENIDA10` y mostrar el descuento.
+5. Confirmar el pedido simulado y mostrar el número de pedido.
+6. Mostrar `GET /api/health` y `GET /api/products` en el navegador o terminal.
+7. Mostrar la etiqueta AR y el video.
+8. Mostrar el meliponario VR.
+9. Cerrar con la arquitectura, las decisiones de autoría y lo que falta.
 
 ## 9. Checklist antes de la defensa
 
@@ -112,5 +120,6 @@ Preguntas posibles:
 - [ ] Sé qué es un image target y cómo se prueba en el teléfono.
 - [ ] Puedo explicar el video como recreación didáctica.
 - [ ] Tengo un respaldo del video y del GLB en USB o nube.
-- [ ] Tengo la presentación en PDF y en PPTX.
+- [x] Tengo la presentación en PDF y en HTML navegable.
+- [ ] Confirmo si también se requiere PPTX.
 - [ ] Tengo la bitácora de IA revisada y con mi reflexión.

@@ -411,6 +411,45 @@ etiqueta y cerrar un poco el diafragma.
 **Límite actual:** los renders son una representación digital del caso simulado, no
 fotografías de productos reales. La autoría manual en Blender sigue pendiente.
 
+## 20. Cierre documental y QA final
+
+**Pregunta o instrucción:** retomar el proyecto después de varios días y avanzar
+con lo que falta antes de la entrega del 26–27 de noviembre.
+
+**Respuesta de la IA:** se levantó el entorno, se ejecutó el QA final y se
+consolidó la documentación. Se creó `docs/memoria.md` con el contexto, la
+arquitectura, el modelo de datos, la API, la tienda, 3D, AR, VR, video, pruebas,
+límites y referencias. Se creó `docs/defensa.md` con estructura de diapositivas,
+guion oral, secuencia de demo, plan de respaldo, preguntas probables y checklist.
+Se generó `docs/presentacion.html` como deck navegable de 12 diapositivas y
+`docs/presentacion.pdf` como PDF final de 12 páginas.
+También se actualizaron README, PROJECT_CONTEXT, backlog, sprint 3, AGENTS y la
+guía de aprendizaje. Se ajustó el script de render de la vela para separar el
+punto de foco del punto de mira y se re-renderizó con foco frontal; terminó en
+863.0 s y la etiqueta quedó nítida. Se corrigió el texto de la sección Experiencia
+de la tienda y se cambiaron las etiquetas internas “Sprint 2/3” por “AR” y “VR”.
+La portada, el catálogo, el seed y la base activa ahora aclaran que la cooperativa
+y los productos son simulados/conceptuales; los pedidos, stock y cupón no se
+modificaron.
+
+**Verificación:** MySQL `healthy`; `/api/health` con `db: "up"`; cuatro productos
+y seis variantes; `npm run build`; `npm run test:commerce` con
+`COMMERCE_SMOKE_OK`; `npm --prefix apps/ar-preview run build`; smoke test con
+`AR_PREVIEW_SMOKE_OK`; revisión móvil por CDP con `innerWidth = 390`,
+`scrollWidth = 390` y `clientWidth = 390`. Las capturas nuevas están en
+`docs/evidencias/2026-11-25/`.
+
+**Error o aprendizaje:** una captura directa de Chrome con `--window-size=390` en
+Windows se recortó porque la ventana tiene un ancho mínimo; no debe usarse como
+evidencia de responsive. La captura correcta se hizo con CDP y
+`Emulation.setDeviceMetricsOverride`, que sí cambia el viewport de layout. También
+se comprobó que el watcher de desarrollo puede interferir con la prueba de
+comercio; una instancia estable de la API evita ese problema.
+
+**Límite actual:** el QA automatizable está cerrado, pero siguen pendientes las
+pruebas físicas de AR, checkout y WebXR, la evidencia formal en teléfono y el pase
+manual de los modelos en Blender.
+
 ## Reflexión personal pendiente
 
 Escribe aquí, con tus palabras:

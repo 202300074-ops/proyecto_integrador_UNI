@@ -394,13 +394,69 @@ Decisión:
 - Usar las mismas imágenes en catálogo y ficha para mantener consistencia visual.
 - Mantener los PNG a resolución completa como evidencia y publicar WebP ligeros.
 
+## 2026-11-25. Cierre documental y QA final
+
+Objetivo: retomar el proyecto después de varios días y cerrar lo que no depende
+de una prueba física.
+
+Hecho:
+
+- Se levantó Docker Desktop, MySQL 8.4 y los servicios de tienda, API y visor.
+- Se ejecutó el QA final: `/api/health` con `db: "up"`, cuatro productos y seis
+  variantes, `npm run build`, `npm run test:commerce`,
+  `npm --prefix apps/ar-preview run build` y el smoke test de AR/VR.
+- Se capturaron evidencias nuevas en `docs/evidencias/2026-11-25/`: portada de
+  escritorio, portada móvil, visor 3D y recorrido VR.
+- La revisión móvil por CDP a 390 × 844 reportó `innerWidth = 390`,
+  `scrollWidth = 390` y `clientWidth = 390`, sin desbordamiento horizontal.
+- Se consolidó `docs/memoria.md` con contexto, arquitectura, base de datos, API,
+  tienda, 3D, AR, VR, video, pruebas, límites y referencias.
+- Se creó `docs/defensa.md` con estructura de diapositivas, guion oral, demo,
+  plan de respaldo, preguntas probables y checklist.
+- Se preparó `docs/presentacion.html` como deck navegable de 12 diapositivas y se
+  exportó `docs/presentacion.pdf`; se verificó que el PDF tenga 12 páginas.
+- Se actualizaron README, PROJECT_CONTEXT, backlog, sprint 3, AGENTS y la guía de
+  aprendizaje.
+- Se ajustó el script de renders para enfocar el frente de la etiqueta de la vela.
+  El re-render terminó en 863.0 s; la etiqueta se lee nítida y se actualizaron
+  `docs/evidencias/2026-11-25/producto-vela-final-foco.png` y
+  `apps/store/public/productos/vela-jobon.webp`.
+- Se corrigió el texto de la sección Experiencia de la tienda, que todavía decía
+  “en los siguientes sprints”, y se cambiaron las etiquetas internas “Sprint 2/3”
+  por “AR” y “VR”.
+- Se hizo explícito en la portada, el catálogo y las fichas que la cooperativa y
+  los productos son simulados/conceptuales; `db/seed.sql` y la base activa se
+  actualizaron sin tocar pedidos, stock ni cupón.
+
+Verificación:
+
+- `COMMERCE_SMOKE_OK` y `AR_PREVIEW_SMOKE_OK`.
+- Build de tienda y visor sin errores.
+- Capturas finales revisadas; la portada móvil se tomó con emulación de
+  dispositivo, no con una ventana de 390 px, para evitar el recorte mínimo de
+  Chrome en Windows.
+
+Problemas:
+
+- Una captura móvil directa con `--window-size=390` se recortó por el tamaño
+  mínimo de ventana de Chrome. Se corrigió usando CDP y
+  `Emulation.setDeviceMetricsOverride`.
+- La etiqueta de la vela se veía suave por el DOF. Se añadió un objetivo de foco
+  separado del punto de mira y se re-renderizó con f/7.1; la composición se
+  conservó y la etiqueta quedó nítida.
+
+Decisión:
+
+- Mantener la documentación y el QA automatizable cerrados; dejar para Joshua las
+  pruebas que requieren teléfono, cámara, casco y edición manual en Blender.
+
 ## Pendientes inmediatos
 
-- Confirmar el horario de fin de semana.
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de
   las modificaciones propias. Registrar lmik3 como apoyo de render, si se usa.
-- Archivar la evidencia de la prueba de etiqueta y video en el Galaxy A22.
-- Probar carrito y checkout en el Galaxy A22 y guardar evidencia.
+- Archivar la evidencia de la prueba de etiqueta, video y checkout en el Galaxy
+  A22.
 - Probar `/vr.html` en un visor/teléfono WebXR real y ajustar comodidad/escala.
 - Validar narración y controles de audio en un dispositivo WebXR real.
+- Convertir `docs/defensa.md` en PPTX/PDF y ensayar 12–15 minutos.
 - Hacer el commit solo cuando Joshua lo solicite.

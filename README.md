@@ -65,19 +65,31 @@ Sprint 2:
 - API de compra: `POST /api/coupons/validate` y `POST /api/orders`, con
   validaciones Zod, transacción y bloqueo de inventario.
 - Cuatro renders de producto en `docs/evidencias/2026-11-10/producto-*-final.png`
-  (1600 × 2000), integrados como WebP en las tarjetas y la ficha de la tienda.
+  (1600 × 2000), integrados como WebP en las tarjetas y la ficha de la tienda. La
+  vela se re-renderizó con foco frontal para mejorar la lectura de la etiqueta.
 - Revisión visual en escritorio: `docs/evidencias/2026-11-08/visor-escena.png`.
   Fauna adicional: `docs/evidencias/2026-11-08/visor-fauna.png`.
   Captura de MindAR: `docs/evidencias/2026-11-08/ar-target-detectado.png`.
 
-Pendiente para los siguientes sprints:
+Cierre documental:
+
+- Memoria del proyecto: `docs/memoria.md`.
+- Guion, demo, preguntas y checklist de defensa: `docs/defensa.md`.
+- Presentación navegable de 12 diapositivas: `docs/presentacion.html`; versión
+  PDF lista para entregar en `docs/presentacion.pdf`.
+- Evidencias de la revisión final: `docs/evidencias/2026-11-25/`.
+- QA final: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
+- `npm run build`, `npm run test:commerce` y el smoke test de AR/VR pasan.
+- Revisión móvil por CDP a 390 px sin desbordamiento horizontal.
+
+Pendiente de cierre:
 
 - Hacer el pase manual de los modelos y documentar las modificaciones propias.
-- Archivar la evidencia de la validación de AR/video en el Galaxy A22.
+- Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
 - Validar el recorrido WebXR con un casco físico y guardar evidencia.
 - Probar narración y controles de audio en el dispositivo WebXR.
-- Probar carrito y checkout en teléfono y documentar la demo de defensa.
-- Documentación final, bitácora de IA y presentación de defensa.
+- Ensayar la presentación PDF y la demostración; preparar respaldos físicos del
+  video y los GLB.
 
 ## Tecnologías
 
@@ -237,10 +249,13 @@ npm run db:reset
   confirmar pedido; capturas en `docs/evidencias/2026-11-10/`.
 - Flujo móvil a 390 px: `innerWidth = 390`, `scrollWidth = 390` y panel de 390;
   capturas `carrito-cupon-movil.png` y `pedido-simulado-movil.png`.
+- QA final del 2026-11-25: MySQL `healthy`, API `db: "up"`, build de tienda y
+  visor, `COMMERCE_SMOKE_OK`, `AR_PREVIEW_SMOKE_OK` y revisión móvil por CDP con
+  `innerWidth = 390` y `scrollWidth = 390`.
 
 Las capturas y el JSON de la API están en
 `docs/evidencias/2026-10-28/`; la compra simulada, en
-`docs/evidencias/2026-11-10/`.
+`docs/evidencias/2026-11-10/`; el cierre, en `docs/evidencias/2026-11-25/`.
 
 ## Fuentes de la lengua maya
 

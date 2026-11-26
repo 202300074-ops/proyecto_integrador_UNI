@@ -265,14 +265,14 @@ export default function App() {
         <section id="inicio" className="relative overflow-hidden">
           <div className="container-page grid grid-cols-1 items-center gap-12 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-24">
             <div className="min-w-0">
-              <p className="eyebrow">Cooperativa melipona · Yucatán</p>
+              <p className="eyebrow">Caso simulado · Meliponicultura yucateca</p>
               <h1 className="mt-5 max-w-2xl break-words font-display text-4xl leading-[1.02] text-forest-900 sm:text-5xl lg:text-6xl">
                 Miel y jabón de la abeja melipona
               </h1>
               <p className="mt-6 max-w-xl break-words text-base leading-relaxed text-charcoal/70">
-                Sak P'o' Kaab reúne la miel de la abeja sin aguijón, el jabón
-                artesanal y la memoria del jobón. Un catálogo con historia,
-                etiqueta interactiva y meliponario virtual.
+                Proyecto académico con catálogo conceptual, etiqueta interactiva
+                y meliponario virtual. No representa una cooperativa real ni
+                comercializa productos.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -354,8 +354,8 @@ export default function App() {
                   Lo que produce la colmena
                 </h2>
                 <p className="mt-3 max-w-xl text-sm leading-relaxed text-charcoal/65">
-                  Precios y existencias leídos desde MySQL. Cada producto tiene
-                  variantes con inventario propio.
+                  Precios y existencias de demostración leídos desde MySQL. Los
+                  productos son conceptuales y la compra es simulada.
                 </p>
               </div>
 
@@ -418,7 +418,7 @@ export default function App() {
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-charcoal/65">
                 Las experiencias de realidad aumentada y realidad virtual se
-                integran al catálogo en los siguientes sprints.
+                integran con el catálogo y la historia de la marca.
               </p>
             </div>
 
@@ -429,7 +429,7 @@ export default function App() {
                     Etiqueta con AR
                   </h3>
                   <span className="rounded-full bg-honey-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-honey-800">
-                    Sprint 2
+                    AR
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal/65">
@@ -447,7 +447,7 @@ export default function App() {
                     Meliponario virtual
                   </h3>
                   <span className="rounded-full bg-honey-100 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-honey-800">
-                    Sprint 3
+                    VR
                   </span>
                 </div>
                 <p className="mt-3 text-sm leading-relaxed text-charcoal/65">
@@ -480,9 +480,9 @@ export default function App() {
                 cotidiano y el trabajo de la melipona.
               </p>
               <p>
-                Este sitio es un proyecto académico de la materia Multimedia y
-                Diseño Digital. La cooperativa y la marca son un caso de estudio
-                simulado; los datos de mercado se citan desde fuentes reales.
+                Este sitio es un proyecto académico de Multimedia y Diseño
+                Digital. La cooperativa, la marca y los productos son un caso
+                simulado; no hay productos comerciales reales.
               </p>
               <p className="text-xs text-cream/50">
                 Fuentes de la lengua: Arqueología Mexicana, diccionario de

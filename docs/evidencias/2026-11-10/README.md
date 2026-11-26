@@ -28,6 +28,9 @@ Blender 5.2.3 LTS. Las escenas quedaron en `assets/models/producto-*.blend` y lo
 scripts en `scripts/blender_render_producto_miel.py` y
 `scripts/blender_render_productos_restantes.py`.
 
+El re-render de la vela con foco frontal se documenta en
+`docs/evidencias/2026-11-25/producto-vela-final-foco.png`.
+
 Las versiones publicadas en la tienda son WebP de 800 × 1000 en
 `apps/store/public/productos/`. Se usan en las tarjetas del catálogo y en la ficha
 de producto. El build de la tienda pasó después de integrarlas.
