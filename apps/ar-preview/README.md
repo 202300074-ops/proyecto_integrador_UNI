@@ -34,6 +34,20 @@ Abre <http://localhost:5174> para el visor 3D,
 `localhost` o en un sitio servido por HTTPS; concede el permiso de cámara cuando
 el navegador lo solicite.
 
+## Publicar para probar en teléfonos
+
+La configuración raíz de `vercel.json` publica solo el build estático de esta
+aplicación. Al importar el repositorio en Vercel, deja como raíz del proyecto la
+raíz del repositorio; la URL principal redirige a `/ar.html`. La tienda y la API
+no forman parte de este despliegue. Las rutas directas `/ar.html` y `/vr.html`
+también quedan disponibles. Vercel entrega HTTPS, necesario para pedir permiso de
+cámara desde celulares que acceden por internet.
+
+Después del primer despliegue, abre la URL HTTPS en cada teléfono, concede el
+permiso de cámara y visita la página de AR. Comprueba la URL en Wi-Fi y datos
+móviles antes de compartirla; la detección de MindAR necesita que el teléfono
+pueda descargar el target, los modelos y el video desde la misma URL.
+
 ## Recorrido VR
 
 - `/vr.html` usa A-Frame 1.8 y activa el botón de entrada a WebXR.

@@ -1,0 +1,12 @@
+{
+  "installCommand": "npm ci",
+  "buildCommand": "npm --prefix apps/ar-preview run build",
+  "outputDirectory": "apps/ar-preview/dist",
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/ar.html",
+      "permanent": false
+    }
+  ]
+}
