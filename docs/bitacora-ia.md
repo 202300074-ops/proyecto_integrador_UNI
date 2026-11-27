@@ -503,6 +503,24 @@ MindAR, A-Frame y desenfoque.
 **Límite actual:** falta confirmar la fluidez y el cierre de fichas en el teléfono
 físico y en un visor WebXR; la cama sonora sigue pendiente de aprobación.
 
+## 23. Retirar la X redundante de la ficha VR
+
+**Pregunta o instrucción:** conservar el botón de cierre de la ficha y retirar la
+X para no mostrar dos controles con la misma función.
+
+**Respuesta de la IA:** se retiraron el círculo y las dos barras que dibujaban la X
+dentro de la ficha VR, junto con su componente. Se conserva el botón DOM «Cerrar
+ficha», además de `Escape` y el cierre por teletransporte. En AR se revisaron los
+paneles: ya usan botones de texto «Cerrar» y «Volver a AR» y no había una X gráfica
+adicional en su HTML.
+
+**Verificación:** el smoke actualizado exige que la ficha VR conserve el botón DOM,
+no contenga el control X y que los dos botones de cierre AR sigan presentes; se
+ejecutan smoke y build del visor.
+
+**Límite:** esta comprobación de código no sustituye la validación física de AR ni
+la prueba WebXR, cuya captura anterior mostró un render casi negro y fragmentado.
+
 ## Reflexión personal pendiente
 
 Escribe aquí, con tus palabras:

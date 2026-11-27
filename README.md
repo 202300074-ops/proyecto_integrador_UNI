@@ -47,8 +47,9 @@ Sprint 2:
 - Recorrido inmersivo en `/vr.html`: A-Frame 1.8, granja explorable en 360° con
   colisiones, cinco hotspots informativos, un detalle escondido y teletransporte
   por mirada entre inicio, jardín, jobón, palapa y lago. Incluye narración
-  sintética con control de reproducción y joystick táctil. La prueba con casco
-  WebXR físico queda pendiente.
+  sintética con control de reproducción y joystick táctil. Una captura compartida
+  en modo inmersivo muestra la escena casi negra y fragmentada; el modo abre, pero
+  la calidad visual de WebXR no está aprobada y la causa sigue pendiente.
 - WebXR exige contexto seguro: en el teléfono conviene `adb reverse tcp:5174
   tcp:5174` y abrir `http://localhost:5174/vr.html`; por IP LAN Chrome bloquea la
   entrada a VR.
@@ -108,7 +109,11 @@ Pendiente de cierre:
 
 - Hacer el pase manual de los modelos y documentar las modificaciones propias.
 - Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
-- Validar el recorrido WebXR con un casco físico y guardar evidencia.
+- Diagnosticar y validar la calidad del recorrido WebXR con un casco/teléfono
+  compatible; guardar evidencia con modelo, navegador y visor identificados.
+- Obtener la URL de producción de Vercel y probar `/ar.html` por HTTPS con cámara
+  en un teléfono. GitHub reporta `success` para `b735403`; falta comprobar la ruta
+  publicada y la cámara en dispositivo.
 - Probar narración y controles de audio en el dispositivo WebXR.
 - Ensayar la presentación PDF y la demostración; preparar respaldos físicos del
   video y los GLB.

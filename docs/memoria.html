@@ -380,16 +380,19 @@ pendiente de archivar.</p>
 <p>El recorrido VR usa A-Frame 1.8 [3], [4] e incluye:</p>
 <ul>
 <li>Meliponario estilizado con jobón, árbol, flores, pasto y colinas.</li>
-<li>Cuatro abejas, dos mariposas, libélula, colibrí y lagartija.</li>
-<li>Cuatro hotspots informativos.</li>
-<li>Tres zonas de teletransporte: inicio, jardín y jobón.</li>
+<li>Seis abejas, dos mariposas, libélula, colibrí y lagartija.</li>
+<li>Cinco hotspots informativos (incluye un detalle escondido).</li>
+<li>Cinco zonas de teletransporte: inicio, jardín, jobón, palapa y lago.</li>
 <li>Interacción por mirada con temporizador de 900 ms.</li>
 <li>Panel de información anclado a la cámara.</li>
 <li>Narración sintética de aproximadamente 43 s con reproducir/pausar.</li>
 </ul>
 <p>La validación headless comprobó carga de modelos, hotspots, panel, teletransporte,
-audio y ausencia de errores. Falta validar la entrada WebXR, la comodidad y el
-audio en un casco o teléfono compatible físico.</p>
+audio y ausencia de errores. Se compartió una captura desde el modo inmersivo:
+la vista estereoscópica aparece, pero la escena se ve casi negra y fragmentada.
+Esto se registra como defecto visual observado, no como causa diagnosticada ni
+como validación WebXR aprobada. Falta repetir la prueba en un dispositivo
+identificado, diagnosticar el render, y validar comodidad y audio.</p>
 <h2 id="11-video-y-audio">11. Video y audio</h2>
 <p>El video <code>assets/video/cosecha-melipona-recreacion.mp4</code> es una animación original
 720p con narración sintética en español de México. Se genera con Python, Pillow y

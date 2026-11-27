@@ -59,6 +59,9 @@ pueda descargar el target, los modelos y el video desde la misma URL.
   dorado; en escritorio se apunta con la vista.
 - Cinco marcas del suelo permiten teletransportarse entre el inicio, el jardín, el
   jobón, la palapa y el lago.
+- Las fichas se cierran con el botón DOM «Cerrar ficha», `Escape` o al teletransportar;
+  no se dibuja una X adicional dentro de la escena. En AR, las ventanas usan los
+  botones de texto «Cerrar» y «Volver a AR».
 - El lago tiene peces animados y el entorno suma abejas ambientales, mariposas,
   libélula, colibrí y lagartija distribuidos por toda la granja.
 - El panel informativo está dentro de la escena para que también se vea en VR.
@@ -67,8 +70,10 @@ pueda descargar el target, los modelos y el video desde la misma URL.
 - Guion y fuentes: `docs/referencias-vr.md`; el servidor sirve
   `assets/audio/narracion-recorrido-vr.mp3` en `/audio/narracion-recorrido-vr.mp3`.
 - La compatibilidad de WebXR depende del teléfono/casco y de que la página se
-  abra por HTTPS; la validación hecha hasta ahora es headless, falta probar la
-  entrada con un visor físico.
+  abra por HTTPS. Joshua compartió una captura en modo inmersivo: se ve la
+  separación estereoscópica esperada, pero la escena sale casi negra y fragmentada.
+  La entrada al modo se observó, pero la calidad visual no está aprobada y la causa
+  aún no está diagnosticada.
 
 ### Probar WebXR en el teléfono
 

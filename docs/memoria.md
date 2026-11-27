@@ -300,16 +300,19 @@ pendiente de archivar.
 El recorrido VR usa A-Frame 1.8 [3], [4] e incluye:
 
 - Meliponario estilizado con jobón, árbol, flores, pasto y colinas.
-- Cuatro abejas, dos mariposas, libélula, colibrí y lagartija.
-- Cuatro hotspots informativos.
-- Tres zonas de teletransporte: inicio, jardín y jobón.
+- Seis abejas, dos mariposas, libélula, colibrí y lagartija.
+- Cinco hotspots informativos (incluye un detalle escondido).
+- Cinco zonas de teletransporte: inicio, jardín, jobón, palapa y lago.
 - Interacción por mirada con temporizador de 900 ms.
 - Panel de información anclado a la cámara.
 - Narración sintética de aproximadamente 43 s con reproducir/pausar.
 
 La validación headless comprobó carga de modelos, hotspots, panel, teletransporte,
-audio y ausencia de errores. Falta validar la entrada WebXR, la comodidad y el
-audio en un casco o teléfono compatible físico.
+audio y ausencia de errores. Se compartió una captura desde el modo inmersivo:
+la vista estereoscópica aparece, pero la escena se ve casi negra y fragmentada.
+Esto se registra como defecto visual observado, no como causa diagnosticada ni
+como validación WebXR aprobada. Falta repetir la prueba en un dispositivo
+identificado, diagnosticar el render, y validar comodidad y audio.
 
 ## 11. Video y audio
 

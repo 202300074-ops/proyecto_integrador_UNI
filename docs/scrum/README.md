@@ -3,6 +3,9 @@
 El backlog está en `backlog.md`, los registros de sprint en `sprint-1.md` a
 `sprint-4.md` y el burndown histórico de Sprint 1 en `burndown.csv`.
 
+El cierre pendiente se organiza en `plan-cierre-secuencial.md`: un solo sprint
+activo y sin avanzar hasta verificar los criterios y evidencias del sprint actual.
+
 ## Transparencia de fechas y métricas
 
 La guía propone cuatro sprints de una semana. Los documentos existentes registran

@@ -149,17 +149,33 @@ Cierre de criterios y correcciones (2026-11-26):
 
 Cierre de ajustes VR/AR (2026-11-27):
 
-- Las fichas VR se cierran con botón DOM, X de la escena, `Escape` y teletransporte.
+- Las fichas VR se cierran con botón DOM, `Escape` y teletransporte; la X dentro de
+  la escena se retiró para no duplicar el botón de cierre. Las ventanas AR conservan
+  sus botones de texto «Cerrar» y «Volver a AR».
 - El video AR pausa MindAR y el render de A-Frame, oculta el canvas y se reanuda al
   cerrar.
 - Smoke, build de tienda/visor y pruebas Python pasaron; falta confirmarlo en el
   Galaxy A22 y en un visor WebXR.
 
+Incidencia visual WebXR (captura compartida 2026-11-27):
+
+- La captura muestra dos vistas estereoscópicas, esperado al entrar en VR, pero
+  la escena aparece casi negra y con geometría de alto contraste muy fragmentada.
+- Se considera un defecto visual observado; la imagen por sí sola no permite
+  atribuir causa a la iluminación, al navegador/GPU, al dispositivo o al visor.
+- La captura no está archivada como archivo en el repositorio y no identifica el
+  modelo de teléfono, versión de navegador, visor ni URL desplegada. No es una
+  validación WebXR aprobada; hay que repetir la prueba y registrar esos datos.
+
 Pendiente:
 
 - Pase manual de los modelos en Blender y documentación de la autoría.
 - Evidencia formal de AR/video y checkout en el Galaxy A22.
-- Prueba física de WebXR, narración y comodidad.
+- Diagnóstico y prueba física aprobada de WebXR, narración y comodidad; resolver
+  la escena casi negra/fragmentada de la captura.
+- GitHub reporta estado Vercel `success` para `b735403`, pero falta registrar el
+  dominio de producción y probar `/ar.html` por HTTPS en un teléfono antes de
+  compartir la URL con los profesores.
 - Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
   están regenerados y revisados técnicamente.
 - Ensayar la presentación PDF durante 20 minutos, al menos 15 minutos de preguntas

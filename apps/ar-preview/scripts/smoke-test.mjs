@@ -49,11 +49,19 @@ try {
   assert.equal((vrHtml.match(/vr-hotspot=/g) ?? []).length, 5, 'página VR debe incluir cuatro hotspots y el huevo escondido');
   assert.equal((vrHtml.match(/vr-teleport=/g) ?? []).length, 5, 'página VR debe incluir cinco zonas de teletransporte');
   assert.match(vrHtml, /id="vr-info-close"/, 'página VR debe ofrecer un botón DOM para cerrar la ficha');
-  assert.match(vrHtml, /vr-close-info/, 'ficha VR debe incluir un cierre interactivo dentro de la escena');
+  assert.doesNotMatch(vrHtml, /vr-close-info|class="clickable info-close"/, 'ficha VR no debe mostrar una X redundante');
+
+  const arPage = await fetch(`${origin}/ar.html`);
+  assert.equal(arPage.status, 200, 'página AR debe responder 200');
+  const arHtml = await arPage.text();
+  assert.match(arHtml, /id="target-close"/, 'ventana de etiqueta AR debe conservar su botón de cierre');
+  assert.match(arHtml, /id="video-close"/, 'ventana de video AR debe conservar su botón de retorno');
+  assert.doesNotMatch(arHtml, />\s*[×✕✖]\s*</, 'ventanas AR no deben duplicar los botones con una X');
 
   const vrJs = await (await fetch(`${origin}/src/vr.js`)).text();
   assert.match(vrJs, /setInfoPanelVisible/, 'VR debe centralizar la visibilidad de la ficha');
   assert.match(vrJs, /closeInfoPanel/, 'VR debe centralizar el cierre de la ficha');
+  assert.doesNotMatch(vrJs, /vr-close-info/, 'VR no debe registrar el control X redundante');
   const vrCss = await (await fetch(`${origin}/src/vr.css?direct`)).text();
   assert.match(vrCss, /\.vr-info-close/, 'botón de cierre VR debe tener estilos propios');
 
@@ -78,9 +86,6 @@ try {
     assert.ok(bytes.length > 1000, `${name} debe contener datos de modelo`);
   }
 
-  const arPage = await fetch(`${origin}/ar.html`);
-  assert.equal(arPage.status, 200, 'página AR debe responder 200');
-  const arHtml = await arPage.text();
   assert.match(arHtml, /mindar-image/, 'página AR debe incluir MindAR');
   assert.match(arHtml, /etiqueta-sakpokaab\.mind/, 'página AR debe apuntar al target compilado');
   assert.match(arHtml, /ar-bee-a/, 'página AR debe incluir abejas animadas');
@@ -124,7 +129,7 @@ try {
   assert.equal(poster.status, 200, 'poster del video debe responder 200');
   assert.match(poster.headers.get('content-type') ?? '', /image\/png/);
 
-  console.log('AR_PREVIEW_SMOKE_OK: visor, VR con hotspots/fauna/audio/cierre de ficha, MindAR, pausa de video, etiqueta y videos.');
+  console.log('AR_PREVIEW_SMOKE_OK: visor, VR con cierre único por botón, MindAR, cierres AR sin X duplicada, pausa de video, etiqueta y videos.');
 } finally {
   await server.close();
 }

@@ -575,8 +575,11 @@ reproducirse sobre la cámara de realidad aumentada.
 Hecho:
 
 - VR: se añadió un botón DOM «Cerrar ficha» con estilos propios y se centralizó
-  el cierre en `closeInfoPanel`. La ficha se cierra con el botón, con la X de la
-  escena (radio ampliado a 0.09), con `Escape` y al usar un teletransporte.
+  el cierre en `closeInfoPanel`. Para evitar dos controles de cierre, después se
+  retiró la X dibujada dentro de la escena. La ficha se cierra con el botón,
+  `Escape` o al usar un teletransporte.
+- AR: los paneles ya tienen botones de texto «Cerrar» y «Volver a AR»; se comprobó
+  el código y no había una X gráfica separada que retirar.
 - AR: al abrir «Ver cosecha» se pausa MindAR y el render de A-Frame, se oculta el
   canvas AR y se retira el `backdrop-filter`; al cerrar se reanuda la cámara y el
   render.
@@ -590,13 +593,33 @@ Verificación:
 - `npm --prefix apps/ar-preview run build` y `npm run build` pasaron.
 - `python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils`: 5
   pruebas correctas.
-- Prueba funcional headless con Edge y CDP sobre `/vr.html`: diez comprobaciones
-  correctas de apertura y cierre de la ficha (botón DOM, X, `Escape` y
-  teletransporte).
+- Prueba funcional headless con Edge y CDP sobre `/vr.html`: comprobó apertura y
+  cierre de ficha con botón DOM, `Escape` y teletransporte. El smoke actual comprueba
+  que no reaparezca el control X redundante y que los botones AR de cierre sigan
+  presentes.
 
 Límite: la fluidez del video y el cierre de fichas siguen pendientes de prueba
 física en el Galaxy A22 y en un visor WebXR; la validación de esta sesión es de
 código, build, smoke y navegador headless.
+
+## 2026-11-27. Incidencia visual reportada en modo WebXR
+
+Observación reportada por Joshua mediante una captura de `/vr.html` en modo
+inmersivo:
+
+- Se ven dos vistas lado a lado, consistente con la presentación estereoscópica
+  esperada en VR.
+- La escena aparece casi negra y algunas formas del entorno tienen artefactos de
+  alto contraste y fragmentación. Esa calidad no es aceptable para dar la prueba
+  WebXR por aprobada; sí es un defecto visual observable en la captura.
+- La captura no identifica teléfono, versión de Chrome, visor, URL ni condiciones
+  de la prueba, y no se ha archivado como archivo dentro del repositorio. Por eso
+  no se atribuye todavía a las luces, al código, a la GPU ni al visor.
+
+Siguiente diagnóstico: comparar `/vr.html` fuera y dentro del modo inmersivo en el
+mismo teléfono; anotar modelo, navegador/versión, visor y URL/commit; repetir en
+otro dispositivo compatible si está disponible. Solo después ajustar iluminación,
+renderer o calidad gráfica según el resultado.
 
 ## Pendientes inmediatos
 
@@ -604,8 +627,14 @@ código, build, smoke y navegador headless.
   las modificaciones propias. Registrar lmik3 como apoyo de render, si se usa.
 - Archivar la evidencia de la prueba de etiqueta, video y checkout en el Galaxy
   A22.
-- Probar `/vr.html` en un visor/teléfono WebXR real y ajustar comodidad/escala.
+- Diagnosticar y volver a probar `/vr.html` en modo WebXR: la captura compartida
+  muestra una imagen casi negra y fragmentada; comprobar también comodidad/escala.
 - Validar narración y controles de audio en un dispositivo WebXR real.
+- GitHub reporta estado Vercel `success` para `b735403`; obtener el dominio de
+  producción y probar `/ar.html` por HTTPS antes de compartir la URL.
+- Guardar la captura WebXR como evidencia e identificar dispositivo, navegador,
+  visor y URL usados.
+- Completar la reflexión personal pendiente en `docs/bitacora-ia.md`.
 - Ensayar `docs/defensa.md` y la presentación durante 20 minutos; reservar al
   menos 15 minutos de preguntas y practicar el cambio en vivo de unos 10 minutos.
 - Hacer el commit solo cuando Joshua lo solicite.

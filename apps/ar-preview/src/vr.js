@@ -189,12 +189,6 @@ AFRAME.registerComponent('vr-hotspot', {
   }
 });
 
-AFRAME.registerComponent('vr-close-info', {
-  init() {
-    this.el.addEventListener('click', () => closeInfoPanel());
-  }
-});
-
 const infoCloseButton = document.querySelector('#vr-info-close');
 if (infoCloseButton) {
   infoCloseButton.addEventListener('click', () => closeInfoPanel());

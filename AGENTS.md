@@ -60,12 +60,20 @@
 - VR con A-Frame 1.8: granja explorable en 360° con colisiones, trece árboles,
   cinco hotspots (incluye detalle escondido), cinco teletransportes, lago con
   peces, abejas ambientales y narración sintética; validación headless y de
-  navegación pasó, falta WebXR físico.
+  navegación pasó. La captura compartida el 2026-11-27 en modo inmersivo muestra
+  la vista estereoscópica casi negra y geometría muy fragmentada; es un defecto
+  visual observado, causa aún no diagnosticada y no se considera aprobado.
 - Video maestro 720p, móvil 360p y vertical 1080 × 1920 regenerados con FFmpeg,
   SRT y cama sonora; falta la escucha/aprobación de Joshua.
-- 2026-11-27: las fichas VR se cierran con botón, X, `Escape` y teletransporte;
-  el video AR pausa MindAR y el render y se reanuda al cerrar. Smoke, builds y
-  pruebas Python pasaron; falta confirmarlo en el teléfono.
+- 2026-11-27: las fichas VR se cierran con botón DOM, `Escape` y teletransporte;
+  se retiró la X de la escena para evitar duplicar controles. Las ventanas AR usan
+  botones de texto «Cerrar» y «Volver a AR»; no tenían una X gráfica en el código.
+  El video AR pausa MindAR y el render, y se reanuda al cerrar. Smoke y builds
+  pasaron; la prueba física sigue pendiente.
+- GitHub confirmó público `202300074-ops/proyecto_integrador_UNI` el 2026-11-27.
+  El estado Vercel del commit `b735403` es `success`; el dominio de producción aún
+  no está registrado ni probado desde un teléfono. Los cambios locales posteriores
+  a `b735403` todavía no están publicados.
 - Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
@@ -82,7 +90,9 @@
 1. Revisar la tienda y los renders en un teléfono físico; probar checkout y
    guardar evidencia.
 2. Grabar o capturar la validación de etiqueta AR y video en el Galaxy A22.
-3. Probar `/vr.html` y la narración con un visor WebXR físico.
+3. Diagnosticar la escena casi negra/fragmentada vista en la captura WebXR y
+   repetir la prueba con datos del dispositivo, navegador y visor; no declarar
+   VR aprobada hasta verificar la imagen y la navegación.
 4. Hacer el pase manual de abeja y jobón en Blender, documentar las
    modificaciones propias y registrar lmik3 solo como apoyo visual.
 5. Escuchar/aprobar la cama sonora; los MP4 maestro, móvil y vertical ya se
@@ -90,6 +100,11 @@
 6. Ensayar 20 minutos de presentación, al menos 15 minutos de preguntas y un
    cambio en vivo de unos 10 minutos; respaldar físicamente el video/GLB.
 7. Confirmar el nombre institucional oficial para la portada de la memoria.
+8. Obtener el dominio de producción de Vercel, probar `/ar.html` por HTTPS en un
+   teléfono y compartir la URL con los profesores.
+9. Completar con palabras propias la reflexión pendiente en `docs/bitacora-ia.md`.
+10. Publicar los cambios locales revisados en el repositorio público y comprobar
+    que el commit final esté visible antes de compartirlo como versión de entrega.
 
 ## Archivos clave
 

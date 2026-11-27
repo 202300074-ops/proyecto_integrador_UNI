@@ -4,8 +4,10 @@
 
 **Alumno:** Joshua Israel Cabrera Camacho
 
-**Duración objetivo:** 20 minutos de exposición + al menos 15 minutos de preguntas
-del jurado + cambio en vivo de aproximadamente 10 minutos.
+**Duración según la guía:** 20 minutos de exposición + 5 minutos por cada materia
+adicional + al menos 15 minutos de preguntas del jurado + cambio en vivo de
+aproximadamente 10 minutos. Confirmar cuántas materias se exponen y el horario que
+asigne el programa.
 
 **Demo:** tienda, API, AR, VR y video
 
@@ -43,9 +45,9 @@ La defensa debe demostrar tres cosas:
 | 12 | Pruebas, evidencias, Scrum y límites | 1.5 min |
 | 13 | Conclusiones y aprendizaje | 1 min |
 
-**Total de exposición:** 20 minutos. Después se reservan al menos 15 minutos para
-preguntas y aproximadamente 10 minutos para el cambio en vivo solicitado por el
-jurado.
+**Total de exposición:** 20 minutos más 5 minutos por cada materia adicional.
+Después se reservan al menos 15 minutos para preguntas y aproximadamente 10
+minutos para el cambio en vivo solicitado por el jurado.
 
 ## 3. Guion oral
 
@@ -135,7 +137,9 @@ jurado.
 > En casco se apunta con la mirada durante 900 ms. En escritorio se camina con
 > WASD o flechas y se usa el mouse para mirar. La narración sintética se reproduce
 > bajo demanda y se puede pausar. La prueba headless y la de navegación pasaron;
-> falta validar la entrada WebXR y la comodidad en un dispositivo físico.
+> se logró entrar al modo inmersivo, pero la captura compartida muestra la escena
+> casi negra y fragmentada. La calidad visual no está aprobada; el origen sigue
+> sin diagnosticar y se debe repetir la prueba con el dispositivo identificado.
 
 > La guía menciona Unity para VR; la implementación se resolvió con A-Frame y
 > WebXR. Presento esta diferencia de forma explícita y explico el alcance que se
@@ -225,8 +229,9 @@ URLs:
   `docs/evidencias/2026-11-25/`.
 - Si la cámara o el túnel fallan: mostrar `ar-target-detectado.png` y
   `ar-video-modal.png`.
-- Si WebXR no entra: mostrar `vr-final.png` y explicar la diferencia entre la
-  prueba headless y la prueba física.
+- Si WebXR no entra o la imagen continúa defectuosa: mostrar `vr-final.png`,
+  explicar que se observó el modo inmersivo pero no se aprobó la calidad visual,
+  y distinguir la prueba headless de la validación física pendiente.
 - Si el video no reproduce: abrir el MP4 local
   `assets/video/cosecha-melipona-recreacion.mp4`.
 - Llevar copia del video, los GLB y las capturas en USB o nube.
@@ -292,16 +297,21 @@ sin inflar resultados.
 - [x] `npm run build` pasa.
 - [x] `npm run test:commerce` pasa.
 - [x] Smoke test de AR/VR pasa.
+- [ ] Prueba WebXR aprobada en dispositivo real; la captura actual muestra una
+  escena casi negra y fragmentada, diagnóstico pendiente.
+- [x] GitHub reporta `success` de Vercel para `b735403`.
+- [ ] Registrar el dominio Vercel y probar `/ar.html` con cámara en un teléfono.
 - [x] Capturas finales en `docs/evidencias/2026-11-25/` y `2026-11-26/`.
 - [x] Video regenerado con SRT, cama sonora y versión vertical.
-- [x] Fichas VR con cierre y video AR con pausa de MindAR/render (validación
-  física pendiente).
+- [x] Ficha VR con un solo botón DOM de cierre, `Escape` y teletransporte; X
+  redundante retirada. Las ventanas AR conservan sus botones de texto. Video AR
+  pausa MindAR/render (validación física pendiente).
 - [ ] Escuchar y aprobar la cama sonora.
 - [ ] Video y GLB respaldados en USB o nube.
 - [ ] Memoria y guion revisados.
 - [x] Presentación en PDF y versión navegable HTML.
 - [ ] Confirmar si la materia solicita también formato PPTX.
-- [ ] Ensayo cronometrado de 20 minutos.
+- [ ] Ensayo cronometrado de 20 minutos más 5 minutos por cada materia adicional.
 - [ ] Ensayo de preguntas durante al menos 15 minutos.
 - [ ] Practicar un cambio pequeño en vivo en aproximadamente 10 minutos.
 - [ ] Plan de respaldo si falla internet, cámara o MySQL.
