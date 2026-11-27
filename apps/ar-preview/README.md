@@ -37,11 +37,11 @@ el navegador lo solicite.
 ## Publicar para probar en teléfonos
 
 La configuración raíz de `vercel.json` publica solo el build estático de esta
-aplicación. Al importar el repositorio en Vercel, deja como raíz del proyecto la
-raíz del repositorio; la URL principal redirige a `/ar.html`. La tienda y la API
-no forman parte de este despliegue. Las rutas directas `/ar.html` y `/vr.html`
-también quedan disponibles. Vercel entrega HTTPS, necesario para pedir permiso de
-cámara desde celulares que acceden por internet.
+aplicación. Al importarla en Vercel como proyecto individual, configura
+`apps/ar-preview` como raíz del proyecto; la URL principal redirige a `/ar.html`.
+La tienda y la API no forman parte de este despliegue. Las rutas directas
+`/ar.html` y `/vr.html` también quedan disponibles. Vercel entrega HTTPS,
+necesario para pedir permiso de cámara desde celulares que acceden por internet.
 
 Después del primer despliegue, abre la URL HTTPS en cada teléfono, concede el
 permiso de cámara y visita la página de AR. Comprueba la URL en Wi-Fi y datos
