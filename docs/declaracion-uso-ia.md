@@ -11,8 +11,9 @@ verificación ni responsabilidad del alumno.
 - Sesión de cierre del 26 de noviembre de 2026: OpenCode, modelo
   `opencode-go/gpt-6-luna`.
 - Herramientas técnicas verificadas en el repositorio: React/Vite, Express,
-  MySQL, Blender, Python y FFmpeg. Los binarios de Blender y FFmpeg no estaban
-  disponibles en el `PATH` durante la sesión de cierre indicada.
+  MySQL, Blender, Python y FFmpeg. En la sesión remota de cierre, Blender y FFmpeg
+  no estaban en el `PATH`; en la sesión local posterior se usó FFmpeg 9.0.2 para
+  regenerar los MP4.
 
 ## Áreas con apoyo de IA
 

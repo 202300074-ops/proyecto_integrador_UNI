@@ -547,6 +547,25 @@ Verificación:
 Límite: la validación es headless y de navegación; la comodidad, escala y entrada
 WebXR siguen pendientes de un visor físico.
 
+## 2026-11-26. Regeneración del video con FFmpeg
+
+Objetivo: integrar en los MP4 los subtítulos, la cama sonora y la exportación
+vertical que ya estaban preparados en el renderizador.
+
+Hecho:
+
+- Se regeneró el máster de 53.34 s, 1280 × 720, 24 fps, H.264/AAC, con pista de
+  subtítulos `mov_text` y 3,680,910 bytes.
+- Se regeneró el derivado móvil de 640 × 360 y 1,474,716 bytes para la AR.
+- Se generó el corte vertical 1080 × 1920 y se corrigió el fondo desenfocado para
+  que no quedara en negro.
+- Se actualizaron el SRT de diez bloques, la cama sonora PCM, el póster y el
+  storyboard. La mezcla del máster midió -16.05 LUFS, -1.49 dBTP y LRA 3.40.
+- Se revisaron visualmente frames del máster y del vertical, además del storyboard.
+
+Límite: la cama sonora sigue pendiente de escucha y aprobación de Joshua; no se
+presenta como corte final aprobado.
+
 ## Pendientes inmediatos
 
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de

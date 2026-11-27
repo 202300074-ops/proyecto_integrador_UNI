@@ -47,6 +47,7 @@ assets/video/*.mov
 assets/audio/*.wav
 !assets/video/cosecha-melipona-recreacion.mp4
 !assets/video/cosecha-melipona-recreacion-mobile.mp4
+!assets/video/cosecha-melipona-recreacion-social-vertical.mp4
 !assets/audio/narracion-cosecha.wav
 !assets/audio/cama-sonora-original.wav
 assets/models/*.blend1

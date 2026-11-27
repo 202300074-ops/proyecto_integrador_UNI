@@ -10,6 +10,13 @@ function setStatus(message, state = 'message') {
   status.dataset.state = state;
 }
 
+function setInfoPanelVisible(visible) {
+  const panel = document.querySelector('#vr-scene #info-panel');
+  if (panel) panel.setAttribute('visible', visible);
+  const closeButton = document.querySelector('#vr-info-close');
+  if (closeButton) closeButton.hidden = !visible;
+}
+
 AFRAME.registerComponent('vr-explore', {
   schema: {
     speed: { type: 'number', default: 2.8 }
@@ -168,7 +175,7 @@ AFRAME.registerComponent('vr-hotspot', {
       const panel = scene.querySelector('#info-panel');
       panel.querySelector('#info-title').setAttribute('text', 'value', this.data.title);
       panel.querySelector('#info-body').setAttribute('text', 'value', this.data.body);
-      panel.setAttribute('visible', true);
+      setInfoPanelVisible(true);
       setStatus(`Punto de interés: ${this.data.title}`);
     });
 
@@ -180,10 +187,22 @@ AFRAME.registerComponent('vr-hotspot', {
 AFRAME.registerComponent('vr-close-info', {
   init() {
     this.el.addEventListener('click', () => {
-      this.el.sceneEl.querySelector('#info-panel').setAttribute('visible', false);
+      setInfoPanelVisible(false);
       setStatus('Recorrido listo. Mira otro punto de interés.');
     });
   }
+});
+
+const infoCloseButton = document.querySelector('#vr-info-close');
+if (infoCloseButton) {
+  infoCloseButton.addEventListener('click', () => {
+    setInfoPanelVisible(false);
+    setStatus('Recorrido listo. Mira otro punto de interés.');
+  });
+}
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setInfoPanelVisible(false);
 });
 
 const narration = document.querySelector('#vr-tour-audio');
@@ -267,6 +286,7 @@ AFRAME.registerComponent('vr-teleport', {
       const moved = navigator
         ? navigator.teleportTo(this.data.x, this.data.z)
         : (this.rig.setAttribute('position', { x: this.data.x, y: 0, z: this.data.z }), true);
+      setInfoPanelVisible(false);
       setStatus(moved ? `Explorando: ${this.data.zone}.` : 'Ese punto está ocupado. Elige otra zona.');
     });
   }

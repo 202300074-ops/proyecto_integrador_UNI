@@ -456,6 +456,30 @@ comercio; una instancia estable de la API evita ese problema.
 pruebas físicas de AR, checkout y WebXR, la evidencia formal en teléfono y el pase
 manual de los modelos en Blender.
 
+## 21. Regeneración del video con FFmpeg
+
+**Pregunta o instrucción:** regenerar los MP4 para integrar SRT, cama sonora y
+exportación vertical, y revisar el resultado.
+
+**Respuesta de la IA:** se ejecutó `python scripts/render_harvest_video.py` con
+FFmpeg 9.0.2. Se generaron el máster 1280 × 720, el móvil 640 × 360 y el vertical
+1080 × 1920; los tres incluyen audio AAC y subtítulos `mov_text`. También se
+actualizaron el SRT, la cama sonora PCM, el póster y el storyboard. El fondo del
+vertical se aclaró para evitar barras negras. La mezcla del máster midió -16.05
+LUFS, -1.49 dBTP y LRA 3.40.
+
+**Verificación:** `ffprobe` confirmó resolución, duración, audio y subtítulos en
+los tres archivos; se revisaron frames del máster y del vertical y el storyboard.
+La cama sonora sigue pendiente de escucha y aprobación de Joshua.
+
+**Error o aprendizaje:** el primer corte vertical usaba un fondo demasiado oscuro
+y dejaba barras negras; se corrigió el filtro de brillo y saturación del fondo
+desenfocado.
+
+**Límite actual:** no se puede declarar la mezcla como aprobada hasta que Joshua
+escuche la cama sonora. La validación física de AR/WebXR y el pase manual de
+Blender siguen pendientes.
+
 ## Reflexión personal pendiente
 
 Escribe aquí, con tus palabras:

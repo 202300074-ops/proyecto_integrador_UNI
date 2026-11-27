@@ -41,10 +41,11 @@ sintética. Joshua debe escucharla y aprobar su uso antes de regenerar y entrega
 MP4.
 
 El renderizador prepara subtítulos externos `.srt`, una pista de subtítulos para
-los MP4 y un derivado vertical 1080 × 1920. Los archivos MP4 existentes aún no
-contienen esa mezcla ni el derivado vertical: falta disponer de FFmpeg, regenerar y
-revisar el resultado. La exportación no debe presentarse como verificada hasta
-completar ese paso.
+los MP4 y un derivado vertical 1080 × 1920. En la sesión local del 26 de noviembre
+de 2026 se regeneraron con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el
+vertical; los tres incluyen la cama sonora y la pista de subtítulos. La medición
+de loudness del máster fue -16.05 LUFS, -1.49 dBTP y LRA 3.40. Falta que Joshua
+escuche y apruebe la cama sonora antes de presentarla como corte final.
 
 ## Fuentes de proceso
 

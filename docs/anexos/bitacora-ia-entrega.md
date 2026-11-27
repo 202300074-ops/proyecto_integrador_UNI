@@ -88,8 +88,8 @@ personales antes de entregar.
   corrigió la lectura UTF-8 de PowerShell y se cambió la codificación para mejorar
   reproducción móvil; se descartó presentarlo como documental o testimonio.
 - **Verificación:** MP4 decodificado y medido; test headless verificó reproducción
-  y pausa AR. La cama musical y salida vertical se documentan como adiciones
-  candidatas aún por integrar en MP4.
+  y pausa AR. En la sesión local posterior se integraron la cama sonora, el SRT y
+  la salida vertical; la mezcla del máster midió -16.05 LUFS y -1.49 dBTP.
 - **Reflexión personal de Joshua:** pendiente de escribir.
 
 ### 7. Meliponario VR, fauna y narración · 2026-11-08
@@ -146,8 +146,9 @@ personales antes de entregar.
 - **Verificación:** `npm run test:commerce` pasó en API estable; cinco pruebas
   Python pasaron; `npm run build` y `npm --prefix apps/ar-preview run test:smoke`
   pasaron después de las ediciones; `test:production-panel` confirmó `404` en
-  producción. Se generó una captura desktop. FFmpeg no estaba disponible, así que
-  no se integró la música ni los subtítulos en los MP4.
+  producción. Se generó una captura desktop. En la sesión local posterior se
+  regeneraron los MP4 maestro, móvil y vertical con FFmpeg, SRT y cama sonora;
+  falta la escucha y aprobación de Joshua.
 - **Reflexión personal de Joshua:** pendiente de revisar y completar con su
   explicación de qué decisiones aceptó, corrigió o no aceptaría.
 

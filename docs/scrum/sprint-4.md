@@ -21,7 +21,7 @@ preguntas y cambio en vivo.
 | S4-01 Mapas y plan de mercadotecnia | Dos mapas y un plan con calendario, colaboración propuesta y medición sin datos inventados | 5 pts | Hecho |
 | S4-02 Panel de pedidos de prueba | Solo lectura, máximo 25, sin PII, dev-only y cubierto por smoke de comercio | 5 pts | Hecho; build y smoke de comercio pasaron |
 | S4-03 Manuales y anexos | Manual técnico, manual de usuario, declaración IA, 8–10 interacciones y memoria PDF/IEEE | 8 pts | Hecho en borrador; faltan reflexión de Joshua y nombre institucional |
-| S4-04 Cierre multimedia | Logo SVG animado; renderer genera SRT, cama original y deriva social | 5 pts | Parcial: recursos/scripts listos; MP4 pendiente de FFmpeg y escucha de Joshua |
+| S4-04 Cierre multimedia | Logo SVG animado; renderer genera SRT, cama original y deriva social | 5 pts | Hecho técnico: MP4 maestro, móvil y vertical regenerados con SRT y cama sonora; falta aprobación auditiva de Joshua |
 | S4-05 Evidencia y defensa | Evidencia física, presentación de 20 min, preguntas y cambio en vivo | 8 pts | Pendiente |
 
 Las estimaciones son propuestas para el backlog y requieren validación de Joshua.
@@ -38,19 +38,21 @@ Las estimaciones son propuestas para el backlog y requieren validación de Joshu
 - Se prepararon los manuales, declaración IA, anexo seleccionado de bitácora y
   memoria PDF. La portada conserva pendiente el nombre institucional oficial.
 - Se añadió animación SVG del símbolo, generador SRT, generador de cama original y
-  una exportación vertical configurada para FFmpeg. Los MP4 no se regeneraron.
+  una exportación vertical configurada para FFmpeg. En la sesión local posterior se
+  regeneraron el máster, el móvil y el vertical con esa mezcla y subtítulos.
 - La prueba de comercio pasó en API estable; build de tienda, smoke AR/VR y cinco
   pruebas unitarias de utilidades multimedia pasaron.
 - Captura desktop de la tienda guardada en `docs/evidencias/2026-11-26/`.
-- No se ejecutó Blender ni FFmpeg porque no se encontraron en `PATH`. No se hizo
-  prueba física de teléfono/visor en esta sesión.
+- En la sesión de trabajo remoto no se encontraron Blender ni FFmpeg en `PATH`; en
+  la sesión local posterior se regeneraron los MP4 con FFmpeg. No se hizo prueba
+  física de teléfono/visor.
 
 ## Review parcial
 
-El panel de pedidos y los documentos de mercadotecnia están preparados. La música
-se generó como WAV candidato pero no se escuchó; los MP4 no incorporan todavía la
-pista ni el SRT. La tienda requiere una última revisión visual/capturas. No se
-presenta ninguna prueba física como realizada.
+El panel de pedidos y los documentos de mercadotecnia están preparados. La cama
+sonora está integrada y los MP4 maestro, móvil y vertical ya incluyen SRT; la
+medición del máster fue -16.05 LUFS, -1.49 dBTP y LRA 3.40. Falta la escucha y
+aprobación auditiva de Joshua. No se presenta ninguna prueba física como realizada.
 
 ## Retrospectiva provisional
 
@@ -59,8 +61,9 @@ presenta ninguna prueba física como realizada.
 - **Debe mejorar:** las dependencias de FFmpeg/Blender y la evidencia física no se
   reservaron con suficiente antelación; el PDF todavía necesita datos oficiales
   de portada.
-- **Acción:** Joshua completa pase manual, escucha la cama sonora, realiza las
-  pruebas físicas y reemplaza el nombre institucional antes de cerrar la defensa.
+- **Acción:** Joshua escucha y aprueba la cama sonora, completa el pase manual,
+  realiza las pruebas físicas y reemplaza el nombre institucional antes de cerrar
+  la defensa.
 
 Este cierre parcial se registra el 26 de noviembre; la retrospectiva final debe
 actualizarse al terminar la semana y después de las pruebas físicas.

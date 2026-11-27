@@ -25,13 +25,28 @@
 No se archiva una captura móvil como prueba de viewport: la ventana headless
 Windows impuso un ancho mínimo. La validación móvil física sigue pendiente.
 
+## Video regenerado
+
+- `assets/video/cosecha-melipona-recreacion.mp4`: 1280 × 720, 24 fps, 53.34 s,
+  H.264/AAC y pista de subtítulos `mov_text`; 3,680,910 bytes.
+- `assets/video/cosecha-melipona-recreacion-mobile.mp4`: 640 × 360, 53.34 s,
+  1,474,716 bytes.
+- `assets/video/cosecha-melipona-recreacion-social-vertical.mp4`: 1080 × 1920,
+  53.29 s, 2,016,522 bytes; fondo desenfocado corregido para evitar barras negras.
+- `assets/video/cosecha-melipona-recreacion.srt`: diez bloques en español,
+  integrados también como pista de subtítulos.
+- `assets/audio/cama-sonora-original.wav`: PCM mono 22.05 kHz, 53.34 s; mezcla al
+  30 % con la narración. Loudness del máster: -16.05 LUFS, -1.49 dBTP, LRA 3.40.
+
+La revisión visual de frames y storyboard pasó. La escucha y aprobación de la
+cama sonora por Joshua sigue pendiente antes de presentarla como corte final.
+
 ## Evidencia física pendiente
 
 - Galaxy A22: AR, video y checkout.
 - Visor WebXR: entrada/salida, hotspots, teletransporte y narración.
 - Blender: modificaciones manuales de abeja y jobón por Joshua.
-- Video: escucha/aprobación de la cama sonora y revisión visual/audio de los MP4
-  regenerados con FFmpeg.
+- Video: escucha y aprobación de la cama sonora por Joshua.
 
 No se registrará como realizada ninguna prueba que no tenga captura o nota del
 dispositivo correspondiente.

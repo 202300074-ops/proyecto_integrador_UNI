@@ -98,6 +98,8 @@ Cierre documental:
 - QA final: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
 - `npm run build`, `npm run test:commerce`, los smoke tests AR/VR y las pruebas
   unitarias de utilidades multimedia están disponibles.
+- Video regenerado: máster 720p, móvil 360p y vertical 1080 × 1920, con SRT y
+  cama sonora; medición del máster -16.05 LUFS y -1.49 dBTP.
 - Para regenerar la memoria PDF: `python -m pip install -r requirements-docs.txt`
   y `python scripts/render_memory_pdf.py` (configura `INSTITUTION_NAME` primero).
 - Revisión móvil por CDP a 390 px sin desbordamiento horizontal.
@@ -112,8 +114,8 @@ Pendiente de cierre:
   video y los GLB.
 - Confirmar el nombre oficial de la institución para reemplazar el marcador de
   portada del PDF.
-- Escuchar y aprobar la cama sonora; instalar FFmpeg, regenerar los MP4 con SRT y
-  exportación vertical, y revisar los resultados antes de presentarlos.
+- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
+  están regenerados y revisados técnicamente.
 
 ## Tecnologías
 

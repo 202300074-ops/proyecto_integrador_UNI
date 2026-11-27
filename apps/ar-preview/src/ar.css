@@ -250,6 +250,15 @@ body.ar-tracking-settled .ar-status-wrap {
   display: none;
 }
 
+body.video-open #ar-scene {
+  visibility: hidden;
+}
+
+body.video-open .target-panel {
+  background: #07140d;
+  backdrop-filter: none;
+}
+
 .target-card {
   position: relative;
   width: min(92vw, 520px);

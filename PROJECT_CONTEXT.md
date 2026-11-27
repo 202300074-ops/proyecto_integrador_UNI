@@ -140,9 +140,10 @@ Cierre de criterios y correcciones (2026-11-26):
 - Símbolo SVG animado con movimiento reducido; manuales y declaración de IA.
 - Memoria citada y exportada a PDF; deck actualizado a 13 diapositivas/PDF.
 - Captura desktop de tienda actualizada en `docs/evidencias/2026-11-26/`.
-- Renderer prepara SRT, cama sonora original y salida vertical. No se regeneraron
-  MP4 porque FFmpeg no está en `PATH`; la cama sonora requiere escucha de Joshua.
-- En esta sesión se observó Node 20.20.2, Python 3.13.15 y no se encontraron
+- En la sesión local posterior se regeneraron con FFmpeg 9.0.2 el máster 720p, el
+  móvil y el vertical 1080 × 1920; los tres incluyen SRT y cama sonora. La medición
+  del máster fue -16.05 LUFS y -1.49 dBTP; falta la escucha de Joshua.
+- En la sesión remota se observó Node 20.20.2, Python 3.13.15 y no se encontraron
   Blender ni FFmpeg en `PATH`; la prueba física y el pase manual 3D siguen siendo
   responsabilidad de Joshua.
 
@@ -151,8 +152,8 @@ Pendiente:
 - Pase manual de los modelos en Blender y documentación de la autoría.
 - Evidencia formal de AR/video y checkout en el Galaxy A22.
 - Prueba física de WebXR, narración y comodidad.
-- Escuchar y aprobar la cama sonora; regenerar los MP4 con SRT y exportación
-  vertical cuando FFmpeg esté disponible.
+- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
+  están regenerados y revisados técnicamente.
 - Ensayar la presentación PDF durante 20 minutos, al menos 15 minutos de preguntas
   y un cambio en vivo de unos 10 minutos; preparar respaldos físicos del video y
   los GLB.

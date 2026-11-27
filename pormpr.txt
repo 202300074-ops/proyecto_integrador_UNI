@@ -1,0 +1,2088 @@
++ Thought: 8.6s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $src='D:\proyecto_2026-11-26\proyecto'; $dst='C:\Users\tiojo\dev\proyecto_integrador_UNI'; $skip='\\(node_modules|dist|\.git|__pycache__|\.cache|\.vite)(\\|$)'; $textExt=@('.md','.txt','.js','.jsx','.mjs','.cjs','.css','.html','.json','.sql','.py','.ps1','.svg','.yml','.yaml','.csv','.example','.xml','.map'); function Get-NormHash([string]$path,[bool]$isText){ $bytes=[IO.File]::ReadAllBytes($path); if($isText){ $text=[Text.Encoding]::UTF8.GetString($bytes); $text=$text -replace "`r`n","`n" -replace "`r","`n"; $bytes=[Text.Encoding]::UTF8.GetBytes($text) }; $sha=[Security.Cryptography.SHA256]::Create(); return [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace('-','') }; $files=Get-ChildItem -LiteralPath $src -Recurse -File | Where-Object { $_.FullName -notmatch $skip }; $diff=@(); $missing=@(); foreach($f in $files){ $rel=$f.FullName.Substring($src.Length).TrimStart('\'); $target=Join-Path $dst $rel; if(-not (Test-Path -LiteralPath $target)){ $missing += $rel; continue }; $isText = ($textExt -contains $f.Extension.ToLower()) -or ($f.Name -eq '.gitignore') -or ($f.Name -eq '.env.example'); $h1=Get-NormHash $f.FullName $isText; $h2=Get-NormHash $target $isText; if($h1 -ne $h2){ $diff += $rel } }; "USB files: $($files.Count)"; "Missing locally: $($missing.Count)"; $missing; "Different after newline normalization: $($diff.Count)"; $diff
+USB files: 192
+Missing locally: 0
+Different after newline normalization: 1
+.opencode\package-lock.json
++ Thought: 2.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ git ls-files --error-unmatch .opencode/package-lock.json 2>$null; if ($?) { 'tracked' } else { 'not tracked' }; git check-ignore -v .opencode/package-lock.json; git status --short --ignored .opencode
+not tracked
+.opencode/.gitignore:3:package-lock.json	.opencode/package-lock.json
+!! .opencode/.gitignore
+!! .opencode/node_modules/
+!! .opencode/package-lock.json
+!! .opencode/package.json
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff --no-index --ignore-space-at-eol --ignore-cr-at-eol -- '.opencode/package-lock.json' 'D:\proyecto_2026-11-26\proyecto\.opencode\package-lock.json'
+warning: in the working copy of '.opencode/package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'D:\proyecto_2026-11-26\proyecto\.opencode\package-lock.json', LF will be replaced by CRLF the next time Git touches it
+diff --git a/.opencode/package-lock.json "b/D:\\proyecto_2026-11-26\\proyecto\\.opencode\\package-lock.json"
+index e8031b5..6af25b6 100644
+--- a/.opencode/package-lock.json
++++ "b/D:\\proyecto_2026-11-26\\proyecto\\.opencode\\package-lock.json"
+@@ -184,9 +184,9 @@
+       }
+     },
+     "node_modules/fast-check": {
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ $src='D:\proyecto_2026-11-26\cambios-hoy'; $dst='C:\Users\tiojo\dev\proyecto_integrador_UNI'; $textExt=@('.md','.txt','.js','.jsx','.mjs','.cjs','.css','.html','.json','.sql','.py','.ps1','.svg','.yml','.yaml','.csv','.example','.xml','.map'); function Get-NormHash([string]$path,[bool]$isText){ $bytes=[IO.File]::ReadAllBytes($path); if($isText){ $text=[Text.Encoding]::UTF8.GetString($bytes); $text=$text -replace "`r`n","`n" -replace "`r","`n"; $bytes=[Text.Encoding]::UTF8.GetBytes($text) }; $sha=[Security.Cryptography.SHA256]::Create(); return [BitConverter]::ToString($sha.ComputeHash($bytes)).Replace('-','') }; $files=Get-ChildItem -LiteralPath $src -Recurse -File; $diff=@(); foreach($f in $files){ $rel=$f.FullName.Substring($src.Length).TrimStart('\'); $target=Join-Path $dst $rel; if(-not (Test-Path -LiteralPath $target)){ $diff += "MISSING $rel"; continue }; $isText = ($textExt -contains $f.Extension.ToLower()) -or ($f.Name -eq '.gitignore') -or ($f.Name -eq '.env.example'); $h1=Get-NormHash $f.FullName $isText; $h2=Get-NormHash $target $isText; if($h1 -ne $h2){ $diff += $rel } }; "cambios-hoy files: $($files.Count)"; "Different after normalization: $($diff.Count)"; $diff
+cambios-hoy files: 22
+Different after normalization: 0
++ Thought: 1.6s
+Read ~\dev\proyecto_integrador_UNI\package.json 
+Read ~\dev\proyecto_integrador_UNI\server\package.json 
+Read ~\dev\proyecto_integrador_UNI\apps\ar-preview\package.json 
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'docs\evidencias\2026-11-26\README.md' -TotalCount 80
+# Evidencias del cierre  ?" 26 de noviembre de 2026
+
+## Verificaciones automatizadas
+
+- `npm run build`: build de tienda completado.
+- `npm run test:commerce`: `COMMERCE_SMOKE_OK`; el script limpi   solo su pedido y
+  restaur   stock/cup  n.
+- `npm --prefix apps/ar-preview run test:smoke`:
+  `AR_PREVIEW_SMOKE_OK` y `VR_NAVIGATION_OK` (l  mites, colisiones y destinos de
+  teletransporte).
+…
+Click to expand
++ Thought: 2.2s
+Read ~\dev\proyecto_integrador_UNI\server\scripts\production-panel-smoke-test.mjs 
+Read ~\dev\proyecto_integrador_UNI\server\scripts\commerce-smoke-test.mjs [limit=100]
+# Running in ~\dev\proyecto_integrador_UNI
+$ docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"; try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3000/api/health' -TimeoutSec 5) | ConvertTo-Json -Compress } catch { "API_3000_DOWN: $($_.Exception.Message)" }; try { (Invoke-WebRequest -Uri 'http://127.0.0.1:5173' -TimeoutSec 5 -UseBasicParsing).StatusCode } catch { "STORE_5173_DOWN: $($_.Exception.Message)" }; try { (Invoke-WebRequest -Uri 'http://127.0.0.1:5174/vr.html' -TimeoutSec 5 -UseBasicParsing).StatusCode } catch { "AR_5174_DOWN: $($_.Exception.Message)" }
+NAMES         STATUS                  PORTS
+melipona-db   Up 24 hours (healthy)   0.0.0.0:3306->3306/tcp, [::]:3306->3306/tcp
+{"ok":true,"service":"sak-po-kaab-api","db":"up","timestamp":"2026-11-27T01:54:24.737Z"}
+200
+200
++ Thought: 3.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm run build
+> sak-po-kaab@0.1.0 build
+> npm run build --workspace @sak-po-kaab/store
+
+
+> @sak-po-kaab/store@0.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 34 modules transformed.
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm --prefix apps/ar-preview run build; if ($?) { npm --prefix apps/ar-preview run test:smoke }
+> @sak-po-kaab/ar-preview@0.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/ar.html                                          11.83 kB │ gzip: 3.32 kB
+dist/index.html                                       26.41 kB │ gzip: 4.28 kB
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm run test:production-panel --workspace @sak-po-kaab/server
+> @sak-po-kaab/server@0.1.0 test:production-panel
+> node scripts/production-panel-smoke-test.mjs
+
+ORDERS_PANEL_PRODUCTION_DISABLED_OK
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils; if ($?) { python -m py_compile scripts/render_harvest_video.py scripts/audio_bed.py scripts/subtitle_utils.py scripts/render_memory_pdf.py }
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.187s
+
+OK
++ Thought: 286ms
+# Running in ~\dev\proyecto_integrador_UNI
+$ $env:API_BASE='http://127.0.0.1:3000/api'; npm run test:commerce
+> sak-po-kaab@0.1.0 test:commerce
+> npm run test:commerce --workspace @sak-po-kaab/server
+
+
+> @sak-po-kaab/server@0.1.0 test:commerce
+> node scripts/commerce-smoke-test.mjs
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+…
+Click to expand
++ Thought: 4.2s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $out='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.out.log'; $err='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.err.log'; $p=Start-Process -FilePath 'node.exe' -ArgumentList 'src/index.js' -WorkingDirectory 'C:\Users\tiojo\dev\proyecto_integrador_UNI\server' -WindowStyle Hidden -PassThru -RedirectStandardOutput $out -RedirectStandardError $err -Environment @{ PORT='3001'; NODE_ENV='development' }; "PID=$($p.Id)"; Start-Sleep -Seconds 2; try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3001/api/health' -TimeoutSec 10) | ConvertTo-Json -Compress } catch { "API_3001_DOWN: $($_.Exception.Message)"; Get-Content -LiteralPath $err -Tail 20 }
+Start-Process : No se encuentra ning n par metro que coincida con el nombre del par metro 'Environment'.
+En l nea: 1 Car cter: 361
+PID=
++ ... tStandardOutput $out -RedirectStandardError $err -Environment @{ PORT ...
++                                                      ~~~~~~~~~~~~
+    + CategoryInfo          : InvalidArgument: (:) [Start-Process], ParameterBindingException
+    + FullyQualifiedErrorId : NamedParameterNotFound,Microsoft.PowerShell.Commands.StartProcessCommand
+ 
+API_3001_DOWN: No es posible conectar con el servidor remoto
+Get-Content : No se encuentra la ruta de acceso 'C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.err.log' porque 
+…
+Click to expand
++ Thought: 2.6s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $out='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.out.log'; $err='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.err.log'; $env:PORT='3001'; $env:NODE_ENV='development'; $p=Start-Process -FilePath 'node.exe' -ArgumentList 'src/index.js' -WorkingDirectory 'C:\Users\tiojo\dev\proyecto_integrador_UNI\server' -WindowStyle Hidden -PassThru -RedirectStandardOutput $out -RedirectStandardError $err; Remove-Item Env:PORT; Remove-Item Env:NODE_ENV; "PID=$($p.Id)"; Start-Sleep -Seconds 2; try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3001/api/health' -TimeoutSec 10) | ConvertTo-Json -Compress } catch { "API_3001_DOWN: $($_.Exception.Message)"; Get-Content -LiteralPath $err -Tail 20 }
+PID=15364
+{"ok":true,"service":"sak-po-kaab-api","db":"up","timestamp":"2026-11-27T01:55:42.870Z"}
+Unknown: ChildProcess.kill (C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -NoLogo -NoProfile -NonInteractive -Command $out='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.out.log'; $err='C:\Users\tiojo\AppData\Local\Temp\opencode\api-3001.err.log'; $env:PORT='3001'; $env:NODE_ENV='development'; $p=Start-Process -FilePath 'node.exe' -ArgumentList 'src/index.js' -WorkingDirectory 'C:\Users\tiojo\dev\proyecto_integrador_UNI\server' -WindowStyle Hidden -PassThru -RedirectStandardOutput $out -RedirectStandardError $err; Remove-Item Env:PORT; Remove-Item Env:NODE_ENV; "PID=$($p.Id)"; Start-Sleep -Seconds 2; try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3001/api/health' -TimeoutSec 10) | ConvertTo-Json -Compress } catch { "API_3001_DOWN: $($_.Exception.Message)"; Get-Content -LiteralPath $err -Tail 20 })
++ Thought: 1.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3001/api/health' -TimeoutSec 5) | ConvertTo-Json -Compress } catch { "API_3001_DOWN: $($_.Exception.Message)" }; Get-Process -Name node -ErrorAction SilentlyContinue | Select-Object Id, StartTime, Path | Format-Table -AutoSize; Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue | Select-Object LocalAddress, LocalPort, OwningProcess
+{"ok":true,"service":"sak-po-kaab-api","db":"up","timestamp":"2026-11-27T01:56:18.612Z"}
+
+   Id StartTime                 Path                            
+   -- ---------                 ----                            
+ 8556 25/11/2026 09:13:22 p. m. C:\Program Files\nodejs\node.exe
+15364 26/11/2026 08:55:40 p. m. C:\Program Files\nodejs\node.exe
+23352 25/11/2026 09:10:51 p. m. C:\Program Files\nodejs\node.exe
+23668 25/11/2026 09:10:52 p. m. C:\Program Files\nodejs\node.exe
+23936 25/11/2026 09:10:51 p. m. C:\Program Files\nodejs\node.exe
+26444 25/11/2026 09:13:22 p. m. C:\Program Files\nodejs\node.exe
+…
+Click to expand
++ Thought: 1.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $env:API_BASE='http://127.0.0.1:3001/api'; npm run test:commerce
+> sak-po-kaab@0.1.0 test:commerce
+> npm run test:commerce --workspace @sak-po-kaab/server
+
+
+> @sak-po-kaab/server@0.1.0 test:commerce
+> node scripts/commerce-smoke-test.mjs
+
+COMMERCE_SMOKE_OK: coupon, minimum, stock lock, order SKP-MWYBYQDC-DFF3F5.
++ Thought: 7.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ docker exec melipona-db mysql -umelipona -pmelipona_dev -N -e "SELECT COUNT(*) FROM melipona.orders; SELECT order_number, status FROM melipona.orders ORDER BY id; SELECT code, used_count FROM melipona.coupons WHERE code='BIENVENIDA10'; SELECT sku, stock FROM melipona.product_variants ORDER BY id;"
+mysql: [Warning] Using a password on the command line interface can be insecure.
+2
+SKP-MWBJ2NP1-D34916	pending
+SKP-MWBJ7X6T-490348	pending
+BIENVENIDA10	0
+MEL-250	24
+MEL-500	12
+JAB-MIEL	30
+JAB-CACAO	18
+BAL-10	25
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ git status --short --branch; git log --oneline -3; git diff --check
+## main...origin/main
+bb5cc2b feat: ampliar granja VR explorable con controles tactiles
+85d7b34 feat: cerrar brechas de entrega y evidencias
+6b7f9a2 feat: cerrar entrega y transparentar catálogo simulado
+# Running in ~\dev\proyecto_integrador_UNI
+$ function Get-Keys($path){ if(-not (Test-Path -LiteralPath $path)){ return @() }; Get-Content -LiteralPath $path | Where-Object { $_ -match '^[A-Za-z_][A-Za-z0-9_]*=' } | ForEach-Object { ($_ -split '=',2)[0] } }; $local=Get-Keys '.env'; $usb=Get-Keys 'D:\proyecto_2026-11-26\local-solo-usb\.env'; 'Local .env keys:'; $local; 'USB .env keys:'; $usb; 'Only local:'; Compare-Object $local $usb | Where-Object SideIndicator -eq '<=' | Select-Object -ExpandProperty InputObject; 'Only USB:'; Compare-Object $local $usb | Where-Object SideIndicator -eq '=>' | Select-Object -ExpandProperty InputObject
+Local .env keys:
+NODE_ENV
+PORT
+CORS_ORIGIN
+DB_HOST
+DB_PORT
+DB_USER
+DB_PASSWORD
+DB_NAME
+MYSQL_ROOT_PASSWORD
+…
+Click to expand
++ Thought: 11.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $conn=Get-NetTCPConnection -LocalPort 3001 -State Listen -ErrorAction SilentlyContinue; if($conn){ $pidToStop=$conn.OwningProcess; "Stopping API 3001 PID=$pidToStop"; Stop-Process -Id $pidToStop -Force; Start-Sleep -Milliseconds 500 }; try { (Invoke-RestMethod -Uri 'http://127.0.0.1:3001/api/health' -TimeoutSec 2) | ConvertTo-Json -Compress } catch { 'API_3001_STOPPED' }
+Stopping API 3001 PID=15364
+API_3001_STOPPED
+Grep "(?i)pendiente|falta|no cubre|bloqueado" in ~\dev\proyecto_integrador_UNI (97 matches)
+Read ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md 
++ Thought: 4.4s
+Read ~\dev\proyecto_integrador_UNI\README.md [offset=95, limit=40]
+Read ~\dev\proyecto_integrador_UNI\AGENTS.md [offset=40, limit=50]
+Read ~\dev\proyecto_integrador_UNI\docs\defensa.md [offset=245, limit=50]
+# Running in ~\dev\proyecto_integrador_UNI
+$ $cmds='ffmpeg','ffprobe','blender'; foreach($c in $cmds){ $x=Get-Command $c -ErrorAction SilentlyContinue; if($x){ "$c => $($x.Source)" } else { "$c => NOT_FOUND" } }; Get-ChildItem 'C:\Program Files\Blender Foundation' -ErrorAction SilentlyContinue | Select-Object FullName
+ffmpeg => C:\Users\tiojo\AppData\Local\Microsoft\WinGet\Links\ffmpeg.exe
+ffprobe => C:\Users\tiojo\AppData\Local\Microsoft\WinGet\Links\ffprobe.exe
+blender => NOT_FOUND
+
+FullName                                       
+--------                                       
+C:\Program Files\Blender Foundation\Blender 5.2
++ Thought: 11.2s
+Read ~\dev\proyecto_integrador_UNI\scripts\render_harvest_video.py [limit=260]
+Read ~\dev\proyecto_integrador_UNI\assets\video\README.md 
+Read ~\dev\proyecto_integrador_UNI\docs\referencias-video.md [limit=80]
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffmpeg -version | Select-Object -First 3; ffprobe -version | Select-Object -First 1
+ffmpeg version 9.0.2-full_build-www.gyan.dev Copyright (c) 2000-2026 the FFmpeg developers
+built with gcc 16.2.0 (Rev3, Built by MSYS2 project)
+configuration: --enable-gpl --enable-version3 --enable-static --disable-w32threads --disable-autodetect --enable-cairo --enable-fontconfig --enable-iconv --enable-gnutls --enable-lcms2 --enable-libxml2 --enable-gmp --enable-bzlib --enable-lzma --enable-libsnappy --enable-zlib --enable-librist --enable-libsrt --enable-libssh --enable-libzmq --enable-avisynth --enable-libbluray --enable-libcaca --enable-libdvdnav --enable-libdvdread --enable-sdl2 --enable-libaribb24 --enable-libaribcaption --enable-libdav1d --enable-libdavs2 --enable-libopenjpeg --enable-libquirc --enable-libuavs3d --enable-libxevd --enable-libzvbi --enable-liboapv --enable-libqrencode --enable-librav1e --enable-libsvtav1 --enable-libvvenc --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxavs2 --enable-libxeve --enable-libxvid --enable-libaom --enable-libjxl --enable-libsvtjpegxs --enable-libvpx --enable-mediafoundation --enable-libass --enable-frei0r --enable-…
+Click to expand
++ Thought: 1.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ rg -n "OUTPUT|SUBTITLES|AUDIO_BED|ffmpeg|srt|social|mobile|write_original_music|build_srt|subprocess" scripts/render_harvest_video.py
+rg : El t rmino 'rg' no se reconoce como nombre de un cmdlet, funci n, archivo de script o programa ejecutable. 
+Compruebe si escribi  correctamente el nombre o, si incluy  una ruta de acceso, compruebe que dicha ruta es correcta e 
+int ntelo de nuevo.
+En l nea: 1 Car cter: 1
++ rg -n "OUTPUT|SUBTITLES|AUDIO_BED|ffmpeg|srt|social|mobile|write_orig ...
++ ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
++ Thought: 1.6s
+Grep "OUTPUT|SUBTITLES|AUDIO_BED|ffmpeg|srt|social|mobile|write_original_music|build_srt|subprocess" in ~\dev\proyecto_integrador_UNI\scripts\render_harvest_video.py (57 matches)
++ Thought: 713ms
+Read ~\dev\proyecto_integrador_UNI\scripts\render_harvest_video.py [offset=500, limit=160]
++ Thought: 21.3s
+# Todos
+Leer instrucciones y respaldo del USB (2026-11-26)
+Actualizar el repositorio local desde origin/main
+Verificar que el USB coincida con el commit remoto
+Ejecutar pruebas de tienda, AR/VR y panel de pedidos
+Revisar pendientes documentados y reportar siguiente paso
++ Thought: 6.7s
+Repositorio actualizado: main pasó de 6b7f9a2 a bb5cc2b con 2 commits. La USB D:\proyecto_2026-11-26 coincide con origin/main: cambios-hoy es idéntico y proyecto también, salvo .opencode/package-lock.json ignorado. No copié el .env del USB para no sobrescribir tu configuración local.
+Pruebas OK: build de tienda, build + smoke AR/VR, panel de producción deshabilitado, 5 pruebas Python y COMMERCE_SMOKE_OK con API de desarrollo en 3001. La API de 3000 está en modo producción, por eso el panel demo responde 404 por diseño. Los 2 pedidos manuales, cupón y stock siguen intactos.
+Pendientes: evidencia física Galaxy A22/WebXR, pase manual en Blender, MP4 con SRT/cama sonora/vertical, nombre institucional y reflexión personal. FFmpeg y Blender ya están instalados en esta PC.
+# Questions
+¿Qué hago ahora con los pendientes?
+Regenerar MP4 y revisar
++ Thought: 4.5s
+# Todos
+Regenerar MP4 con SRT, cama sonora y versión vertical
+Revisar duración, pistas de audio/subtítulos y resolución de los MP4
+Verificar que el build/smoke de AR siga pasando con los nuevos MP4
+Reportar resultado y pedir aprobación de la cama sonora antes de commit
+# Running in ~\dev\proyecto_integrador_UNI
+$ python scripts/render_harvest_video.py
+Narraci n: 50.8s; video: 53.3s; frames: 1281
+Salida: C:\Users\tiojo\dev\proyecto_integrador_UNI\assets\video\cosecha-melipona-recreacion.mp4
+Render   0.0/ 53.3s
+Render   5.0/ 53.3s
+Render  10.0/ 53.3s
+Render  15.0/ 53.3s
+Render  20.0/ 53.3s
+Render  25.0/ 53.3s
+Render  30.0/ 53.3s
+Render  35.0/ 53.3s
+…
+Click to expand
++ Thought: 4.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $files=@('assets/video/cosecha-melipona-recreacion.mp4','assets/video/cosecha-melipona-recreacion-mobile.mp4','assets/video/cosecha-melipona-recreacion-social-vertical.mp4'); foreach($f in $files){ "=== $f ==="; ffprobe -v error -show_entries format=duration,size,bit_rate -show_entries stream=index,codec_type,codec_name,width,height,r_frame_rate,channels,sample_rate -of json $f }
+=== assets/video/cosecha-melipona-recreacion.mp4 ===
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'assets\video\cosecha-melipona-recreacion.srt' -TotalCount 40; Write-Output '--- audio ---'; ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,sample_rate,channels -of json 'assets/audio/cama-sonora-original.wav'
+1
+00:00:00,000 --> 00:00:06,908
+En Yucatǭn, algunas familias cuidan a la
+Xunǭan Kaab en jobones: troncos huecos que
+
+2
+00:00:06,908 --> 00:00:09,856
+protegen la colonia y sus reservas.
+
+3
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ git status --short; git diff --stat
+M assets/video/cosecha-melipona-recreacion-mobile.mp4
+ M assets/video/cosecha-melipona-recreacion.mp4
+ .../video/cosecha-melipona-recreacion-mobile.mp4   | Bin 1339295 -> 1474716 bytes
+ assets/video/cosecha-melipona-recreacion.mp4       | Bin 3477361 -> 3680910 bytes
+ 2 files changed, 0 insertions(+), 0 deletions(-)
++ Thought: 3.5s
+# Running in ~\dev\proyecto_integrador_UNI
+$ git check-ignore -v 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4' 'assets/video/cosecha-melipona-recreacion.srt' 'assets/audio/cama-sonora-original.wav' 'assets/video/cosecha-poster.png' 'docs/evidencias/2026-11-08/storyboard-cosecha.png'; git status --short --ignored assets/video assets/audio docs/evidencias/2026-11-08
+.gitignore:45:assets/video/*.mp4	assets/video/cosecha-melipona-recreacion-social-vertical.mp4
+ M assets/video/cosecha-melipona-recreacion-mobile.mp4
+ M assets/video/cosecha-melipona-recreacion.mp4
+!! assets/audio/narracion-recorrido-vr.wav
+!! assets/video/cosecha-melipona-recreacion-social-vertical.mp4
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath '.gitignore'
+# Dependencias
+node_modules/
+.pnp
+.pnp.js
+
+# Builds
+dist/
+build/
+.vite/
+*.tsbuildinfo
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffmpeg -y -hide_banner -loglevel error -ss 00:00:01 -i 'assets/video/cosecha-melipona-recreacion.mp4' -frames:v 1 'C:\Users\tiojo\AppData\Local\Temp\opencode\video-master-frame.png'; ffmpeg -y -hide_banner -loglevel error -ss 00:00:01 -i 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4' -frames:v 1 'C:\Users\tiojo\AppData\Local\Temp\opencode\video-social-frame.png'; Get-Item 'C:\Users\tiojo\AppData\Local\Temp\opencode\video-master-frame.png','C:\Users\tiojo\AppData\Local\Temp\opencode\video-social-frame.png' | Select-Object Name,Length
+Name                   Length
+----                   ------
+video-master-frame.png 246844
+video-social-frame.png 239143
++ Thought: 853ms
+Read ~\AppData\Local\Temp\opencode\video-master-frame.png 
+Read ~\AppData\Local\Temp\opencode\video-social-frame.png 
+Read ~\dev\proyecto_integrador_UNI\docs\evidencias\2026-11-08\storyboard-cosecha.png 
++ Thought: 10.6s
+# Running in ~\dev\proyecto_integrador_UNI
+$ git show 85d7b34 -- .gitignore; git show 85d7b34 --stat --oneline | Select-Object -First 5
+commit 85d7b34f86be6f0afcf0992e6d421157bc481a29
+Author: 202300074-ops <202300074@upqroo.edu.mx>
+Date:   Thu Nov 26 16:01:23 2026 -0500
+
+    feat: cerrar brechas de entrega y evidencias
+
+diff --git a/.gitignore b/.gitignore
+index 98bd74d..7381bf2 100644
+--- a/.gitignore
++++ b/.gitignore
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffmpeg -hide_banner -i 'assets/video/cosecha-melipona-recreacion.mp4' -map 0:a:0 -af loudnorm=I=-16:TP=-1.5:LRA=11:print_format=json -f null - 2>&1 | Select-String -Pattern 'input_i|input_tp|input_lra|input_thresh|target_offset'
+"input_i" : "-16.05",
+	"input_tp" : "-1.49",
+	"input_lra" : "3.40",
+	"input_thresh" : "-27.26",
+	"target_offset" : "0.06"
+Read ~\dev\proyecto_integrador_UNI\assets\video\cosecha-melipona-recreacion.srt [limit=60]
++ Thought: 22.3s
+← Edit ~\dev\proyecto_integrador_UNI\scripts\render_harvest_video.py
+"-i", str(OUTPUT),
+"-filter_complex",
+"[0:v]split=2[bg][fg];"
+"[bg]scale=1080:1920:force_original_aspect_ratio=increase,"
+"crop=1080:1920,boxblur=30:10,eq=brightness=-0.18[background];"
+"crop=1080:1920,boxblur=40:20,eq=brightness=0.12:saturation=1.2[background];"
+"[fg]scale=1080:608:force_original_aspect_ratio=decrease[foreground];"
+"[background][foreground]overlay=(W-w)/2:(H-h)/2,format=yuv420p[video]",
+"-map", "[video]", "-map", "0:a:0", "-map", "0:s:0",
+"-c:v", "libx264", "-preset", "veryfast", "-crf", "23",
+# Running in ~\dev\proyecto_integrador_UNI
+$ python scripts/render_harvest_video.py
+Narraci n: 50.8s; video: 53.3s; frames: 1281
+Salida: C:\Users\tiojo\dev\proyecto_integrador_UNI\assets\video\cosecha-melipona-recreacion.mp4
+Render   0.0/ 53.3s
+Render   5.0/ 53.3s
+Render  10.0/ 53.3s
+Render  15.0/ 53.3s
+Render  20.0/ 53.3s
+Render  25.0/ 53.3s
+Render  30.0/ 53.3s
+Render  35.0/ 53.3s
+…
+Click to expand
++ Thought: 2.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffmpeg -y -hide_banner -loglevel error -ss 00:00:01 -i 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4' -frames:v 1 'C:\Users\tiojo\AppData\Local\Temp\opencode\video-social-frame-2.png'; ffmpeg -y -hide_banner -loglevel error -ss 00:00:25 -i 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4' -frames:v 1 'C:\Users\tiojo\AppData\Local\Temp\opencode\video-social-frame-25.png'; ffprobe -v error -show_entries format=duration,size -show_entries stream=index,codec_type,codec_name,width,height,r_frame_rate,channels,sample_rate -of json 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4'
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "index": 0,
+…
+Click to expand
+Read ~\AppData\Local\Temp\opencode\video-social-frame-2.png 
+Read ~\AppData\Local\Temp\opencode\video-social-frame-25.png 
++ Thought: 16.4s
+Read ~\dev\proyecto_integrador_UNI\docs\evidencias\2026-11-26\README.md 
+Read ~\dev\proyecto_integrador_UNI\docs\defensa.md [offset=285, limit=40]
+Read ~\dev\proyecto_integrador_UNI\docs\diario.md [offset=520, limit=80]
+Read ~\dev\proyecto_integrador_UNI\docs\bitacora-ia.md [offset=420, limit=80]
++ Thought: 1.7s
+Read ~\dev\proyecto_integrador_UNI\docs\diario.md [offset=450, limit=75]
++ Thought: 7.5s
+Read ~\dev\proyecto_integrador_UNI\PROJECT_CONTEXT.md [offset=130, limit=30]
+Read ~\dev\proyecto_integrador_UNI\docs\scrum\backlog.md [offset=30, limit=20]
+Read ~\dev\proyecto_integrador_UNI\README.md [offset=80, limit=40]
++ Thought: 3.6s
+Grep "MP4|FFmpeg|cama sonora|SRT|vertical" in ~\dev\proyecto_integrador_UNI\docs\memoria.md (88 matches)
+Grep "MP4|FFmpeg|cama sonora|SRT|vertical" in ~\dev\proyecto_integrador_UNI\docs\defensa.md (88 matches)
+Grep "MP4|FFmpeg|cama sonora|SRT|vertical" in ~\dev\proyecto_integrador_UNI\docs\manual-tecnico.md (88 matches)
++ Thought: 1.9s
+Read ~\dev\proyecto_integrador_UNI\scripts\render_memory_pdf.py 
++ Thought: 1.5s
+Read ~\dev\proyecto_integrador_UNI\docs\memoria.md [offset=310, limit=35]
+Read ~\dev\proyecto_integrador_UNI\docs\memoria.md [offset=385, limit=25]
+Read ~\dev\proyecto_integrador_UNI\docs\defensa.md [offset=135, limit=30]
++ Thought: 2.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-ChildItem -LiteralPath 'scripts' -File | Select-Object Name; Select-String -Path 'scripts\*.py','docs\*.html' -Pattern 'presentacion.pdf|print-to-pdf|export=1' -SimpleMatch | Select-Object Path, LineNumber, Line
+Name                                 
+----                                 
+audio_bed.py                         
+blender_blockout.py                  
+blender_model.py                     
+blender_render_eevee.py              
+blender_render_productos_restantes.py
+blender_render_producto_miel.py      
+generate_harvest_narration.ps1       
+generate_vr_narration.ps1            
+…
+Click to expand
++ Thought: 18.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -Path 'docs\presentacion.html' -Pattern 'export|@media print|slide|page-break|print' | Select-Object LineNumber, Line | Format-Table -AutoSize
+LineNumber Line                                                                                                        
+---------- ----                                                                                                        
+        23     .slide {                                                                                                
+        27     .slide.active { display: flex; flex-direction: column; }                                                
+        28     .slide::after {                                                                                         
+        81     body.pdf-export .controls, body.pdf-export .progress { display: none !important; }                      
+        82     @media print {                                                                                          
+        86       .slide { display: flex !important; flex-direction: column; position: relative; page-break-after: al...
+        87       .slide:last-of-type { page-break-after: auto; break-after: auto; }                                    
+        95…
+Click to expand
++ Thought: 2.7s
+Read ~\dev\proyecto_integrador_UNI\docs\anexos\bitacora-ia-entrega.md [offset=76, limit=85]
+Read ~\dev\proyecto_integrador_UNI\docs\declaracion-uso-ia.md 
+Read ~\dev\proyecto_integrador_UNI\docs\manual-tecnico.md [offset=14, limit=20]
++ Thought: 24.6s
+← Edit ~\dev\proyecto_integrador_UNI\.gitignore
+assets/video/*.mov
+assets/audio/*.wav
+!assets/video/cosecha-melipona-recreacion.mp4
+!assets/video/cosecha-melipona-recreacion-mobile.mp4
+!assets/video/cosecha-melipona-recreacion-social-vertical.mp4
+!assets/audio/narracion-cosecha.wav
+!assets/audio/cama-sonora-original.wav
+assets/models/*.blend1
+# Wrote ~\dev\proyecto_integrador_UNI\assets\video\README.md
+# Video didáctico de cosecha
+
+`cosecha-melipona-recreacion.mp4` es el máster de 53.3 segundos, 1280 × 720,
+24 fps, H.264 Baseline/AAC, con subtítulos `mov_text`. `cosecha-melipona-recreacion-mobile.mp4`
+es el derivado de 640 × 360 usado por la experiencia AR para reducir decodificación
+y buffering en teléfonos. `cosecha-melipona-recreacion-social-vertical.mp4` es el
+corte de 1080 × 1920 para redes. Los tres comparten narración, cama sonora y
+duración.
+
+El renderizador genera subtítulos SRT en español, una cama sonora original
+mediante síntesis PCM y el derivado vertical. La mezcla se normalizó a -16 LUFS
+aproximadamente; la medición local del máster fue -16.05 LUFS, -1.49 dBTP y LRA
+3.40. La cama sonora sigue pendiente de escucha y aprobación de Joshua antes de
+usarla en la defensa.
+
+La locución está en `assets/audio/narracion-cosecha.wav`, sintetizada con la voz
+Microsoft Sabina (es-MX). El guion, sus límites y las fuentes están en
+`docs/referencias-video.md`. `cosecha-poster.png` es el póster del video.
+La cama musical candidata está en `assets/audio/cama-sonora-original.wav`.
+
+Para regenerarlo en Windows:
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate_harvest_narration.ps1
+python -m pip install -r requirements-video.txt
+python scripts/render_harvest_video.py
+```
+
+El rótulo “Recreación didáctica” permanece visible en el video y en el reproductor
+AR. El proceso ilustrado es un ejemplo; las prácticas varían entre comunidades.
+
+← Edit ~\dev\proyecto_integrador_UNI\docs\referencias-video.md
+sintética. Joshua debe escucharla y aprobar su uso antes de regenerar y entregar el
+MP4.
+
+El renderizador prepara subtítulos externos `.srt`, una pista de subtítulos para
+los MP4 y un derivado vertical 1080 × 1920. Los archivos MP4 existentes aún no
+contienen esa mezcla ni el derivado vertical: falta disponer de FFmpeg, regenerar y
+revisar el resultado. La exportación no debe presentarse como verificada hasta
+completar ese paso.
+los MP4 y un derivado vertical 1080 × 1920. En la sesión local del 26 de noviembre
+de 2026 se regeneraron con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el
+vertical; los tres incluyen la cama sonora y la pista de subtítulos. La medición
+de loudness del máster fue -16.05 LUFS, -1.49 dBTP y LRA 3.40. Falta que Joshua
+escuche y apruebe la cama sonora antes de presentarla como corte final.
+
+## Fuentes de proceso
+
+- The Nature Conservancy México, *Manejo tradicional de la abeja de los pueblos
+← Edit ~\dev\proyecto_integrador_UNI\docs\memoria.md
+6. Reservas para la colonia.
+
+El video incluye el rótulo de recreación didáctica y no se presenta como registro
+documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNAT
+[1], [2]. El script se actualizó para generar subtítulos SRT, una cama sonora
+original y un derivado vertical para redes. La cama sonora candidata se creó en
+`assets/audio/cama-sonora-original.wav`; todavía requiere escucha y aprobación de
+Joshua. Los MP4 versionados aún no incluyen subtítulos ni música ni el derivado
+vertical: no se pudieron regenerar en la sesión del 26 de noviembre porque FFmpeg
+no estaba disponible en `PATH`.
+[1], [2]. El script genera subtítulos SRT, una cama sonora original y un derivado
+vertical para redes. En la sesión local del 26 de noviembre de 2026 se regeneraron
+con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el vertical 1080 × 1920; los
+tres incluyen la cama sonora y la pista de subtítulos. La medición del máster fue
+-16.05 LUFS, -1.49 dBTP y LRA 3.40. La cama sonora sigue pendiente de escucha y
+aprobación de Joshua antes de la defensa.
+
+## 12. Mercadotecnia digital y comercio electrónico
+
+`docs/mercadotecnia/plan.md` contiene una propuesta académica con posicionamiento,
+← Edit ~\dev\proyecto_integrador_UNI\docs\memoria.md
+  panel local de pedidos `mock` es de solo lectura y no se incluye en producción.
+- El caso es simulado y no representa una empresa o comunidad real.
+- No se realizó un estudio de mercado primario; cualquier dato de mercado debe
+  citarse de fuentes reales.
+- La cama sonora original está generada pero requiere escucha/aprobación de
+  Joshua; aún no está mezclada en los MP4. La exportación vertical está definida
+  en el script, pero no se generó ni validó porque FFmpeg no está disponible.
+- La cama sonora original está integrada en los MP4 y se midió técnicamente, pero
+  requiere escucha/aprobación de Joshua antes de presentarse como corte final.
+  La exportación vertical 1080 × 1920 ya se generó y revisó visualmente.
+- La portada del PDF de la memoria conserva el marcador de institución pendiente
+  de confirmar; hay que reemplazarlo por el nombre oficial y regenerar el PDF.
+
+## 15. Conclusiones
+← Edit ~\dev\proyecto_integrador_UNI\docs\defensa.md
+### Diapositiva 10. Video
+
+> El video es una animación original de 720p generada con Python, Pillow y
+> FFmpeg. Muestra la colonia, la preparación, la apertura del jobón, la recolección
+> por gravedad, el filtrado, el cierre y las reservas. El renderizador ya genera
+> SRT y una cama musical original, pero los MP4 todavía requieren regeneración y
+> escucha porque FFmpeg no está disponible en el entorno de cierre.
+> por gravedad, el filtrado, el cierre y las reservas. Los MP4 maestro, móvil y
+> vertical ya se regeneraron con SRT y cama sonora. La medición del máster fue
+> -16.05 LUFS y -1.49 dBTP; falta la escucha y aprobación final de Joshua.
+>
+> No es metraje documental. La voz es sintética y el rótulo de recreación
+> didáctica aparece en la experiencia. Las prácticas varían entre comunidades; no
+> se presenta una receta universal.
+← Edit ~\dev\proyecto_integrador_UNI\docs\presentacion.html
+      <p class="lead">Animación original 720p generada con Python, Pillow y FFmpeg. Narración sintética es-MX y rótulo visible de recreación.</p>
+      <div class="pill-row"><span class="pill">6 escenas</span><span class="pill">720p</span><span class="pill">Voz sintética</span><span class="pill">Fuentes citadas</span></div>
+      <div class="rule"></div>
+      <p class="small">Muestra la colonia, la apertura del jobón, la recolección por gravedad, el filtrado, el cierre y las reservas. Las prácticas varían entre comunidades.</p>
+      <p class="small" style="margin-top: 8px;">SRT, cama sonora original y exportación vertical están preparadas en el script; MP4 pendientes de regeneración con FFmpeg.</p>
+      <p class="small" style="margin-top: 8px;">MP4 maestro, móvil y vertical regenerados con SRT y cama sonora; falta la escucha/aprobación final de Joshua.</p>
+    </div>
+    <div class="image-frame" style="height: 360px;"><img src="evidencias/2026-11-08/storyboard-cosecha.png" alt="Storyboard de la cosecha"></div>
+  </div>
+</section>
++ Thought: 4.1s
+← Edit ~\dev\proyecto_integrador_UNI\docs\defensa.md
+sin inflar resultados.
+
+## 6. Checklist final
+
+- [ ] Base de datos `healthy`.
+- [ ] API responde `/api/health`.
+- [ ] Tienda abre en 5173.
+- [ ] Visor abre en 5174.
+- [ ] Carrito, cupón y checkout funcionan.
+- [ ] `npm run build` pasa.
+- [ ] `npm run test:commerce` pasa.
+- [ ] Smoke test de AR/VR pasa.
+- [ ] Capturas finales en `docs/evidencias/2026-11-25/`.
+- [x] Base de datos `healthy`.
+- [x] API responde `/api/health`.
+- [x] Tienda abre en 5173.
+- [x] Visor abre en 5174.
+- [x] Carrito, cupón y checkout funcionan.
+- [x] `npm run build` pasa.
+- [x] `npm run test:commerce` pasa.
+- [x] Smoke test de AR/VR pasa.
+- [x] Capturas finales en `docs/evidencias/2026-11-25/` y `2026-11-26/`.
+- [x] Video regenerado con SRT, cama sonora y versión vertical.
+- [ ] Escuchar y aprobar la cama sonora.
+- [ ] Video y GLB respaldados en USB o nube.
+- [ ] Memoria y guion revisados.
+- [x] Presentación en PDF y versión navegable HTML.
+- [ ] Confirmar si la materia solicita también formato PPTX.
++ Thought: 4.9s
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md
+| --- | --- | ---: | --- |
+| S4-01 Mapas y plan de mercadotecnia | Dos mapas y un plan con calendario, colaboración propuesta y medición sin datos inventados | 5 pts | Hecho |
+| S4-02 Panel de pedidos de prueba | Solo lectura, máximo 25, sin PII, dev-only y cubierto por smoke de comercio | 5 pts | Hecho; build y smoke de comercio pasaron |
+| S4-03 Manuales y anexos | Manual técnico, manual de usuario, declaración IA, 8–10 interacciones y memoria PDF/IEEE | 8 pts | Hecho en borrador; faltan reflexión de Joshua y nombre institucional |
+| S4-04 Cierre multimedia | Logo SVG animado; renderer genera SRT, cama original y deriva social | 5 pts | Parcial: recursos/scripts listos; MP4 pendiente de FFmpeg y escucha de Joshua |
+| S4-04 Cierre multimedia | Logo SVG animado; renderer genera SRT, cama original y deriva social | 5 pts | Hecho técnico: MP4 maestro, móvil y vertical regenerados con SRT y cama sonora; falta aprobación auditiva de Joshua |
+| S4-05 Evidencia y defensa | Evidencia física, presentación de 20 min, preguntas y cambio en vivo | 8 pts | Pendiente |
+
+Las estimaciones son propuestas para el backlog y requieren validación de Joshua.
+
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md
+  omite datos personales y queda deshabilitado en producción.
+- Se prepararon los manuales, declaración IA, anexo seleccionado de bitácora y
+  memoria PDF. La portada conserva pendiente el nombre institucional oficial.
+- Se añadió animación SVG del símbolo, generador SRT, generador de cama original y
+  una exportación vertical configurada para FFmpeg. Los MP4 no se regeneraron.
+  una exportación vertical configurada para FFmpeg. En la sesión local posterior se
+  regeneraron el máster, el móvil y el vertical con esa mezcla y subtítulos.
+- La prueba de comercio pasó en API estable; build de tienda, smoke AR/VR y cinco
+  pruebas unitarias de utilidades multimedia pasaron.
+- Captura desktop de la tienda guardada en `docs/evidencias/2026-11-26/`.
+- No se ejecutó Blender ni FFmpeg porque no se encontraron en `PATH`. No se hizo
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md
+  regeneraron el máster, el móvil y el vertical con esa mezcla y subtítulos.
+- La prueba de comercio pasó en API estable; build de tienda, smoke AR/VR y cinco
+  pruebas unitarias de utilidades multimedia pasaron.
+- Captura desktop de la tienda guardada en `docs/evidencias/2026-11-26/`.
+- No se ejecutó Blender ni FFmpeg porque no se encontraron en `PATH`. No se hizo
+  prueba física de teléfono/visor en esta sesión.
+- En la sesión de trabajo remoto no se encontraron Blender ni FFmpeg en `PATH`; en
+  la sesión local posterior se regeneraron los MP4 con FFmpeg. No se hizo prueba
+  física de teléfono/visor.
+
+## Review parcial
+
+El panel de pedidos y los documentos de mercadotecnia están preparados. La música
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md
+  física de teléfono/visor.
+
+## Review parcial
+
+El panel de pedidos y los documentos de mercadotecnia están preparados. La música
+se generó como WAV candidato pero no se escuchó; los MP4 no incorporan todavía la
+pista ni el SRT. La tienda requiere una última revisión visual/capturas. No se
+presenta ninguna prueba física como realizada.
+El panel de pedidos y los documentos de mercadotecnia están preparados. La cama
+sonora está integrada y los MP4 maestro, móvil y vertical ya incluyen SRT; la
+medición del máster fue -16.05 LUFS, -1.49 dBTP y LRA 3.40. Falta la escucha y
+aprobación auditiva de Joshua. No se presenta ninguna prueba física como realizada.
+
+## Retrospectiva provisional
+
+- **Funcionó:** usar la rúbrica como lista de brechas concretas y verificar el
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\sprint-4.md
+  panel con una prueba que limpia solo su pedido de prueba.
+- **Debe mejorar:** las dependencias de FFmpeg/Blender y la evidencia física no se
+  reservaron con suficiente antelación; el PDF todavía necesita datos oficiales
+  de portada.
+- **Acción:** Joshua completa pase manual, escucha la cama sonora, realiza las
+  pruebas físicas y reemplaza el nombre institucional antes de cerrar la defensa.
+- **Acción:** Joshua escucha y aprueba la cama sonora, completa el pase manual,
+  realiza las pruebas físicas y reemplaza el nombre institucional antes de cerrar
+  la defensa.
+
+Este cierre parcial se registra el 26 de noviembre; la retrospectiva final debe
+actualizarse al terminar la semana y después de las pruebas físicas.
+← Edit ~\dev\proyecto_integrador_UNI\docs\scrum\backlog.md
+| S3-04 | Como equipo queremos preparar la defensa. | Presentación de 20 min, preguntas y cambio en vivo ensayados; respaldo del video/GLB. | 5 | 3 | En curso (guion/PDF listos; falta ensayo y respaldo físico) |
+| S4-01 | Como visitante quiero ver una estrategia digital comprensible. | Dos mapas conceptuales y un plan académico con calendario, colaboraciones propuestas y métricas no observadas. | 5* | 4 | Hecho (documentos en `docs/mercadotecnia/`) |
+| S4-02 | Como docente quiero revisar pedidos de demostración. | Panel local de solo lectura, máximo 25, sin datos personales y sin cambios de estado; ruta deshabilitada en producción. | 5* | 4 | Hecho (smoke de comercio pasó) |
+| S4-03 | Como alumno quiero entregar manuales y anexos. | Manuales, declaración de IA, 8–10 interacciones seleccionadas y memoria PDF con citas IEEE. | 8* | 4 | En curso (falta reflexión personal y nombre institucional oficial) |
+| S4-04 | Como visitante quiero ver el símbolo animado y el video accesible. | SVG con animación 2D y movimiento reducido; renderer genera SRT, cama original y exportación vertical. | 5* | 4 | Parcial (SVG y recursos/scripts; MP4 no regenerado por falta de FFmpeg) |
+| S4-04 | Como visitante quiero ver el símbolo animado y el video accesible. | SVG con animación 2D y movimiento reducido; renderer genera SRT, cama original y exportación vertical. | 5* | 4 | Hecho técnico (MP4 maestro, móvil y vertical regenerados; falta aprobación auditiva de Joshua) |
+| S4-05 | Como alumno quiero cerrar la defensa con evidencia. | Pruebas físicas archivadas, ensayo de 20 min, 15 min de preguntas y cambio en vivo de 10 min. | 8* | 4 | Pendiente |
+
+## Definición de terminado
+
+← Edit ~\dev\proyecto_integrador_UNI\README.md
+- Captura de escritorio tras las correcciones visuales: `docs/evidencias/2026-11-26/`.
+- QA final: MySQL `healthy`, API `db: "up"`, cuatro productos y seis variantes.
+- `npm run build`, `npm run test:commerce`, los smoke tests AR/VR y las pruebas
+  unitarias de utilidades multimedia están disponibles.
+- Video regenerado: máster 720p, móvil 360p y vertical 1080 × 1920, con SRT y
+  cama sonora; medición del máster -16.05 LUFS y -1.49 dBTP.
+- Para regenerar la memoria PDF: `python -m pip install -r requirements-docs.txt`
+  y `python scripts/render_memory_pdf.py` (configura `INSTITUTION_NAME` primero).
+- Revisión móvil por CDP a 390 px sin desbordamiento horizontal.
+
+← Edit ~\dev\proyecto_integrador_UNI\README.md
+- Ensayar la presentación PDF y la demostración; preparar respaldos físicos del
+  video y los GLB.
+- Confirmar el nombre oficial de la institución para reemplazar el marcador de
+  portada del PDF.
+- Escuchar y aprobar la cama sonora; instalar FFmpeg, regenerar los MP4 con SRT y
+  exportación vertical, y revisar los resultados antes de presentarlos.
+- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
+  están regenerados y revisados técnicamente.
+
+## Tecnologías
+
+| Capa | Tecnología |
+← Edit ~\dev\proyecto_integrador_UNI\PROJECT_CONTEXT.md
+  en producción.
+- Símbolo SVG animado con movimiento reducido; manuales y declaración de IA.
+- Memoria citada y exportada a PDF; deck actualizado a 13 diapositivas/PDF.
+- Captura desktop de tienda actualizada en `docs/evidencias/2026-11-26/`.
+- Renderer prepara SRT, cama sonora original y salida vertical. No se regeneraron
+  MP4 porque FFmpeg no está en `PATH`; la cama sonora requiere escucha de Joshua.
+- En esta sesión se observó Node 20.20.2, Python 3.13.15 y no se encontraron
+- En la sesión local posterior se regeneraron con FFmpeg 9.0.2 el máster 720p, el
+  móvil y el vertical 1080 × 1920; los tres incluyen SRT y cama sonora. La medición
+  del máster fue -16.05 LUFS y -1.49 dBTP; falta la escucha de Joshua.
+- En la sesión remota se observó Node 20.20.2, Python 3.13.15 y no se encontraron
+  Blender ni FFmpeg en `PATH`; la prueba física y el pase manual 3D siguen siendo
+  responsabilidad de Joshua.
+
+Pendiente:
+← Edit ~\dev\proyecto_integrador_UNI\PROJECT_CONTEXT.md
+
+- Pase manual de los modelos en Blender y documentación de la autoría.
+- Evidencia formal de AR/video y checkout en el Galaxy A22.
+- Prueba física de WebXR, narración y comodidad.
+- Escuchar y aprobar la cama sonora; regenerar los MP4 con SRT y exportación
+  vertical cuando FFmpeg esté disponible.
+- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
+  están regenerados y revisados técnicamente.
+- Ensayar la presentación PDF durante 20 minutos, al menos 15 minutos de preguntas
+  y un cambio en vivo de unos 10 minutos; preparar respaldos físicos del video y
+  los GLB.
+
+← Edit ~\dev\proyecto_integrador_UNI\AGENTS.md
+2. Grabar o capturar la validación de etiqueta AR y video en el Galaxy A22.
+3. Probar `/vr.html` y la narración con un visor WebXR físico.
+4. Hacer el pase manual de abeja y jobón en Blender, documentar las
+   modificaciones propias y registrar lmik3 solo como apoyo visual.
+5. Escuchar/aprobar la cama sonora candidata; regenerar con FFmpeg los MP4 con
+   SRT y exportación vertical, y revisar salida visual/audio.
+5. Escuchar/aprobar la cama sonora; los MP4 maestro, móvil y vertical ya se
+   regeneraron con SRT y mezcla, y se revisaron visual y técnicamente.
+6. Ensayar 20 minutos de presentación, al menos 15 minutos de preguntas y un
+   cambio en vivo de unos 10 minutos; respaldar físicamente el video/GLB.
+7. Confirmar el nombre institucional oficial para la portada de la memoria.
+
+← Edit ~\dev\proyecto_integrador_UNI\AGENTS.md
+- VR con A-Frame 1.8: granja explorable en 360° con colisiones, trece árboles,
+  cinco hotspots (incluye detalle escondido), cinco teletransportes, lago con
+  peces, abejas ambientales y narración sintética; validación headless y de
+  navegación pasó, falta WebXR físico.
+- Video maestro 720p, móvil 360p y vertical 1080 × 1920 regenerados con FFmpeg,
+  SRT y cama sonora; falta la escucha/aprobación de Joshua.
+- Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
+  `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
+- Evidencias de compra, renders y catálogo responsivo en
+  `docs/evidencias/2026-11-10/`.
++ Thought: 10.2s
+← Edit ~\dev\proyecto_integrador_UNI\docs\evidencias\2026-11-26\README.md
+
+No se archiva una captura móvil como prueba de viewport: la ventana headless
+Windows impuso un ancho mínimo. La validación móvil física sigue pendiente.
+
+## Video regenerado
+
+- `assets/video/cosecha-melipona-recreacion.mp4`: 1280 × 720, 24 fps, 53.34 s,
+  H.264/AAC y pista de subtítulos `mov_text`; 3,680,910 bytes.
+- `assets/video/cosecha-melipona-recreacion-mobile.mp4`: 640 × 360, 53.34 s,
+  1,474,716 bytes.
+- `assets/video/cosecha-melipona-recreacion-social-vertical.mp4`: 1080 × 1920,
+  53.29 s, 2,016,522 bytes; fondo desenfocado corregido para evitar barras negras.
+- `assets/video/cosecha-melipona-recreacion.srt`: diez bloques en español,
+  integrados también como pista de subtítulos.
+- `assets/audio/cama-sonora-original.wav`: PCM mono 22.05 kHz, 53.34 s; mezcla al
+  30 % con la narración. Loudness del máster: -16.05 LUFS, -1.49 dBTP, LRA 3.40.
+
+La revisión visual de frames y storyboard pasó. La escucha y aprobación de la
+cama sonora por Joshua sigue pendiente antes de presentarla como corte final.
+
+## Evidencia física pendiente
+
+- Galaxy A22: AR, video y checkout.
+- Visor WebXR: entrada/salida, hotspots, teletransporte y narración.
+- Blender: modificaciones manuales de abeja y jobón por Joshua.
+- Video: escucha/aprobación de la cama sonora y revisión visual/audio de los MP4
+  regenerados con FFmpeg.
+- Video: escucha y aprobación de la cama sonora por Joshua.
+
+No se registrará como realizada ninguna prueba que no tenga captura o nota del
+dispositivo correspondiente.
+← Edit ~\dev\proyecto_integrador_UNI\docs\diario.md
+
+Límite: la validación es headless y de navegación; la comodidad, escala y entrada
+WebXR siguen pendientes de un visor físico.
+
+## 2026-11-26. Regeneración del video con FFmpeg
+
+Objetivo: integrar en los MP4 los subtítulos, la cama sonora y la exportación
+vertical que ya estaban preparados en el renderizador.
+
+Hecho:
+
+- Se regeneró el máster de 53.34 s, 1280 × 720, 24 fps, H.264/AAC, con pista de
+  subtítulos `mov_text` y 3,680,910 bytes.
+- Se regeneró el derivado móvil de 640 × 360 y 1,474,716 bytes para la AR.
+- Se generó el corte vertical 1080 × 1920 y se corrigió el fondo desenfocado para
+  que no quedara en negro.
+- Se actualizaron el SRT de diez bloques, la cama sonora PCM, el póster y el
+  storyboard. La mezcla del máster midió -16.05 LUFS, -1.49 dBTP y LRA 3.40.
+- Se revisaron visualmente frames del máster y del vertical, además del storyboard.
+
+Límite: la cama sonora sigue pendiente de escucha y aprobación de Joshua; no se
+presenta como corte final aprobado.
+
+## Pendientes inmediatos
+
+- Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de
+  las modificaciones propias. Registrar lmik3 como apoyo de render, si se usa.
+← Edit ~\dev\proyecto_integrador_UNI\docs\bitacora-ia.md
+**Límite actual:** el QA automatizable está cerrado, pero siguen pendientes las
+pruebas físicas de AR, checkout y WebXR, la evidencia formal en teléfono y el pase
+manual de los modelos en Blender.
+
+## 21. Regeneración del video con FFmpeg
+
+**Pregunta o instrucción:** regenerar los MP4 para integrar SRT, cama sonora y
+exportación vertical, y revisar el resultado.
+
+**Respuesta de la IA:** se ejecutó `python scripts/render_harvest_video.py` con
+FFmpeg 9.0.2. Se generaron el máster 1280 × 720, el móvil 640 × 360 y el vertical
+1080 × 1920; los tres incluyen audio AAC y subtítulos `mov_text`. También se
+actualizaron el SRT, la cama sonora PCM, el póster y el storyboard. El fondo del
+vertical se aclaró para evitar barras negras. La mezcla del máster midió -16.05
+LUFS, -1.49 dBTP y LRA 3.40.
+
+**Verificación:** `ffprobe` confirmó resolución, duración, audio y subtítulos en
+los tres archivos; se revisaron frames del máster y del vertical y el storyboard.
+La cama sonora sigue pendiente de escucha y aprobación de Joshua.
+
+**Error o aprendizaje:** el primer corte vertical usaba un fondo demasiado oscuro
+y dejaba barras negras; se corrigió el filtro de brillo y saturación del fondo
+desenfocado.
+
+**Límite actual:** no se puede declarar la mezcla como aprobada hasta que Joshua
+escuche la cama sonora. La validación física de AR/WebXR y el pase manual de
+Blender siguen pendientes.
+
+## Reflexión personal pendiente
+
+Escribe aquí, con tus palabras:
+
+← Edit ~\dev\proyecto_integrador_UNI\docs\anexos\bitacora-ia-entrega.md
+- **Aceptado/corregido/descartado:** se aceptó una recreación con fuentes; se
+  corrigió la lectura UTF-8 de PowerShell y se cambió la codificación para mejorar
+  reproducción móvil; se descartó presentarlo como documental o testimonio.
+- **Verificación:** MP4 decodificado y medido; test headless verificó reproducción
+  y pausa AR. La cama musical y salida vertical se documentan como adiciones
+  candidatas aún por integrar en MP4.
+  y pausa AR. En la sesión local posterior se integraron la cama sonora, el SRT y
+  la salida vertical; la mezcla del máster midió -16.05 LUFS y -1.49 dBTP.
+- **Reflexión personal de Joshua:** pendiente de escribir.
+
+### 7. Meliponario VR, fauna y narración · 2026-11-08
+
+← Edit ~\dev\proyecto_integrador_UNI\docs\anexos\bitacora-ia-entrega.md
+  que el panel no es administración real.
+- **Verificación:** `npm run test:commerce` pasó en API estable; cinco pruebas
+  Python pasaron; `npm run build` y `npm --prefix apps/ar-preview run test:smoke`
+  pasaron después de las ediciones; `test:production-panel` confirmó `404` en
+  producción. Se generó una captura desktop. FFmpeg no estaba disponible, así que
+  no se integró la música ni los subtítulos en los MP4.
+  producción. Se generó una captura desktop. En la sesión local posterior se
+  regeneraron los MP4 maestro, móvil y vertical con FFmpeg, SRT y cama sonora;
+  falta la escucha y aprobación de Joshua.
+- **Reflexión personal de Joshua:** pendiente de revisar y completar con su
+  explicación de qué decisiones aceptó, corrigió o no aceptaría.
+
+## Reflexión final del alumno — completar antes de entregar
+← Edit ~\dev\proyecto_integrador_UNI\docs\declaracion-uso-ia.md
+  registrado en la bitácora como DeepSeek V4.1 Flash Free.
+- Sesión de cierre del 26 de noviembre de 2026: OpenCode, modelo
+  `opencode-go/gpt-6-luna`.
+- Herramientas técnicas verificadas en el repositorio: React/Vite, Express,
+  MySQL, Blender, Python y FFmpeg. Los binarios de Blender y FFmpeg no estaban
+  disponibles en el `PATH` durante la sesión de cierre indicada.
+  MySQL, Blender, Python y FFmpeg. En la sesión remota de cierre, Blender y FFmpeg
+  no estaban en el `PATH`; en la sesión local posterior se usó FFmpeg 9.0.2 para
+  regenerar los MP4.
+
+## Áreas con apoyo de IA
+
+- Estructura de repositorio, código de API/tienda, SQL de demostración y scripts.
+← Edit ~\dev\proyecto_integrador_UNI\docs\manual-tecnico.md
+- Docker Desktop y Docker Compose v2.
+- Puertos locales 3000, 3306, 5173 y 5174 disponibles.
+- Blender y FFmpeg para regenerar modelos, renders, audio o video.
+
+En la sesión de cierre del 26 de noviembre de 2026 se observó Node.js 20.20.2.
+Blender y FFmpeg no se encontraron en `PATH` en ese entorno; por tanto, no se
+regeneraron ni validaron sus salidas durante esa sesión.
+En la sesión remota de cierre del 26 de noviembre de 2026 se observó Node.js
+20.20.2. Blender y FFmpeg no se encontraron en `PATH` en ese entorno. En la sesión
+local posterior se usó FFmpeg 9.0.2 para regenerar y validar el máster, el móvil y
+el vertical; Blender sigue pendiente para el pase manual.
+
+## 3. Instalación y arranque
+
+Desde la raíz del repositorio:
++ Thought: 6.0s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python scripts/render_memory_pdf.py
+Traceback (most recent call last):
+  File "C:\Users\tiojo\dev\proyecto_integrador_UNI\scripts\render_memory_pdf.py", line 9, in <module>
+    import markdown
+ModuleNotFoundError: No module named 'markdown'
+# Running in ~\dev\proyecto_integrador_UNI
+$ $edgeCandidates=@('C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe','C:\Program Files\Microsoft\Edge\Application\msedge.exe'); $edge=$edgeCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1; if(-not $edge){ throw 'Edge no encontrado' }; $html=(Resolve-Path 'docs\presentacion.html').Path; $pdf=(Join-Path (Get-Location) 'docs\presentacion.pdf'); $uri='file:///' + ($html -replace '\\','/') + '?export=1'; & $edge --headless=new --disable-gpu --no-first-run --no-pdf-header-footer "--print-to-pdf=$pdf" $uri; Get-Item -LiteralPath $pdf | Select-Object FullName,Length,LastWriteTime
+FullName                                                          Length LastWriteTime            
+--------                                                          ------ -------------            
+C:\Users\tiojo\dev\proyecto_integrador_UNI\docs\presentacion.pdf 1592488 26/11/2026 08:51:11 p. m.
+
+
+[25340:7040:1126/212503.194:ERROR:chrome\browser\task_manager\providers\fallback_task_provider.cc:126] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/40528867.
+[25340:7040:1126/212504.883:ERROR:chrome\browser\task_manager\providers\fallback_task_provider.cc:126] Every renderer should have at least one task provided by a primary task provider. If a "Renderer" fallback task is shown, it is a bug. If you have repro steps, please file a new bug and tag it as a dependency of crbug.com/40528867.
+[25340:7040:1126/212504.974:ERROR:chrome\browser\task_manager\providers\fallback_task_provider.cc:126] Every renderer shoul…
+Click to expand
++ Thought: 1.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'requirements-docs.txt'; Get-Content -LiteralPath 'requirements-video.txt'
+Markdown==3.10.3
+Pillow==11.1.0
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -m pip --version; python -m pip show markdown 2>$null | Select-Object -First 3
+pip 25.0.1 from C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\site-packages\pip (python 3.12)
++ Thought: 1.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -m pip install -r requirements-docs.txt; if ($?) { python scripts/render_memory_pdf.py }
+Defaulting to user installation because normal site-packages is not writeable
+Collecting Markdown==3.10.3 (from -r requirements-docs.txt (line 1))
+  Downloading markdown-3.10.3-py3-none-any.whl.metadata (5.1 kB)
+Downloading markdown-3.10.3-py3-none-any.whl (110 kB)
+Installing collected packages: Markdown
+  WARNING: The script markdown_py.exe is installed in 'C:\Users\tiojo\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\Scripts' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed Markdown-3.10.3
+
+[notice] A new release of pip is available: 25.0.1 -> 26.3
+…
+Click to expand
++ Thought: 2.2s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $cmds='pdfinfo','pdftotext','qpdf'; foreach($c in $cmds){ $x=Get-Command $c -ErrorAction SilentlyContinue; if($x){ "$c => $($x.Source)" } else { "$c => NOT_FOUND" } }; Get-Item 'docs\memoria.pdf','docs\presentacion.pdf','docs\memoria.html' | Select-Object Name,Length,LastWriteTime
+pdfinfo => NOT_FOUND
+pdftotext => NOT_FOUND
+qpdf => NOT_FOUND
+
+Name              Length LastWriteTime            
+----              ------ -------------            
+memoria.pdf       293542 26/11/2026 09:25:38 p. m.
+presentacion.pdf 1592492 26/11/2026 09:25:07 p. m.
+memoria.html       30121 26/11/2026 09:25:34 p. m.
+# Running in ~\dev\proyecto_integrador_UNI
+$ git status --short; git diff --stat; git check-ignore -v 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4'
+M .gitignore
+ M AGENTS.md
+ M PROJECT_CONTEXT.md
+ M README.md
+ M assets/video/README.md
+ M assets/video/cosecha-melipona-recreacion-mobile.mp4
+ M assets/video/cosecha-melipona-recreacion.mp4
+ M docs/anexos/bitacora-ia-entrega.md
+ M docs/bitacora-ia.md
+ M docs/declaracion-uso-ia.md
+…
+Click to expand
++ Thought: 2.8s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -c "import importlib.util; print('pypdf', bool(importlib.util.find_spec('pypdf'))); print('PyPDF2', bool(importlib.util.find_spec('PyPDF2'))); print('fitz', bool(importlib.util.find_spec('fitz')))"
+pypdf False
+PyPDF2 False
+fitz False
++ Thought: 3.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm --prefix apps/ar-preview run test:smoke
+> @sak-po-kaab/ar-preview@0.1.0 test:smoke
+> node scripts/smoke-test.mjs && node scripts/vr-navigation-test.mjs
+
+AR_PREVIEW_SMOKE_OK: visor, VR con hotspots/fauna/audio, MindAR, etiqueta y videos.
+VR_NAVIGATION_OK: bounds, tree/pond collisions and clear farm path.
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm run build
+> sak-po-kaab@0.1.0 build
+> npm run build --workspace @sak-po-kaab/store
+
+
+> @sak-po-kaab/store@0.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 34 modules transformed.
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils; if ($?) { python -m py_compile scripts/render_harvest_video.py scripts/audio_bed.py scripts/subtitle_utils.py scripts/render_memory_pdf.py }
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.106s
+
+OK
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffprobe -v error -show_entries format=duration,size -show_entries stream=index,codec_type,codec_name,width,height,r_frame_rate,channels,sample_rate -of compact 'assets/video/cosecha-melipona-recreacion.mp4' 'assets/video/cosecha-melipona-recreacion-mobile.mp4' 'assets/video/cosecha-melipona-recreacion-social-vertical.mp4'
+Argument 'assets/video/cosecha-melipona-recreacion-mobile.mp4' provided as input filename, but 'assets/video/cosecha-melipona-recreacion.mp4' was already specified.
++ Thought: 2.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff --check; git status --short --branch; git diff --stat
+warning: in the working copy of 'assets/video/README.md', LF will be replaced by CRLF the next time Git touches it
+## main...origin/main
+ M .gitignore
+ M AGENTS.md
+ M PROJECT_CONTEXT.md
+ M README.md
+ M assets/video/README.md
+ M assets/video/cosecha-melipona-recreacion-mobile.mp4
+ M assets/video/cosecha-melipona-recreacion.mp4
+ M docs/anexos/bitacora-ia-entrega.md
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff -- AGENTS.md README.md PROJECT_CONTEXT.md docs/scrum/sprint-4.md docs/scrum/backlog.md
+diff --git a/AGENTS.md b/AGENTS.md
+index 323f9f2..7d4c597 100644
+--- a/AGENTS.md
++++ b/AGENTS.md
+@@ -61,6 +61,8 @@
+   cinco hotspots (incluye detalle escondido), cinco teletransportes, lago con
+   peces, abejas ambientales y narración sintética; validación headless y de
+   navegación pasó, falta WebXR físico.
++- Video maestro 720p, móvil 360p y vertical 1080 × 1920 regenerados con FFmpeg,
++  SRT y cama sonora; falta la escucha/aprobación de Joshua.
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff -- docs/defensa.md docs/memoria.md docs/presentacion.html docs/evidencias/2026-11-26/README.md
+diff --git a/docs/defensa.md b/docs/defensa.md
+index eb53b57..5a0d04e 100644
+--- a/docs/defensa.md
++++ b/docs/defensa.md
+@@ -145,9 +145,9 @@ jurado.
+ 
+ > El video es una animación original de 720p generada con Python, Pillow y
+ > FFmpeg. Muestra la colonia, la preparación, la apertura del jobón, la recolección
+-> por gravedad, el filtrado, el cierre y las reservas. El renderizador ya genera
+-> SRT y una cama musical original, pero los MP4 todavía requieren regeneración y
+…
+Click to expand
++ Thought: 19.5s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $files='docs\memoria.pdf','docs\presentacion.pdf'; foreach($f in $files){ $bytes=[IO.File]::ReadAllBytes((Resolve-Path $f)); $head=[Text.Encoding]::ASCII.GetString($bytes[0..4]); "$f => $head, $($bytes.Length) bytes" }; $srt=Get-Content -LiteralPath 'assets\video\cosecha-melipona-recreacion.srt' -Raw; "SRT blocks: $(([regex]::Matches($srt,'(?m)^\d+$')).Count)"
+docs\memoria.pdf => %PDF-, 293542 bytes
+docs\presentacion.pdf => %PDF-, 1592492 bytes
+SRT blocks: 0
+# Running in ~\dev\proyecto_integrador_UNI
+$ git status --short --branch; git diff --check
+## main...origin/main
+ M .gitignore
+ M AGENTS.md
+ M PROJECT_CONTEXT.md
+ M README.md
+ M assets/video/README.md
+ M assets/video/cosecha-melipona-recreacion-mobile.mp4
+ M assets/video/cosecha-melipona-recreacion.mp4
+ M docs/anexos/bitacora-ia-entrega.md
+ M docs/bitacora-ia.md
+…
+Click to expand
++ Thought: 23.2s
+Objective
+Sincronizar el repositorio con el trabajo hecho en el trabajo y respaldado en USB, regenerar/revisar el video con SRT, cama sonora y versión vertical, y dejar documentación/QA listos para decidir el commit.
+Mantener el proyecto Sak P'o' Kaab como caso simulado y no presentar pruebas físicas ni autoría manual como completadas sin evidencia.
+Important Details
+Proyecto: C:\Users\tiojo\dev\proyecto_integrador_UNI; rama main; remoto https://github.com/202300074-ops/proyecto_integrador_UNI.git.
+Entrega: 26–27 noviembre 2026. Defensa: 30 noviembre–4 diciembre 2026. Sesión local actual: 2026-11-26/27.
+Repo actualizado: 6b7f9a2 → bb5cc2b; commits nuevos 85d7b34 y bb5cc2b. origin/main = bb5cc2b.
+USB: D:\proyecto_2026-11-26; contiene proyecto\, cambios-hoy\, local-solo-usb\, instrucciones-2026-11-26.md, VERIFICACION.txt.
+El USB coincide con origin/main tras normalizar saltos de línea; única diferencia: .opencode/package-lock.json ignorado (fast-check 4.10.2 local vs 4.11.0 USB).
+No copiar .env del USB: el local ya existe y tiene las mismas claves; se evitó sobrescribir configuración.
+Caso simulado: cooperativa, marca y productos ficticios/conceptuales. Sin pagos reales, login, panel admin ni reseñas inventadas.
+No borrar pedidos manuales:
+SKP-MWBJ2NP1-D34916 / pending
+SKP-MWBJ7X6T-490348 / pending
+DB intacta: orders_count = 2; BIENVENIDA10 used_count = 0; stock MEL-250=24, MEL-500=12, JAB-MIEL=30, JAB-CACAO=18, BAL-10=25, VEL-200=8.
+Docker/MySQL: contenedor melipona-db; usuario melipona, contraseña melipona_dev, base melipona.
+Puertos: API 3000, tienda 5173, AR/VR 5174. La API de 3000 está en modo producción; el panel demo responde 404 por diseño.
+npm run test:commerce contra 3000 falla con panel de demostración debe responder 200 / 404; usar API dev en 3001 y API_BASE=http://127.0.0.1:3001/api.
+Regla: no commitear cambios nuevos sin pedido explícito. El commit anterior 6b7f9a2 ya incluye docs/vela/App/seed y fue subido.
+Video: máster 720p, móvil 360p y vertical 1080×1920 regenerados con FFmpeg 9.0.2. La cama sonora está integrada, pero falta escucha/aprobación de Joshua antes de presentarla como corte final.
+FFmpeg local: C:\Users\tiojo\AppData\Local\Microsoft\WinGet\Links\ffmpeg.exe; Blender 5.2 en C:\Program Files\Blender Foundation\Blender 5.2 pero no en PATH.
+Pendientes que requieren a Joshua: evidencia física Galaxy A22/WebXR, pase manual Blender, aprobación de audio, nombre institucional, reflexión personal y ensayo de defensa.
+Work State
+Completed
+git fetch + git pull --ff-only origin main: fast-forward limpio a bb5cc2b.
+Verificación USB: proyecto\ y cambios-hoy\ coinciden con el repo; no faltan archivos locales.
+QA tras actualizar:
+npm run build: OK, 34 módulos.
+npm --prefix apps/ar-preview run build: OK, 12 módulos.
+npm --prefix apps/ar-preview run test:smoke: AR_PREVIEW_SMOKE_OK, VR_NAVIGATION_OK.
+npm run test:production-panel --workspace @sak-po-kaab/server: ORDERS_PANEL_PRODUCTION_DISABLED_OK.
+python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils: 5 tests OK.
+python -m py_compile ...: OK.
+npm run test:commerce con API dev 3001: COMMERCE_SMOKE_OK: coupon, minimum, stock lock, order SKP-MWYBYQDC-DFF3F5.
+DB verificada después del smoke: pedidos, cupón y stock intactos.
+Video regenerado con python scripts/render_harvest_video.py:
+assets/video/cosecha-melipona-recreacion.mp4: 1280×720, 24 fps, 53.338 s, 3,680,910 bytes; H.264 + AAC + mov_text.
+assets/video/cosecha-melipona-recreacion-mobile.mp4: 640×360, 53.338 s, 1,474,716 bytes.
+assets/video/cosecha-melipona-recreacion-social-vertical.mp4: 1080×1920, 53.29 s, 2,016,522 bytes.
+assets/video/cosecha-melipona-recreacion.srt: 10 bloques, UTF-8 correcto.
+assets/audio/cama-sonora-original.wav: PCM 16-bit mono 22.05 kHz, 53.338 s.
+Loudness del máster: -16.05 LUFS, -1.49 dBTP, LRA 3.40.
+Se corrigió el fondo del vertical: de boxblur=30:10,eq=brightness=-0.18 a boxblur=40:20,eq=brightness=0.12:saturation=1.2; se revisaron frames visualmente.
+Documentación ya editada en esta sesión:
+.gitignore: excepción para assets/video/cosecha-melipona-recreacion-social-vertical.mp4.
+assets/video/README.md.
+docs/referencias-video.md.
+docs/memoria.md (secciones 11 y 14).
+docs/defensa.md (diapositiva 10 y checklist).
+docs/presentacion.html.
+docs/scrum/sprint-4.md.
+docs/scrum/backlog.md.
+README.md.
+PROJECT_CONTEXT.md.
+AGENTS.md.
+Active
+Cambios sin commitear: video máster/móvil regenerados, vertical nuevo, .gitignore, script de video y documentación anterior.
+docs/presentacion.html ya actualizado, pero docs/presentacion.pdf sigue desactualizado.
+docs/memoria.md ya actualizado, pero docs/memoria.html y docs/memoria.pdf siguen desactualizados.
+Pendiente de editar: docs/evidencias/2026-11-26/README.md, docs/diario.md, docs/bitacora-ia.md, docs/anexos/bitacora-ia-entrega.md, docs/declaracion-uso-ia.md, docs/manual-tecnico.md.
+API temporal 3001 detenida; API 3000 en producción sigue activa.
+git status debe revisarse antes de stage; el vertical ya no está ignorado tras editar .gitignore.
+Blocked
+Aprobación auditiva de la cama sonora por Joshua.
+Evidencia física de AR/video/checkout en Galaxy A22.
+Validación WebXR física, comodidad y audio en visor/teléfono.
+Pase manual de abeja/jobón en Blender y documentación de autoría.
+Nombre oficial de la institución para portada de memoria/PDF.
+Reflexión personal de Joshua en bitácora/anexo.
+Confirmar si la materia exige .pptx.
+npm run test:commerce no pasa contra API 3000 en producción por diseño; usar API dev 3001.
+Next Move
+Terminar las ediciones documentales pendientes y regenerar docs/memoria.html, docs/memoria.pdf y docs/presentacion.pdf.
+Repetir QA final (npm run build, AR build/smoke, commerce con API dev 3001, tests Python, ffprobe) y revisar git diff --check/git status.
+Pedir a Joshua que escuche y apruebe la cama sonora; solo después stage/commit/push con confirmación explícita.
+Relevant Files
+D:\proyecto_2026-11-26\instrucciones-2026-11-26.md: instrucciones del trabajo del día.
+D:\proyecto_2026-11-26\VERIFICACION.txt: resumen del respaldo, commit bb5cc2b y pendientes.
+D:\proyecto_2026-11-26\cambios-hoy\: 22 archivos que coinciden con el repo.
+D:\proyecto_2026-11-26\local-solo-usb\.env: archivo local no versionado; no sobrescribir.
+scripts/render_harvest_video.py: genera MP4, SRT, cama sonora, póster y storyboard; filtro vertical corregido.
+assets/video/cosecha-melipona-recreacion.mp4: máster 720p regenerado.
+assets/video/cosecha-melipona-recreacion-mobile.mp4: derivado 360p para AR.
+assets/video/cosecha-melipona-recreacion-social-vertical.mp4: vertical 1080×1920 nuevo; antes ignorado.
+assets/video/cosecha-melipona-recreacion.srt: subtítulos en español, 10 bloques.
+assets/audio/cama-sonora-original.wav: cama sonora integrada; falta aprobación.
+assets/video/README.md: documenta los tres MP4 y la mezcla.
+docs/referencias-video.md: guion, límites y estado de la regeneración.
+docs/memoria.md: secciones de video y limitaciones actualizadas; falta regenerar HTML/PDF.
+docs/defensa.md: diapositiva 10 y checklist actualizados.
+docs/presentacion.html: texto de video actualizado; falta regenerar PDF.
+docs/scrum/sprint-4.md y docs/scrum/backlog.md: S4-04 actualizado a “hecho técnico”.
+README.md, PROJECT_CONTEXT.md, AGENTS.md: estado y pendientes actualizados.
+docs/evidencias/2026-11-26/README.md: pendiente añadir resultados del video.
+docs/diario.md, docs/bitacora-ia.md, docs/anexos/bitacora-ia-entrega.md: pendiente registrar la regeneración.
+docs/declaracion-uso-ia.md, docs/manual-tecnico.md: pendiente corregir menciones a FFmpeg/MP4 no integrados.
+▣  Compaction · DeepSeek V4.1 Flash Free · 50.9s
++ Thought: 3.6s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -c "from pathlib import Path; t=Path('assets/video/cosecha-melipona-recreacion.srt').read_text(encoding='utf-8-sig'); blocks=[l for l in t.splitlines() if l.strip().isdigit()]; print('SRT blocks:', len(blocks)); print('first:', blocks[:3]); print('last:', blocks[-3:])"
+SRT blocks: 10
+first: ['1', '2', '3']
+last: ['8', '9', '10']
++ Thought: 8.2s
+Documentación y PDFs regenerados; QA final pasó. Queda un bloqueo real: la cama sonora sigue sin aprobación y los cambios están sin commit.
+# Questions
+Escucha `assets/audio/cama-sonora-original.wav` o el MP4 máster. ¿Cómo cierro?
+Falta escuchar; esperar
++ Thought: 1.1s
+Queda todo sin commitear. Los 23 archivos modificados y el vertical nuevo están listos, pero esperarán tu aprobación auditiva.
+Cuando escuches assets/audio/cama-sonora-original.wav o el MP4 máster, confirma si la apruebas y si quieres commit + push.
+▣  Build · DeepSeek V4.1 Flash Free · 5m 22s
+dame los comandos para levantar y poder haer la prueba del mp4
++ Thought: 2.8s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'package.json' -Raw
+{
+  "name": "sak-po-kaab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tienda en linea y experiencia multimedia de Sak P'o' Kaab",
+  "workspaces": [
+    "server",
+    "apps/store"
+  ],
+  "scripts": {
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\package.json' -Raw; Get-Content -LiteralPath 'apps\store\package.json' -Raw
+{
+  "name": "@sak-po-kaab/ar-preview",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5174",
+    "build": "vite build",
+    "test:smoke": "node scripts/smoke-test.mjs && node scripts/vr-navigation-test.mjs",
+    "preview": "vite preview --host 0.0.0.0 --port 4174"
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ rg -n "5173|5174|3000|dev|start|video|cosecha" README.md docs/manual-tecnico.md apps/ar-preview/README.md 2>$null
+rg : El t rmino 'rg' no se reconoce como nombre de un cmdlet, funci n, archivo de script o programa ejecutable. 
+Compruebe si escribi  correctamente el nombre o, si incluy  una ruta de acceso, compruebe que dicha ruta es correcta e 
+int ntelo de nuevo.
+En l nea: 1 Car cter: 1
++ rg -n "5173|5174|3000|dev|start|video|cosecha" README.md docs/manual- ...
++ ~~
+    + CategoryInfo          : ObjectNotFound: (rg:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
++ Thought: 2.7s
+Grep "5173|5174|3000|cosecha-melipona-recreacion|video" in ~\dev\proyecto_integrador_UNI\README.md (100 matches)
+Grep "cosecha-melipona-recreacion|video|5174" in ~\dev\proyecto_integrador_UNI\apps\ar-preview (13 matches)
+Grep "cosecha-melipona-recreacion|video" in ~\dev\proyecto_integrador_UNI\apps\ar-preview (61 matches)
++ Thought: 3.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\ar.html' -TotalCount 140
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta
+      name="description"
+      content="Experiencia de realidad aumentada del meliponario Sak P'o' Kaab sobre una etiqueta impresa."
+    />
+    <title>Meliponario AR    Sak P'o' Kaab</title>
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\src\ar.js' -TotalCount 260
+import './components.js';
+
+const scene = document.querySelector('#ar-scene');
+const target = document.querySelector('#ar-target');
+const status = document.querySelector('#ar-status');
+const hint = document.querySelector('#ar-hint');
+const retry = document.querySelector('#ar-retry');
+const targetPanel = document.querySelector('#target-panel');
+const targetButton = document.querySelector('#target-button');
+const targetClose = document.querySelector('#target-close');
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\store\src\App.jsx' | Select-Object -Skip 300 -First 80
+<dt className="text-[11px] uppercase tracking-widest text-charcoal/50">
+                    Productos
+                  </dt>
+                  <dd className="font-display text-2xl text-forest-900">
+                    {products.length || ' ?"'}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-[11px] uppercase tracking-widest text-charcoal/50">
+                    Variantes
+…
+Click to expand
++ Thought: 1.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\store\src\App.jsx' -Pattern 'video|cosecha|harvest|experiencia' -Context 2,4 | Select-Object -First 80
+apps\store\src\App.jsx:5:import OrdersPanel from './components/OrdersPanel.jsx';
+  apps\store\src\App.jsx:6:import arLabel from '../../../assets/targets/etiqueta-sakpokaab.png';
+> apps\store\src\App.jsx:7:import hivePoster from '../../../assets/video/cosecha-poster.png';
+  apps\store\src\App.jsx:8:import vrPreview from '../../../docs/evidencias/2026-11-25/vr-final.png';
+  apps\store\src\App.jsx:9:
+  apps\store\src\App.jsx:10:const AR_PREVIEW_BASE_URL = (
+  apps\store\src\App.jsx:11:  import.meta.env.VITE_AR_PREVIEW_URL || 'http://localhost:5174'
+  apps\store\src\App.jsx:255:              Cat logo
+  apps\store\src\App.jsx:256:            </a>
+> apps\store\src\App.jsx:257:            <a className="transition hover:text-forest-900" href="#experiencia">
+…
+Click to expand
++ Thought: 6.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\ar-preview\index.html' -Pattern 'video|cosecha|harvest' -Context 1,2; Select-String -LiteralPath 'apps\ar-preview\vr.html' -Pattern 'video|cosecha|harvest' -Context 1,2
+(no output)
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\vite.config.js' -TotalCount 90
+import { createReadStream, readFileSync, statSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { defineConfig } from 'vite';
+
+const appRoot = path.dirname(fileURLToPath(import.meta.url));
+const modelRoot = path.resolve(appRoot, '../../assets/models');
+const targetRoot = path.resolve(appRoot, '../../assets/targets');
+const videoRoot = path.resolve(appRoot, '../../assets/video');
+const audioRoot = path.resolve(appRoot, '../../assets/audio');
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'README.md' | Select-Object -Skip 35 -First 35
+- El GLB de la abeja contiene el clip `SakPoKaab`; el job  n incluye panales y
+  cavidad interior.
+- Renders EEVEE generados por `scripts/blender_render_eevee.py` en
+  `docs/evidencias/2026-11-04/`.
+- La escena generada por scripts aǧn requiere el pase manual y documentado de
+  Joshua para sustentar la autor  a.
+- Gu  a del pase manual: `docs/pase-manual-3d.md`; skills de apoyo:
+  `docs/skills-3d.md`.
+- Visor A-Frame con meliponario estilizado, seis abejas, dos mariposas, una
+  libǸlula, un colibr  , una lagartija, job  n, ǭrboles, flores, pasto, colinas y
+…
+Click to expand
++ Thought: 43.9s
+Desde C:\Users\tiojo\dev\proyecto_integrador_UNI:
+# 1. Levantar solo el visor AR/video (puerto 5174)
+npm --prefix apps/ar-preview run dev
+Deja esa terminal abierta. En otra terminal:
+# 2. Abrir el MP4 máster en el navegador
+Start-Process "http://localhost:5174/video/cosecha-melipona-recreacion.mp4"
+
+# 3. Abrir el MP4 móvil
+Start-Process "http://localhost:5174/video/cosecha-melipona-recreacion-mobile.mp4"
+
+# 4. Abrir la experiencia AR
+Start-Process "http://localhost:5174/ar.html"
+En AR, el botón Ver cosecha solo se habilita cuando MindAR detecta la etiqueta. Puedes abrirla aquí y mostrarla en otra pantalla o imprimirla:
+Start-Process "http://localhost:5174/targets/etiqueta-sakpokaab.png"
+Para probar el archivo directamente sin servidor:
+Start-Process "assets\video\cosecha-melipona-recreacion.mp4"
+Start-Process "assets\video\cosecha-melipona-recreacion-social-vertical.mp4"
+Los subtítulos van como pista mov_text; Chrome no siempre los muestra. Para revisarlos, usa VLC. Si quieres probar en el Galaxy A22 por USB:
+adb reverse tcp:5174 tcp:5174
+Y abre en el teléfono http://localhost:5174/ar.html. No uses la IP LAN para WebXR/cámara.
+▣  Build · DeepSeek V4.1 Flash Free · 1m 34s
+okey y para levantar el proyecto?
++ Thought: 13.3s
+Desde C:\Users\tiojo\dev\proyecto_integrador_UNI:
+# 1. Base de datos
+npm run db:up
+
+# 2. API (3000) + tienda (5173)
+npm run dev
+En otra terminal, para AR/VR/video:
+npm --prefix apps/ar-preview run dev
+Abre:
+Tienda: http://localhost:5173
+AR: http://localhost:5174/ar.html
+VR: http://localhost:5174/vr.html
+Video: http://localhost:5174/video/cosecha-melipona-recreacion.mp4
+Si el puerto 3000 sigue ocupado por la API de producción que quedó corriendo, ciérrala primero:
+Get-NetTCPConnection -LocalPort 3000 -State Listen |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+Luego ejecuta npm run dev. Verifica con:
+curl.exe -s http://127.0.0.1:3000/api/health
+Para detener: Ctrl+C en cada terminal y, si quieres apagar la DB, npm run db:down.
+▣  Build · DeepSeek V4.1 Flash Free · 21.1s
+me sale sto en el navegador [Image 1] 
+ File  clipboard 
++ Thought: 7.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ adb devices -l; adb reverse --list
+* daemon not running; starting now at tcp:5037
+* daemon started successfully
+List of devices attached
+
+error: no devices/emulators found
+Unknown: ChildProcess.kill (C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.EXE -NoLogo -NoProfile -NonInteractive -Command adb devices -l; adb reverse --list)
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-NetTCPConnection -State Listen -LocalPort 5174,5173,3000 -ErrorAction SilentlyContinue | Select-Object LocalAddress,LocalPort,OwningProcess; Get-Process -Id (Get-NetTCPConnection -State Listen -LocalPort 5174 -ErrorAction SilentlyContinue).OwningProcess -ErrorAction SilentlyContinue | Select-Object Id,ProcessName,Path
+LocalAddress LocalPort OwningProcess
+------------ --------- -------------
+::                3000         10640
+127.0.0.1         5174          8556
+0.0.0.0           5174         26148
+127.0.0.1         5173         23668
+0.0.0.0           5173         30180
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-NetIPAddress -AddressFamily IPv4 | Where-Object { $_.IPAddress -notlike '127.*' -and $_.IPAddress -notlike '169.254*' } | Select-Object InterfaceAlias,IPAddress
+InterfaceAlias                     IPAddress   
+--------------                     ---------   
+vEthernet (WSL (Hyper-V firewall)) 172.19.144.1
+Wi-Fi                              192.168.1.32
++ Thought: 7.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $cmd=Get-Command adb -ErrorAction SilentlyContinue; if($cmd){$cmd.Source}else{'ADB_NOT_FOUND'}; Get-ChildItem -LiteralPath "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe","$env:ProgramFiles\Android\Android Studio\platform-tools\adb.exe" -ErrorAction SilentlyContinue | Select-Object FullName
+C:\Users\tiojo\dev\android_sdk\platform-tools\adb.exe
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-NetFirewallRule -DisplayName '*Node*','*Vite*' -ErrorAction SilentlyContinue | Select-Object DisplayName,Enabled,Direction,Action,Profile | Format-Table -AutoSize
+DisplayName                Enabled Direction Action Profile
+-----------                ------- --------- ------ -------
+Node.js JavaScript Runtime    True   Inbound  Allow  Public
+Node.js JavaScript Runtime    True   Inbound  Allow  Public
++ Thought: 1.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ & 'C:\Users\tiojo\dev\android_sdk\platform-tools\adb.exe' devices -l; & 'C:\Users\tiojo\dev\android_sdk\platform-tools\adb.exe' reverse --list
+List of devices attached
+
+error: no devices/emulators found
++ Thought: 8.5s
+# Running in ~\dev\proyecto_integrador_UNI
+$ curl.exe -s -o NUL -w "ar.html: %{http_code}\n" http://192.168.1.32:5174/ar.html; curl.exe -s -o NUL -w "video: %{http_code}\n" -H "Range: bytes=0-1023" http://192.168.1.32:5174/video/cosecha-melipona-recreacion.mp4
+ar.html: 200
+video: 206
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-NetConnectionProfile | Select-Object Name,InterfaceAlias,NetworkCategory,IPv4Connectivity
+Name         InterfaceAlias NetworkCategory IPv4Connectivity
+----         -------------- --------------- ----------------
+Mega_5G_1B5F Wi-Fi                   Public         Internet
++ Thought: 13.1s
+Tienes dos problemas separados:
+La IP no es la correcta. Tu PC está en 192.168.1.32, no en ...107. Abre en el teléfono:
+http://192.168.1.32:5174/ar.html
+Asegúrate de que el teléfono esté en la misma Wi-Fi (Mega_5G_1B5F), no en datos móviles.
+La cámara no funciona por HTTP en LAN. Chrome solo permite cámara en https:// o localhost; por eso sale “Error desconocido”.
+Para probar AR con cámara, usa ADB:
+# Conecta el Galaxy por USB, activa Depuración USB y acepta el aviso
+& "C:\Users\tiojo\dev\android_sdk\platform-tools\adb.exe" devices
+& "C:\Users\tiojo\dev\android_sdk\platform-tools\adb.exe" reverse tcp:5174 tcp:5174
+Luego abre en el teléfono:
+http://localhost:5174/ar.html
+Ahora mismo ADB no detecta ningún teléfono conectado. Si no quieres usar USB, puedes probar el flag de Chrome en el teléfono:
+chrome://flags/#unsafely-treat-insecure-origin-as-secure
+Agrega http://192.168.1.32:5174, actívalo y reinicia Chrome. Es solo para pruebas, no para la defensa.
+Para probar solo el MP4 por Wi-Fi, sin cámara:
+http://192.168.1.32:5174/video/cosecha-melipona-recreacion-mobile.mp4
+El servidor sí está respondiendo: ar.html devuelve 200 y el video 206.
+▣  Build · DeepSeek V4.1 Flash Free · 1m 53s
+tenemos probblemas se traba el video cuando escaneno y le doy en ver cosecha no va fluido y se traba
++ Thought: 11.8s
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffprobe -v error -show_entries format=filename,duration,size,bit_rate,format_name -show_entries stream=index,codec_type,codec_name,profile,level,width,height,pix_fmt,r_frame_rate,avg_frame_rate,bit_rate,channels,sample_rate -of json 'assets/video/cosecha-melipona-recreacion-mobile.mp4'
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "index": 0,
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ ffprobe -v error -select_streams v:0 -show_entries frame=pict_type,key_frame,pkt_size,pkt_dts_time -of csv=p=0 'assets/video/cosecha-melipona-recreacion-mobile.mp4' | Select-Object -First 40
+1,0.000000,18035,I,
+0,0.041667,643,P
+0,0.083333,321,P
+0,0.125000,392,P
+0,0.166667,339,P
+0,0.208333,355,P
+0,0.250000,480,P
+0,0.291667,308,P
+0,0.333333,370,P
+0,0.375000,384,P
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'scripts\render_harvest_video.py' | Select-Object -Skip 600 -First 70
+mux_command = [
+            ffmpeg, "-y", "-hide_banner", "-loglevel", "error",
+            "-i", str(silent_video), "-i", str(AUDIO), "-i", str(AUDIO_BED), "-i", str(SUBTITLES),
+            "-filter_complex",
+            "[1:a]loudnorm=I=-16:TP=-1.5:LRA=11[voice];"
+            "[2:a]volume=0.3[music];"
+            "[voice][music]amix=inputs=2:duration=longest:dropout_transition=2,"
+            "loudnorm=I=-16:TP=-1.5:LRA=11[a]",
+            "-map", "0:v:0", "-map", "[a]", "-map", "3:0", "-c:v", "copy", "-c:a", "aac",
+            "-c:s", "mov_text",
+…
+Click to expand
++ Thought: 7.9s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\ar-preview\src\ar.css' -Pattern 'target-panel|video-card|backdrop-filter|filter:|animation|target-visible|ar-scene' -Context 2,4
+apps\ar-preview\src\ar.css:98:  text-decoration: none;
+  apps\ar-preview\src\ar.css:99:  cursor: pointer;
+> apps\ar-preview\src\ar.css:100:  backdrop-filter: blur(8px);
+  apps\ar-preview\src\ar.css:101:}
+  apps\ar-preview\src\ar.css:102:
+  apps\ar-preview\src\ar.css:103:.ar-button:hover {
+  apps\ar-preview\src\ar.css:104:  background: rgb(26 58 42 / 88%);
+  apps\ar-preview\src\ar.css:132:}
+  apps\ar-preview\src\ar.css:133:
+> apps\ar-preview\src\ar.css:134:body.target-visible .scan-frame {
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\ar-preview\src\ar.css' -Pattern 'video' -Context 2,6
+apps\ar-preview\src\ar.css:28:}
+  apps\ar-preview\src\ar.css:29:
+> apps\ar-preview\src\ar.css:30:a-scene video {
+  apps\ar-preview\src\ar.css:31:  width: 100%;
+  apps\ar-preview\src\ar.css:32:  height: 100%;
+  apps\ar-preview\src\ar.css:33:  object-fit: cover;
+  apps\ar-preview\src\ar.css:34:}
+  apps\ar-preview\src\ar.css:35:
+  apps\ar-preview\src\ar.css:36:#ar-ui {
+  apps\ar-preview\src\ar.css:263:}
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\src\ar.css' | Select-Object -Skip 250 -First 180
+}
+
+.target-card {
+  position: relative;
+  width: min(92vw, 520px);
+  max-height: 92dvh;
+  overflow: auto;
+  padding: 1.2rem;
+  border-radius: 1.25rem;
+  background: #f7f1e3;
+…
+Click to expand
++ Thought: 10.1s
+WebFetch https://aframe.io/docs/1.6.0/core/scene.html
++ Thought: 4.5s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $url='https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js'; $out=Join-Path $env:TEMP 'mindar-image-aframe.prod.js'; Invoke-WebRequest -Uri $url -OutFile $out; Get-Item $out | Select-Object Length; Select-String -LiteralPath $out -Pattern 'pause|unpause|video' -AllMatches | Select-Object -First 20
+Length
+ ------
+1758446
++ Thought: 1.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -c "from pathlib import Path; t=Path(r'C:\Users\tiojo\AppData\Local\Temp\mindar-image-aframe.prod.js').read_text(errors='ignore'); import re; [print(t[max(0,m.start()-300):m.start()+500].replace('\n',' ')[:800], '\n---') for m in list(re.finditer(r'pause', t))[:8]]"
+his.mainStats.showPanel(0),this.mainStats.domElement.style.cssText="position:absolute;top:0px;left:0px;z-index:999",this.container.appendChild(this.mainStats.domElement)),this.ui.showLoading(),this._startVideo()},switchTarget:function(n){this.controller.interestedTargetIndex=n},stop:function(){this.pause(),this.video.srcObject.getTracks().forEach(function(t){t.stop()}),this.video.remove(),this.controller.dispose()},pause:function(n=!1){n||this.video.pause(),this.controller.stopProcessVideo()},unpause:function(){this.video.play(),this.controller.processVideo(this.video)},_startVideo:function(){if(this.video=document.createElement("video"),this.video.setAttribute("autoplay",""),this.video.setAttribute("muted",""),this.video.setAttribute("playsinline",""),this.video.style.position="absolute", 
+---
+s.container.appendChild(this.mainStats.domElement)),this.ui.showLoading(),this._startVideo()},switchTarget:function(n){this.controller.interestedTargetIndex=n},stop:function(){this.pause(),this.video.srcObject.getTracks().forEach(function(t){t.stop()}),this.video.remove(),this.controller.di…
+Click to expand
++ Thought: 9.9s
+# Running in ~\dev\proyecto_integrador_UNI
+$ $url='https://unpkg.com/aframe@1.6.0/dist/aframe-master.js'; $out=Join-Path $env:TEMP 'aframe-1.6.0.js'; Invoke-WebRequest -Uri $url -OutFile $out; Get-Item $out | Select-Object Length; python -c "from pathlib import Path; t=Path(r'C:\Users\tiojo\AppData\Local\Temp\aframe-1.6.0.js').read_text(errors='ignore'); import re; [print(t[max(0,m.start()-600):m.start()+900], '\n---') for m in list(re.finditer(r'setAnimationLoop', t))[:6]]"
+r = this.renderer.xr;
+      AEntity.prototype.play.call(this); // .play() *before* render.
+
+      if (sceneEl.renderStarted) {
+        return;
+      }
+      sceneEl.resize();
+
+      // Kick off render loop.
+      if (sceneEl.renderer) {
+…
+Click to expand
++ Thought: 1.4s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -c "from pathlib import Path; t=Path(r'C:\Users\tiojo\AppData\Local\Temp\aframe-1.6.0.js').read_text(errors='ignore'); import re; [print(t[max(0,m.start()-500):m.start()+1200], '\n---') for m in list(re.finditer(r'\n  render\(', t))[:4]]"
+k(time, timeDelta, camera) {
+    var i;
+    var systems = this.systems;
+
+    // Components.
+    this.callComponentBehaviors('tock', time, timeDelta);
+
+    // Systems.
+    for (i = 0; i < this.systemNames.length; i++) {
+      if (!systems[this.systemNames[i]].tock) {
+…
+Click to expand
++ Thought: 2.6s
+# Running in ~\dev\proyecto_integrador_UNI
+$ python -c "from pathlib import Path; t=Path(r'C:\Users\tiojo\AppData\Local\Temp\aframe-1.6.0.js').read_text(errors='ignore'); import re; [print(t[max(0,m.start()-300):m.start()+300], '\n---') for m in list(re.finditer(r'\.render\.bind|render = this\.render', t))[:8]]"
+onAfterRender = function (renderer, scene, camera) {
+      // THREE may swap the camera used for the rendering if in VR, so we pass it to tock
+      if (self.isPlaying) {
+        self.tock(self.time, self.delta, camera);
+      }
+    };
+    self.resize = self.resize.bind(self);
+    self.render = self.render.bind(self);
+    self.systems = {};
+    self.systemNames = [];
+…
+Click to expand
++ Thought: 26.7s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\scripts\smoke-test.mjs' -TotalCount 240
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import { createServer } from 'vite';
+
+const server = await createServer({
+  configFile: fileURLToPath(new URL('../vite.config.js', import.meta.url)),
+  logLevel: 'error',
+  server: { host: '127.0.0.1', port: 0, strictPort: false }
+});
+
+…
+Click to expand
++ Thought: 14.4s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\ar.js
+let videoReady = false;
+let videoLoadPromise = null;
+let videoObjectUrl = null;
+let hasVideoHistoryEntry = false;
+let arPausedForVideo = false;
+
+function setStatus(message, state) {
+  status.textContent = message;
+  status.dataset.state = state;
++ Thought: 3.0s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\ar.js
+function closeTargetPanel() {
+  targetPanel.hidden = true;
+}
+
+function pauseArForVideo() {
+  if (arPausedForVideo) return;
+  arPausedForVideo = true;
+  document.body.classList.add('video-open');
+  scene.systems['mindar-image-system']?.pause();
+  scene.renderer?.setAnimationLoop(null);
+}
+
+function resumeArAfterVideo() {
+  if (!arPausedForVideo) return;
+  arPausedForVideo = false;
+  document.body.classList.remove('video-open');
+  scene.renderer?.setAnimationLoop(scene.render);
+  if (arReady) scene.systems['mindar-image-system']?.unpause();
+}
+
+function closeVideoPanel() {
+  if (!videoPanel || !harvestVideo) return;
+  const wasOpen = !videoPanel.hidden;
+  if (!wasOpen) return;
+  harvestVideo.pause();
+  videoPanel.hidden = true;
+  videoPlayHint.hidden = true;
+  videoButton.disabled = !window.__AR_DEBUG__?.targetFound || !videoReady;
+  if (arReady) scene.systems['mindar-image-system']?.unpause();
+  resumeArAfterVideo();
+
+  if (!hasVideoHistoryEntry) return;
+  hasVideoHistoryEntry = false;
+  window.history.back();
++ Thought: 992ms
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\ar.js
+
+function openVideoPanel() {
+  if (videoButton.disabled || !videoReady) return;
+  closeTargetPanel();
+  scene.systems['mindar-image-system']?.pause();
+  pauseArForVideo();
+  videoPanel.hidden = false;
+  videoPlayHint.hidden = true;
+  harvestVideo.currentTime = 0;
+  if (!hasVideoHistoryEntry) {
++ Thought: 1.2s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\ar.css
+.target-panel[hidden] {
+  display: none;
+}
+
+body.video-open #ar-scene {
+  visibility: hidden;
+}
+
+body.video-open .target-panel {
+  background: #07140d;
+  backdrop-filter: none;
+}
+
+.target-card {
+  position: relative;
+  width: min(92vw, 520px);
+  max-height: 92dvh;
++ Thought: 2.3s
+# Running in ~\dev\proyecto_integrador_UNI
+$ node --check apps/ar-preview/src/ar.js; if ($?) { npm --prefix apps/ar-preview run build }
+> @sak-po-kaab/ar-preview@0.1.0 build
+> vite build
+
+vite v6.4.5 building for production...
+transforming...
+✓ 12 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/ar.html                                          11.83 kB │ gzip: 3.32 kB
+dist/index.html                                       26.41 kB │ gzip: 4.28 kB
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff -- apps/ar-preview/src/ar.js apps/ar-preview/src/ar.css
+warning: in the working copy of 'apps/ar-preview/src/ar.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'apps/ar-preview/src/ar.js', LF will be replaced by CRLF the next time Git touches it
+diff --git a/apps/ar-preview/src/ar.css b/apps/ar-preview/src/ar.css
+index 6111dcf..c19580a 100644
+--- a/apps/ar-preview/src/ar.css
++++ b/apps/ar-preview/src/ar.css
+@@ -250,6 +250,15 @@ body.ar-tracking-settled .ar-status-wrap {
+   display: none;
+ }
+ 
+…
+Click to expand
++ Thought: 8.1s
+# Running in ~\dev\proyecto_integrador_UNI
+$ npm --prefix apps/ar-preview run test:smoke
+> @sak-po-kaab/ar-preview@0.1.0 test:smoke
+> node scripts/smoke-test.mjs && node scripts/vr-navigation-test.mjs
+
+AR_PREVIEW_SMOKE_OK: visor, VR con hotspots/fauna/audio, MindAR, etiqueta y videos.
+VR_NAVIGATION_OK: bounds, tree/pond collisions and clear farm path.
+# Running in ~\dev\proyecto_integrador_UNI
+$ git diff --check; git status --short --branch
+warning: in the working copy of 'apps/ar-preview/src/ar.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'apps/ar-preview/src/ar.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'assets/video/README.md', LF will be replaced by CRLF the next time Git touches it
+## main...origin/main
+ M .gitignore
+ M AGENTS.md
+ M PROJECT_CONTEXT.md
+ M README.md
+ M apps/ar-preview/src/ar.css
+ M apps/ar-preview/src/ar.js
+…
+Click to expand
++ Thought: 5.0s
+No parece ser el MP4: está en H.264 Baseline, 640×360 y solo ~118 kbps. El problema era que el video se reproducía encima de la cámara + A-Frame + backdrop-filter, y el Galaxy A22 no daba abasto.
+Ya lo ajusté en apps/ar-preview/src/ar.js y ar.css:
+Al abrir Ver cosecha, se pausa MindAR y el render loop de A-Frame.
+Se oculta el canvas AR mientras se reproduce el video.
+Se quita el desenfoque backdrop-filter del panel del video.
+Al cerrar, se reanuda la cámara y el render.
+Reinicia el visor y prueba de nuevo:
+# Ctrl+C en la terminal del visor y volver a levantarlo
+npm --prefix apps/ar-preview run dev
+En el teléfono cierra la pestaña y abre de nuevo, mejor con caché limpia:
+http://localhost:5174/ar.html?v=2
+Luego escanea la etiqueta y toca Ver cosecha. Si sigue trabado, prueba el MP4 directo para aislar:
+http://localhost:5174/video/cosecha-melipona-recreacion-mobile.mp4
+Si el directo va fluido, el problema era el AR y ya debería haber mejorado. Si el directo también se traba, genero una versión más ligera de 480×270.
+▣  Build · DeepSeek V4.1 Flash Free · 5m 31s
+[Image 1] el otro problema es que esas ventans al apuntar a las bolas amraillas ya no se quitan no puedes quitarlas y se quedan ahi todo el recorrido 
+ File  clipboard 
++ Thought: 3.8s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\ar-preview\vr.html' -Pattern 'hotspot|narration|narracion|panel|overlay|vr-info' -Context 3,5 | Select-Object -First 160
+apps\ar-preview\vr.html:35:    </div>
+  apps\ar-preview\vr.html:36:
+  apps\ar-preview\vr.html:37:
+> apps\ar-preview\vr.html:38:    <audio id="vr-tour-audio" src="/audio/narracion-recorrido-vr.mp3" 
+preload="auto"></audio>
+  apps\ar-preview\vr.html:39:
+  apps\ar-preview\vr.html:40:    <a-scene
+  apps\ar-preview\vr.html:41:      id="vr-scene"
+  apps\ar-preview\vr.html:42:      renderer="colorManagement: true; physicallyCorrectLights: true; antialias: true"
+  apps\ar-preview\vr.html:43:      vr-mode-ui="enabled: true"
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-ChildItem -LiteralPath 'apps\ar-preview\src' | Select-Object Name,Length; Select-String -Path 'apps\ar-preview\src\*.js' -Pattern 'hotspot|vr-hotspot|panel|narration|narracion' -Context 3,6 | Select-Object -First 200
+Name             Length
+----             ------
+ar.css             6635
+ar.js              9227
+components.js     12748
+main.js            1784
+style.css          2846
+vr-navigation.js   2539
+vr.css             2658
+vr.js             11352
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\vr.html' | Select-Object -Skip 1 -First 260
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Recorrido VR del meliponario de Sak P'o' Kaab." />
+    <title>Meliponario VR    Sak P'o' Kaab</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/vr.css" />
+    <script src="https://aframe.io/releases/1.8.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.5.4/dist/aframe-extras.min.js"></script>
+…
+Click to expand
++ Thought: 1.9s
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\src\vr.js' -Raw
+import './components.js';
+import { canOccupy, FARM_NAVIGATION, normalizeInput, resolvePosition } from './vr-navigation.js';
+
+const AFRAME = window.AFRAME;
+const status = document.querySelector('#vr-status');
+
+function setStatus(message, state = 'message') {
+  if (!status) return;
+  status.textContent = message;
+  status.dataset.state = state;
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Select-String -LiteralPath 'apps\ar-preview\src\components.js' -Pattern 'vr-hotspot|vr-close-info|info-panel|vr-audio-toggle|registerComponent' -Context 4,12
+apps\ar-preview\src\components.js:11:    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  apps\ar-preview\src\components.js:12:  };
+  apps\ar-preview\src\components.js:13:}
+  apps\ar-preview\src\components.js:14:
+> apps\ar-preview\src\components.js:15:AFRAME.registerComponent('bee-wander', {
+  apps\ar-preview\src\components.js:16:  schema: {
+  apps\ar-preview\src\components.js:17:    center: { type: 'vec3', default: { x: 0, y: 1.1, z: -2.7 } },
+  apps\ar-preview\src\components.js:18:    radiusX: { type: 'number', default: 0.8 },
+  apps\ar-preview\src\components.js:19:    radiusZ: { type: 'number', default: 0.5 },
+  apps\ar-preview\src\components.js:20:    height: { type: 'number', default: 0.2 },
+…
+Click to expand
+# Running in ~\dev\proyecto_integrador_UNI
+$ Get-Content -LiteralPath 'apps\ar-preview\src\vr.css' -Raw
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #dbe6cf;
+  color: #29251f;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.vr-toolbar {
+  position: fixed;
+  z-index: 5;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  max-width: calc(100% - 1.5rem);
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.vr-toolbar a,
+.vr-toolbar button,
+.vr-toolbar p {
+  margin: 0;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid rgb(56 72 44 / 18%);
+  border-radius: 999px;
+  background: rgb(250 247 236 / 92%);
+  color: #254334;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+
+.vr-toolbar button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.vr-toolbar p {
+  color: #665d4e;
+  font-weight: 500;
+}
+
+.vr-help {
+  position: fixed;
+  z-index: 4;
+  right: 0.8rem;
+  bottom: 0.8rem;
+  display: grid;
+  max-width: min(27rem, calc(100% - 1.6rem));
+  gap: 0.25rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 1rem;
+  background: rgb(39 54 35 / 78%);
+  color: #fdf8ea;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+
+.vr-help strong {
+  color: #f3d78c;
+  font-size: 0.8rem;
+}
+
+a-scene {
+  position: fixed;
+  inset: 0;
+}
+
+.vr-touch {
+  position: fixed;
+  z-index: 6;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  user-select: none;
+  touch-action: none;
+}
+
+.vr-touch-label {
+  color: #fdf8ea;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 4px rgb(0 0 0 / 45%);
+}
+
+.vr-touch-pad {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+  background: rgb(39 54 35 / 55%);
+  touch-action: none;
+  backdrop-filter: blur(6px);
+}
+
+.vr-touch-knob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin: -1.5rem 0 0 -1.5rem;
+  border-radius: 50%;
+  background: rgb(243 215 140 / 92%);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 28%);
+}
+
+@media (pointer: coarse) {
+  .vr-touch {
+    display: flex;
+  }
+
+  .vr-help {
+    max-width: calc(100% - 9.5rem);
+  }
+}
+
+.hotspot {
+  cursor: pointer;
+}
+
+.teleport-pad,
+.info-close,
+.audio-control {
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .vr-toolbar {
+    flex-wrap: wrap;
+    right: 0.75rem;
+  }
+
+  .vr-toolbar p {
+    order: 3;
+    width: 100%;
+  }
+
+  .vr-help {
+    font-size: 0.66rem;
+  }
+}
+Click to collapse
++ Thought: 53.0s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\vr.html
+  <button type="button" id="vr-audio-button">Escuchar recorrido</button>
+  <a href="/ar.html">Probar AR</a>
+</nav>
+
+<button type="button" id="vr-info-close" class="vr-info-close" hidden>
+  Cerrar ficha
+</button>
+
+<aside class="vr-help" aria-label="Instrucciones">
+  <strong>Meliponario exploratorio</strong>
+  <span>En casco: mira un punto dorado para activarlo.</span>
+  <span>Escritorio: arrastra para mirar y usa WASD o flechas.</span>
++ Thought: 1.6s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\vr.html
+<a-entity id="info-panel" position="0 0 -1.35" visible="false">
+  <a-plane width="1.35" height="0.72" material="color: #193529; opacity: 0.96; transparent: true; side: double"></a-plane>
+  <a-text id="info-title" value="" align="center" position="0 0.22 0.01" width="1.2" color="#f3d78c" font="exo2bold"></a-text>
+  <a-text id="info-body" value="" align="center" position="0 -0.04 0.01" width="1.16" color="#fff8e8" font="exo2semibold"></a-text>
+  <a-circle class="clickable info-close" position="0.58 0.29 0.02" radius="0.055" material="color: #e1b95d; shader: flat" vr-close-info></a-circle>
+  <a-circle class="clickable info-close" position="0.58 0.29 0.02" radius="0.075" material="color: #e1b95d; shader: flat" vr-close-info></a-circle>
+  <a-box position="0.58 0.29 0.035" rotation="0 0 45" width="0.06" height="0.008" depth="0.004" material="color: #193529; shader: flat"></a-box>
+  <a-box position="0.58 0.29 0.035" rotation="0 0 -45" width="0.06" height="0.008" depth="0.004" material="color: #193529; shader: flat"></a-box>
+</a-entity>
+<a-entity position="0 -0.52 -1.4">
++ Thought: 1.5s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\vr.js
+  status.textContent = message;
+  status.dataset.state = state;
+}
+
+function setInfoPanelVisible(visible) {
+  const panel = document.querySelector('#vr-scene #info-panel');
+  if (panel) panel.setAttribute('visible', visible);
+  const closeButton = document.querySelector('#vr-info-close');
+  if (closeButton) closeButton.hidden = !visible;
+}
+
+AFRAME.registerComponent('vr-explore', {
+  schema: {
+    speed: { type: 'number', default: 2.8 }
+  },
++ Thought: 1.9s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\vr.js
+  const scene = this.el.sceneEl;
+  const panel = scene.querySelector('#info-panel');
+  panel.querySelector('#info-title').setAttribute('text', 'value', this.data.title);
+  panel.querySelector('#info-body').setAttribute('text', 'value', this.data.body);
+  panel.setAttribute('visible', true);
+  setInfoPanelVisible(true);
+  setStatus(`Punto de interés: ${this.data.title}`);
+});
+
+this.el.addEventListener('mouseenter', () => this.el.setAttribute('scale', '1.25 1.25 1.25'));
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\vr.js
+
+AFRAME.registerComponent('vr-close-info', {
+  init() {
+    this.el.addEventListener('click', () => {
+      this.el.sceneEl.querySelector('#info-panel').setAttribute('visible', false);
+      setInfoPanelVisible(false);
+      setStatus('Recorrido listo. Mira otro punto de interés.');
+    });
+  }
+});
+
+const infoCloseButton = document.querySelector('#vr-info-close');
+if (infoCloseButton) {
+  infoCloseButton.addEventListener('click', () => {
+    setInfoPanelVisible(false);
+    setStatus('Recorrido listo. Mira otro punto de interés.');
+  });
+}
+
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') setInfoPanelVisible(false);
+});
+
+const narration = document.querySelector('#vr-tour-audio');
+const narrationLabel = document.querySelector('#vr-audio-label');
+const narrationButton = document.querySelector('#vr-audio-button');
+let narrationOperation = 0;
++ Thought: 2.2s
+← Edit ~\dev\proyecto_integrador_UNI\apps\ar-preview\src\vr.js
+      const navigator = this.rig.components['vr-explore'];
+      const moved = navigator
+        ? navigator.teleportTo(this.data.x, this.data.z)
+        : (this.rig.setAttribute('position', { x: this.data.x, y: 0, z: this.data.z }), true);
+      setInfoPanelVisible(false);
+      setStatus(moved ? `Explorando: ${this.data.zone}.` : 'Ese punto está ocupado. Elige otra zona.');
+    });
+  }
+});

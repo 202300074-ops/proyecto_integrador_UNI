@@ -18,6 +18,7 @@ let videoReady = false;
 let videoLoadPromise = null;
 let videoObjectUrl = null;
 let hasVideoHistoryEntry = false;
+let arPausedForVideo = false;
 
 function setStatus(message, state) {
   status.textContent = message;
@@ -40,6 +41,22 @@ function closeTargetPanel() {
   targetPanel.hidden = true;
 }
 
+function pauseArForVideo() {
+  if (arPausedForVideo) return;
+  arPausedForVideo = true;
+  document.body.classList.add('video-open');
+  scene.systems['mindar-image-system']?.pause();
+  scene.renderer?.setAnimationLoop(null);
+}
+
+function resumeArAfterVideo() {
+  if (!arPausedForVideo) return;
+  arPausedForVideo = false;
+  document.body.classList.remove('video-open');
+  scene.renderer?.setAnimationLoop(scene.render);
+  if (arReady) scene.systems['mindar-image-system']?.unpause();
+}
+
 function closeVideoPanel() {
   if (!videoPanel || !harvestVideo) return;
   const wasOpen = !videoPanel.hidden;
@@ -49,7 +66,7 @@ function closeVideoPanel() {
   videoPanel.hidden = true;
   videoPlayHint.hidden = true;
   videoButton.disabled = !window.__AR_DEBUG__?.targetFound || !videoReady;
-  if (arReady) scene.systems['mindar-image-system']?.unpause();
+  resumeArAfterVideo();
 
   if (!hasVideoHistoryEntry) return;
   hasVideoHistoryEntry = false;
@@ -99,7 +116,7 @@ async function prepareHarvestVideo() {
 function openVideoPanel() {
   if (videoButton.disabled || !videoReady) return;
   closeTargetPanel();
-  scene.systems['mindar-image-system']?.pause();
+  pauseArForVideo();
   videoPanel.hidden = false;
   videoPlayHint.hidden = true;
   harvestVideo.currentTime = 0;

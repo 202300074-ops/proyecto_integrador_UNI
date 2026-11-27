@@ -19,9 +19,10 @@ Teléfono/navegador ── A-Frame + MindAR :5174 ── GLB / video / audio
 - Puertos locales 3000, 3306, 5173 y 5174 disponibles.
 - Blender y FFmpeg para regenerar modelos, renders, audio o video.
 
-En la sesión de cierre del 26 de noviembre de 2026 se observó Node.js 20.20.2.
-Blender y FFmpeg no se encontraron en `PATH` en ese entorno; por tanto, no se
-regeneraron ni validaron sus salidas durante esa sesión.
+En la sesión remota de cierre del 26 de noviembre de 2026 se observó Node.js
+20.20.2. Blender y FFmpeg no se encontraron en `PATH` en ese entorno. En la sesión
+local posterior se usó FFmpeg 9.0.2 para regenerar y validar el máster, el móvil y
+el vertical; Blender sigue pendiente para el pase manual.
 
 ## 3. Instalación y arranque
 

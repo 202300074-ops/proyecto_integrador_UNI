@@ -37,7 +37,7 @@ sprint. El orden prioriza lo que se necesita para la entrega y la defensa.
 | S4-01 | Como visitante quiero ver una estrategia digital comprensible. | Dos mapas conceptuales y un plan académico con calendario, colaboraciones propuestas y métricas no observadas. | 5* | 4 | Hecho (documentos en `docs/mercadotecnia/`) |
 | S4-02 | Como docente quiero revisar pedidos de demostración. | Panel local de solo lectura, máximo 25, sin datos personales y sin cambios de estado; ruta deshabilitada en producción. | 5* | 4 | Hecho (smoke de comercio pasó) |
 | S4-03 | Como alumno quiero entregar manuales y anexos. | Manuales, declaración de IA, 8–10 interacciones seleccionadas y memoria PDF con citas IEEE. | 8* | 4 | En curso (falta reflexión personal y nombre institucional oficial) |
-| S4-04 | Como visitante quiero ver el símbolo animado y el video accesible. | SVG con animación 2D y movimiento reducido; renderer genera SRT, cama original y exportación vertical. | 5* | 4 | Parcial (SVG y recursos/scripts; MP4 no regenerado por falta de FFmpeg) |
+| S4-04 | Como visitante quiero ver el símbolo animado y el video accesible. | SVG con animación 2D y movimiento reducido; renderer genera SRT, cama original y exportación vertical. | 5* | 4 | Hecho técnico (MP4 maestro, móvil y vertical regenerados; falta aprobación auditiva de Joshua) |
 | S4-05 | Como alumno quiero cerrar la defensa con evidencia. | Pruebas físicas archivadas, ensayo de 20 min, 15 min de preguntas y cambio en vivo de 10 min. | 8* | 4 | Pendiente |
 
 ## Definición de terminado

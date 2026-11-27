@@ -636,7 +636,7 @@ def main() -> None:
             "-filter_complex",
             "[0:v]split=2[bg][fg];"
             "[bg]scale=1080:1920:force_original_aspect_ratio=increase,"
-            "crop=1080:1920,boxblur=30:10,eq=brightness=-0.18[background];"
+            "crop=1080:1920,boxblur=40:20,eq=brightness=0.12:saturation=1.2[background];"
             "[fg]scale=1080:608:force_original_aspect_ratio=decrease[foreground];"
             "[background][foreground]overlay=(W-w)/2:(H-h)/2,format=yuv420p[video]",
             "-map", "[video]", "-map", "0:a:0", "-map", "0:s:0",

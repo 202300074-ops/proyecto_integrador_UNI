@@ -61,6 +61,8 @@
   cinco hotspots (incluye detalle escondido), cinco teletransportes, lago con
   peces, abejas ambientales y narración sintética; validación headless y de
   navegación pasó, falta WebXR físico.
+- Video maestro 720p, móvil 360p y vertical 1080 × 1920 regenerados con FFmpeg,
+  SRT y cama sonora; falta la escucha/aprobación de Joshua.
 - Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
@@ -80,8 +82,8 @@
 3. Probar `/vr.html` y la narración con un visor WebXR físico.
 4. Hacer el pase manual de abeja y jobón en Blender, documentar las
    modificaciones propias y registrar lmik3 solo como apoyo visual.
-5. Escuchar/aprobar la cama sonora candidata; regenerar con FFmpeg los MP4 con
-   SRT y exportación vertical, y revisar salida visual/audio.
+5. Escuchar/aprobar la cama sonora; los MP4 maestro, móvil y vertical ya se
+   regeneraron con SRT y mezcla, y se revisaron visual y técnicamente.
 6. Ensayar 20 minutos de presentación, al menos 15 minutos de preguntas y un
    cambio en vivo de unos 10 minutos; respaldar físicamente el video/GLB.
 7. Confirmar el nombre institucional oficial para la portada de la memoria.

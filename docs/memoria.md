@@ -328,12 +328,12 @@ El guion muestra:
 
 El video incluye el rótulo de recreación didáctica y no se presenta como registro
 documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNAT
-[1], [2]. El script se actualizó para generar subtítulos SRT, una cama sonora
-original y un derivado vertical para redes. La cama sonora candidata se creó en
-`assets/audio/cama-sonora-original.wav`; todavía requiere escucha y aprobación de
-Joshua. Los MP4 versionados aún no incluyen subtítulos ni música ni el derivado
-vertical: no se pudieron regenerar en la sesión del 26 de noviembre porque FFmpeg
-no estaba disponible en `PATH`.
+[1], [2]. El script genera subtítulos SRT, una cama sonora original y un derivado
+vertical para redes. En la sesión local del 26 de noviembre de 2026 se regeneraron
+con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el vertical 1080 × 1920; los
+tres incluyen la cama sonora y la pista de subtítulos. La medición del máster fue
+-16.05 LUFS, -1.49 dBTP y LRA 3.40. La cama sonora sigue pendiente de escucha y
+aprobación de Joshua antes de la defensa.
 
 ## 12. Mercadotecnia digital y comercio electrónico
 
@@ -398,9 +398,9 @@ Evidencias principales:
 - El caso es simulado y no representa una empresa o comunidad real.
 - No se realizó un estudio de mercado primario; cualquier dato de mercado debe
   citarse de fuentes reales.
-- La cama sonora original está generada pero requiere escucha/aprobación de
-  Joshua; aún no está mezclada en los MP4. La exportación vertical está definida
-  en el script, pero no se generó ni validó porque FFmpeg no está disponible.
+- La cama sonora original está integrada en los MP4 y se midió técnicamente, pero
+  requiere escucha/aprobación de Joshua antes de presentarse como corte final.
+  La exportación vertical 1080 × 1920 ya se generó y revisó visualmente.
 - La portada del PDF de la memoria conserva el marcador de institución pendiente
   de confirmar; hay que reemplazarlo por el nombre oficial y regenerar el PDF.
 

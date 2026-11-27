@@ -145,9 +145,9 @@ jurado.
 
 > El video es una animación original de 720p generada con Python, Pillow y
 > FFmpeg. Muestra la colonia, la preparación, la apertura del jobón, la recolección
-> por gravedad, el filtrado, el cierre y las reservas. El renderizador ya genera
-> SRT y una cama musical original, pero los MP4 todavía requieren regeneración y
-> escucha porque FFmpeg no está disponible en el entorno de cierre.
+> por gravedad, el filtrado, el cierre y las reservas. Los MP4 maestro, móvil y
+> vertical ya se regeneraron con SRT y cama sonora. La medición del máster fue
+> -16.05 LUFS y -1.49 dBTP; falta la escucha y aprobación final de Joshua.
 >
 > No es metraje documental. La voz es sintética y el rótulo de recreación
 > didáctica aparece en la experiencia. Las prácticas varían entre comunidades; no
@@ -284,15 +284,17 @@ sin inflar resultados.
 
 ## 6. Checklist final
 
-- [ ] Base de datos `healthy`.
-- [ ] API responde `/api/health`.
-- [ ] Tienda abre en 5173.
-- [ ] Visor abre en 5174.
-- [ ] Carrito, cupón y checkout funcionan.
-- [ ] `npm run build` pasa.
-- [ ] `npm run test:commerce` pasa.
-- [ ] Smoke test de AR/VR pasa.
-- [ ] Capturas finales en `docs/evidencias/2026-11-25/`.
+- [x] Base de datos `healthy`.
+- [x] API responde `/api/health`.
+- [x] Tienda abre en 5173.
+- [x] Visor abre en 5174.
+- [x] Carrito, cupón y checkout funcionan.
+- [x] `npm run build` pasa.
+- [x] `npm run test:commerce` pasa.
+- [x] Smoke test de AR/VR pasa.
+- [x] Capturas finales en `docs/evidencias/2026-11-25/` y `2026-11-26/`.
+- [x] Video regenerado con SRT, cama sonora y versión vertical.
+- [ ] Escuchar y aprobar la cama sonora.
 - [ ] Video y GLB respaldados en USB o nube.
 - [ ] Memoria y guion revisados.
 - [x] Presentación en PDF y versión navegable HTML.
