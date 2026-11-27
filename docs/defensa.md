@@ -294,6 +294,8 @@ sin inflar resultados.
 - [x] Smoke test de AR/VR pasa.
 - [x] Capturas finales en `docs/evidencias/2026-11-25/` y `2026-11-26/`.
 - [x] Video regenerado con SRT, cama sonora y versión vertical.
+- [x] Fichas VR con cierre y video AR con pausa de MindAR/render (validación
+  física pendiente).
 - [ ] Escuchar y aprobar la cama sonora.
 - [ ] Video y GLB respaldados en USB o nube.
 - [ ] Memoria y guion revisados.

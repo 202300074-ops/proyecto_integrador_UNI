@@ -17,6 +17,11 @@ function setInfoPanelVisible(visible) {
   if (closeButton) closeButton.hidden = !visible;
 }
 
+function closeInfoPanel(message = 'Recorrido listo. Mira otro punto de interés.') {
+  setInfoPanelVisible(false);
+  setStatus(message);
+}
+
 AFRAME.registerComponent('vr-explore', {
   schema: {
     speed: { type: 'number', default: 2.8 }
@@ -186,23 +191,17 @@ AFRAME.registerComponent('vr-hotspot', {
 
 AFRAME.registerComponent('vr-close-info', {
   init() {
-    this.el.addEventListener('click', () => {
-      setInfoPanelVisible(false);
-      setStatus('Recorrido listo. Mira otro punto de interés.');
-    });
+    this.el.addEventListener('click', () => closeInfoPanel());
   }
 });
 
 const infoCloseButton = document.querySelector('#vr-info-close');
 if (infoCloseButton) {
-  infoCloseButton.addEventListener('click', () => {
-    setInfoPanelVisible(false);
-    setStatus('Recorrido listo. Mira otro punto de interés.');
-  });
+  infoCloseButton.addEventListener('click', () => closeInfoPanel());
 }
 
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape') setInfoPanelVisible(false);
+  if (event.key === 'Escape') closeInfoPanel();
 });
 
 const narration = document.querySelector('#vr-tour-audio');
@@ -286,8 +285,12 @@ AFRAME.registerComponent('vr-teleport', {
       const moved = navigator
         ? navigator.teleportTo(this.data.x, this.data.z)
         : (this.rig.setAttribute('position', { x: this.data.x, y: 0, z: this.data.z }), true);
-      setInfoPanelVisible(false);
-      setStatus(moved ? `Explorando: ${this.data.zone}.` : 'Ese punto está ocupado. Elige otra zona.');
+      if (moved) {
+        closeInfoPanel(`Explorando: ${this.data.zone}.`);
+      } else {
+        setInfoPanelVisible(false);
+        setStatus('Ese punto está ocupado. Elige otra zona.');
+      }
     });
   }
 });

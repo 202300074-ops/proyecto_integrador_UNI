@@ -48,6 +48,20 @@ try {
   assert.ok((vrHtml.match(/class="vr-ambient-bee"/g) ?? []).length >= 4, 'escena debe añadir abejas ambientales ligeras');
   assert.equal((vrHtml.match(/vr-hotspot=/g) ?? []).length, 5, 'página VR debe incluir cuatro hotspots y el huevo escondido');
   assert.equal((vrHtml.match(/vr-teleport=/g) ?? []).length, 5, 'página VR debe incluir cinco zonas de teletransporte');
+  assert.match(vrHtml, /id="vr-info-close"/, 'página VR debe ofrecer un botón DOM para cerrar la ficha');
+  assert.match(vrHtml, /vr-close-info/, 'ficha VR debe incluir un cierre interactivo dentro de la escena');
+
+  const vrJs = await (await fetch(`${origin}/src/vr.js`)).text();
+  assert.match(vrJs, /setInfoPanelVisible/, 'VR debe centralizar la visibilidad de la ficha');
+  assert.match(vrJs, /closeInfoPanel/, 'VR debe centralizar el cierre de la ficha');
+  const vrCss = await (await fetch(`${origin}/src/vr.css?direct`)).text();
+  assert.match(vrCss, /\.vr-info-close/, 'botón de cierre VR debe tener estilos propios');
+
+  const arJs = await (await fetch(`${origin}/src/ar.js`)).text();
+  assert.match(arJs, /pauseArForVideo/, 'AR debe pausar la escena al abrir el video');
+  assert.match(arJs, /resumeArAfterVideo/, 'AR debe reanudar la escena al cerrar el video');
+  const arCss = await (await fetch(`${origin}/src/ar.css?direct`)).text();
+  assert.match(arCss, /body\.video-open #ar-scene/, 'AR debe ocultar el canvas mientras se reproduce el video');
 
   const vrAudio = await fetch(`${origin}/audio/narracion-recorrido-vr.mp3`);
   assert.equal(vrAudio.status, 200, 'audio narrado VR debe responder 200');
@@ -110,7 +124,7 @@ try {
   assert.equal(poster.status, 200, 'poster del video debe responder 200');
   assert.match(poster.headers.get('content-type') ?? '', /image\/png/);
 
-  console.log('AR_PREVIEW_SMOKE_OK: visor, VR con hotspots/fauna/audio, MindAR, etiqueta y videos.');
+  console.log('AR_PREVIEW_SMOKE_OK: visor, VR con hotspots/fauna/audio/cierre de ficha, MindAR, pausa de video, etiqueta y videos.');
 } finally {
   await server.close();
 }

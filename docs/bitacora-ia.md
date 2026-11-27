@@ -480,6 +480,29 @@ desenfocado.
 escuche la cama sonora. La validación física de AR/WebXR y el pase manual de
 Blender siguen pendientes.
 
+## 22. Cierre de fichas VR y fluidez del video AR
+
+**Pregunta o instrucción:** corregir las fichas VR que no se cerraban y el video
+de cosecha que se trababa al reproducirse sobre la cámara de AR en el Galaxy A22.
+
+**Respuesta de la IA:** se centralizó el cierre de la ficha VR en
+`closeInfoPanel`, con botón DOM «Cerrar ficha», X dentro de la escena, `Escape` y
+cierre al teletransportar. En AR se añadieron `pauseArForVideo` y
+`resumeArAfterVideo`: al abrir el video se pausa MindAR y el render de A-Frame, se
+oculta el canvas y se retira el `backdrop-filter`; al cerrar se reanuda la cámara.
+
+**Verificación:** `AR_PREVIEW_SMOKE_OK`, `VR_NAVIGATION_OK`, build de tienda y
+visor, y cinco pruebas Python correctas. El smoke ahora revisa el botón de cierre,
+el componente de escena, los estilos y las funciones de pausa/reanudación.
+
+**Error o aprendizaje:** el botón de cierre se había añadido sin estilos ni
+pruebas; un control visible no basta si no se verifica su ciclo completo. El
+tartamudeo del video no era del MP4, sino de la carga simultánea de cámara,
+MindAR, A-Frame y desenfoque.
+
+**Límite actual:** falta confirmar la fluidez y el cierre de fichas en el teléfono
+físico y en un visor WebXR; la cama sonora sigue pendiente de aprobación.
+
 ## Reflexión personal pendiente
 
 Escribe aquí, con tus palabras:

@@ -147,6 +147,14 @@ Cierre de criterios y correcciones (2026-11-26):
   Blender ni FFmpeg en `PATH`; la prueba física y el pase manual 3D siguen siendo
   responsabilidad de Joshua.
 
+Cierre de ajustes VR/AR (2026-11-27):
+
+- Las fichas VR se cierran con botón DOM, X de la escena, `Escape` y teletransporte.
+- El video AR pausa MindAR y el render de A-Frame, oculta el canvas y se reanuda al
+  cerrar.
+- Smoke, build de tienda/visor y pruebas Python pasaron; falta confirmarlo en el
+  Galaxy A22 y en un visor WebXR.
+
 Pendiente:
 
 - Pase manual de los modelos en Blender y documentación de la autoría.

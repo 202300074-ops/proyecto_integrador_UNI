@@ -566,6 +566,38 @@ Hecho:
 Límite: la cama sonora sigue pendiente de escucha y aprobación de Joshua; no se
 presenta como corte final aprobado.
 
+## 2026-11-27. Cierre de fichas VR y fluidez del video AR
+
+Objetivo: terminar los dos ajustes reportados en la prueba del Galaxy A22: las
+fichas de los hotspots VR no se cerraban y el video de cosecha se trababa al
+reproducirse sobre la cámara de realidad aumentada.
+
+Hecho:
+
+- VR: se añadió un botón DOM «Cerrar ficha» con estilos propios y se centralizó
+  el cierre en `closeInfoPanel`. La ficha se cierra con el botón, con la X de la
+  escena (radio ampliado a 0.09), con `Escape` y al usar un teletransporte.
+- AR: al abrir «Ver cosecha» se pausa MindAR y el render de A-Frame, se oculta el
+  canvas AR y se retira el `backdrop-filter`; al cerrar se reanuda la cámara y el
+  render.
+- El smoke test ahora verifica el botón de cierre, el componente de escena, los
+  estilos del botón y las funciones de pausa/reanudación del video.
+
+Verificación:
+
+- `npm --prefix apps/ar-preview run test:smoke`: `AR_PREVIEW_SMOKE_OK` y
+  `VR_NAVIGATION_OK`.
+- `npm --prefix apps/ar-preview run build` y `npm run build` pasaron.
+- `python -m unittest scripts.test_audio_bed scripts.test_subtitle_utils`: 5
+  pruebas correctas.
+- Prueba funcional headless con Edge y CDP sobre `/vr.html`: diez comprobaciones
+  correctas de apertura y cierre de la ficha (botón DOM, X, `Escape` y
+  teletransporte).
+
+Límite: la fluidez del video y el cierre de fichas siguen pendientes de prueba
+física en el Galaxy A22 y en un visor WebXR; la validación de esta sesión es de
+código, build, smoke y navegador headless.
+
 ## Pendientes inmediatos
 
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de

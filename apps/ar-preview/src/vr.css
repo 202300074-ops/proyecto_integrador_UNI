@@ -69,6 +69,41 @@ body {
   font-size: 0.8rem;
 }
 
+.vr-info-close {
+  position: fixed;
+  z-index: 7;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%);
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 999px;
+  background: rgb(25 53 41 / 92%);
+  color: #fdf8ea;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.vr-info-close[hidden] {
+  display: none;
+}
+
+.vr-info-close:hover,
+.vr-info-close:focus-visible {
+  background: #254334;
+  outline: 2px solid #f3d78c;
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .vr-info-close {
+    bottom: 9rem;
+  }
+}
+
 a-scene {
   position: fixed;
   inset: 0;

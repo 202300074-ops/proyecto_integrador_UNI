@@ -31,7 +31,7 @@
   con `node server/src/index.js` en el puerto 3001 y ejecutar:
   `$env:API_BASE='http://localhost:3001/api'; npm run test:commerce`.
 
-## Estado actual (2026-11-26)
+## Estado actual (2026-11-27)
 
 - Compra simulada terminada: carrito, variantes, cantidades, cupón
   `BIENVENIDA10` (10 % desde $200), checkout, pedido transaccional, descuento de
@@ -63,6 +63,9 @@
   navegación pasó, falta WebXR físico.
 - Video maestro 720p, móvil 360p y vertical 1080 × 1920 regenerados con FFmpeg,
   SRT y cama sonora; falta la escucha/aprobación de Joshua.
+- 2026-11-27: las fichas VR se cierran con botón, X, `Escape` y teletransporte;
+  el video AR pausa MindAR y el render y se reanuda al cerrar. Smoke, builds y
+  pruebas Python pasaron; falta confirmarlo en el teléfono.
 - Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
