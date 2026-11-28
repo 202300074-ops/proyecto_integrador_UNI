@@ -51,3 +51,6 @@ assets/audio/*.wav
 !assets/audio/narracion-cosecha.wav
 !assets/audio/cama-sonora-original.wav
 assets/models/*.blend1
+
+pormpr.txt
+PROJECT_CONTEXT.md

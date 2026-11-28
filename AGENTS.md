@@ -73,7 +73,7 @@
 - Visor público: `https://proyecto-integrador-uni-ten.vercel.app`. La prueba
   general de AR y video pasó. Capturas en `docs/evidencias/2026-11-27/`. Los
   cambios locales posteriores a `7eeb98f` todavía no están publicados.
-- Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
+- Documentación actualizada en `README.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
   `docs/evidencias/2026-11-10/`.
@@ -105,7 +105,7 @@
   `assets/audio/`.
 - Render: `scripts/blender_render_producto_miel.py`,
   `scripts/blender_render_productos_restantes.py`.
-- Documentación: `PROJECT_CONTEXT.md`, `docs/diario.md`,
+- Documentación: `docs/diario.md`,
   `docs/bitacora-ia.md`, `docs/scrum/`, `docs/evidencias/`.
 - Skills locales de Blender/WebAR: `.opencode/skills/`.
 
