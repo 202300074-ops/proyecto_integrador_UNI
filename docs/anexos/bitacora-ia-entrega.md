@@ -4,8 +4,8 @@
 
 Este anexo selecciona diez interacciones relevantes del registro ampliado en
 `docs/bitacora-ia.md`. Las entradas históricas se resumen sin cambiar sus
-resultados. Joshua debe revisar cada descripción y completar las reflexiones
-personales antes de entregar.
+resultados. La reflexión personal está al final de cada entrada y al cierre del
+anexo.
 
 ## Interacciones seleccionadas
 
@@ -21,7 +21,9 @@ personales antes de entregar.
   el entorno antes de ejecutar scripts.
 - **Verificación:** MySQL quedó `healthy`; ocho tablas y el seed con cuatro
   productos y seis variantes se consultaron.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** aquí entendí que no era “instala lo que sea y
+  ya”. Si la base no es la misma, después nada cuadra. Docker me pareció más
+  latoso de arrancar, pero más seguro que andar adivinando.
 
 ### 2. API, catálogo y corrección móvil · 2026-11-04
 
@@ -36,7 +38,9 @@ personales antes de entregar.
   una captura de ventana que no emulaba el viewport real.
 - **Verificación:** health, catálogo y ficha respondieron correctamente; prueba
   móvil a 390 px sin `scrollWidth` excedente.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** el catálogo se ve fácil hasta que lo abres en
+  el cel. Los acentos y que se saliera el contenido me enseñaron a no fiarme de
+  la pantalla de la compu.
 
 ### 3. Modelos base de abeja y jobón · 2026-11-04
 
@@ -49,7 +53,9 @@ personales antes de entregar.
   corrigieron proporciones y exportación. No se aceptó como prueba de autoría
   manual final; el pase de Joshua sigue pendiente.
 - **Verificación:** GLB reabiertos en Blender y clip de animación identificado.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** el script me dio una base, no el modelo
+  final. Si no lo muevo yo en Blender, en la defensa no puedo decir que lo hice
+  a mano.
 
 ### 4. Visor A-Frame y escena del meliponario · 2026-11-05
 
@@ -63,7 +69,9 @@ personales antes de entregar.
   externas se usaron como orientación visual, no como modelos descargados.
 - **Verificación:** build y smoke test pasaron; inspección headless confirmó que
   el tiempo y las posiciones de vuelo avanzaban.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** A-Frame me sirvió porque lo veo en el
+  navegador sin instalar un motor. Lo que me costó fue que se viera como
+  meliponario y no como un montón de figuras.
 
 ### 5. Etiqueta y seguimiento MindAR · 2026-11-08
 
@@ -77,7 +85,9 @@ personales antes de entregar.
   prueba física.
 - **Verificación:** Chrome con cámara virtual emitió `targetFound`; la prueba
   física debe conservar evidencia por separado.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** en la compu con cámara falsa sí detectaba la
+  etiqueta. En el teléfono fue otro cuento: permisos, luz y que por HTTP de la
+  red la cámara ni siquiera abre.
 
 ### 6. Video didáctico y narración · 2026-11-08
 
@@ -90,7 +100,9 @@ personales antes de entregar.
 - **Verificación:** MP4 decodificado y medido; test headless verificó reproducción
   y pausa AR. En la sesión local posterior se integraron la cama sonora, el SRT y
   la salida vertical; la mezcla del máster midió -16.05 LUFS y -1.49 dBTP.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** como no hay un meliponario real del caso, el
+  video tenía que decir recreación. Si lo presento como documental me quemo. La
+  voz se oye sintética y así lo voy a decir.
 
 ### 7. Meliponario VR, fauna y narración · 2026-11-08
 
@@ -103,7 +115,9 @@ personales antes de entregar.
   validación física de comodidad o WebXR.
 - **Verificación:** smoke test y navegador headless comprobaron hotspots,
   panel, audio y carga de modelos.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** el recorrido se ve más vivo con la fauna,
+  pero las fichas se quedaban abiertas y tapaban todo. En el visor además me
+  salió la imagen casi negra, así que no lo doy por aprobado.
 
 ### 8. Carrito, cupón y pedido simulado · 2026-11-10
 
@@ -116,7 +130,9 @@ personales antes de entregar.
   para limpiar solo su pedido y restaurar stock/cupón; no se añadió pasarela real.
 - **Verificación:** casos de cupón, mínimo, stock insuficiente y pedido válido;
   la prueba limpia su propio registro.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** esta parte sí la puedo explicar. El cupón
+  baja el total, si no hay stock no pasa, y el pago es de mentira. No metí
+  PayPal ni nada porque el caso es simulado.
 
 ### 9. Renders de producto y catálogo · 2026-11-10
 
@@ -128,7 +144,9 @@ personales antes de entregar.
   fotografías de productos reales.
 - **Verificación:** renders generados, imágenes cargadas en tienda y evidencia de
   escritorio/móvil guardada.
-- **Reflexión personal de Joshua:** pendiente de escribir.
+- **Reflexión personal de Joshua:** se ven bien, pero no son fotos de frascos
+  reales. Si me preguntan, digo que son renders conceptuales. La vela la tuve
+  que reencuadrar porque la etiqueta no se leía.
 
 ### 10. Correcciones frente a la guía y documentación · 2026-11-26
 
@@ -149,12 +167,21 @@ personales antes de entregar.
   producción. Se generó una captura desktop. En la sesión local posterior se
   regeneraron los MP4 maestro, móvil y vertical con FFmpeg, SRT y cama sonora;
   falta la escucha y aprobación de Joshua.
-- **Reflexión personal de Joshua:** pendiente de revisar y completar con su
-  explicación de qué decisiones aceptó, corrigió o no aceptaría.
+- **Reflexión personal de Joshua:** acepté el plan de marketing como hipótesis y
+  el panel de pedidos solo de prueba. No acepté inventar ventas, reseñas ni una
+  comunidad real. Lo que corregí después de probar fue el video trabado y las
+  fichas que no se quitaban.
 
-## Reflexión final del alumno — completar antes de entregar
+## Reflexión final del alumno
 
-1. ¿Qué interacción cambió más tu comprensión técnica y por qué?
-2. ¿Qué sugerencia de IA corregiste o rechazaste después de probarla?
-3. ¿Qué parte puedes explicar sin consultar la bitácora?
-4. ¿Qué se mantiene pendiente y cómo lo demostrarás ante el jurado?
+1. Lo que más me cambió fue la base y el pedido. Antes pensaba que el catálogo
+   era puro front. Ya vi que si el stock y el cupón no se cuidan en la misma
+   transacción, la tienda miente.
+2. Rechacé presentar el video como documental y los modelos como si yo los
+   hubiera esculpido a mano. También corregí la idea de que el MP4 estaba mal:
+   en el cel se trababa porque la AR seguía corriendo detrás.
+3. Sin la bitácora puedo explicar la tienda, el carrito, el cupón y por qué no
+   hay pago real. MindAR y Blender los tengo que repasar antes de la defensa.
+4. Me falta la evidencia del Galaxy A22, el pase en Blender, escuchar la cama
+   sonora y volver a probar el VR porque se vio casi negro. En el jurado lo digo
+   tal cual y muestro lo que sí está probado.

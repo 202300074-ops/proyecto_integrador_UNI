@@ -300,7 +300,8 @@ sin inflar resultados.
 - [ ] Prueba WebXR aprobada en dispositivo real; la captura actual muestra una
   escena casi negra y fragmentada, diagnóstico pendiente.
 - [x] GitHub reporta `success` de Vercel para `b735403`.
-- [ ] Registrar el dominio Vercel y probar `/ar.html` con cámara en un teléfono.
+- [x] Dominio Vercel anotado: `https://proyecto-integrador-uni-ten.vercel.app`.
+- [x] Prueba general de AR y video en `https://proyecto-integrador-uni-ten.vercel.app`.
 - [x] Capturas finales en `docs/evidencias/2026-11-25/` y `2026-11-26/`.
 - [x] Video regenerado con SRT, cama sonora y versión vertical.
 - [x] Ficha VR con un solo botón DOM de cierre, `Escape` y teletransporte; X

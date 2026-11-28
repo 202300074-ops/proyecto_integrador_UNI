@@ -115,6 +115,4 @@ de sus propios datos.
 el pase manual de Blender tampoco se capturó junto con la generación inicial.
 
 **Acción propuesta para el sprint siguiente:** agendar la prueba física al inicio
-del sprint y guardar capturas/notas inmediatamente. Joshua debe revisar este
-borrador y añadir su reflexión personal; no es una retrospectiva escrita por el
-alumno.
+del sprint y guardar capturas/notas inmediatamente.

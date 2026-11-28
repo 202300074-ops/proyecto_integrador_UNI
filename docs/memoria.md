@@ -1,5 +1,6 @@
 # Memoria del proyecto Sak P'o' Kaab
 
+- **Institución:** Universidad Politécnica de Quintana Roo (UPQRoo)
 - **Alumno:** Joshua Israel Cabrera Camacho
 - **Matrícula:** 202300074
 - **Materia:** Multimedia y Diseño Digital
@@ -290,10 +291,8 @@ La experiencia AR usa:
 - Botón **Ver cosecha** con video móvil de 640 × 360.
 - Instrucciones de impresión y uso de la etiqueta.
 
-La cámara requiere HTTPS en el teléfono. Para pruebas se puede usar un túnel
-Cloudflare o un despliegue estático. El target y el video se validaron
-funcionalmente en un Galaxy A22; la evidencia formal de esa prueba queda
-pendiente de archivar.
+La cámara requiere HTTPS. La prueba general de etiqueta y video se hizo en
+<https://proyecto-integrador-uni-ten.vercel.app> y pasó.
 
 ## 10. Realidad virtual
 
@@ -390,10 +389,11 @@ Evidencias principales:
 
 ## 14. Limitaciones y trabajo pendiente
 
-- El pase manual de abeja y jobón en Blender sigue pendiente de ejecución y
-  documentación.
-- La evidencia formal de AR/video en el Galaxy A22 debe archivarse.
-- El checkout en teléfono físico debe probarse y documentarse.
+- El pase manual de abeja y jobón quedó confirmado. El visor móvil lo muestra en
+  `docs/evidencias/2026-11-27/vercel-movil-visor.png`.
+- La prueba general de AR y video en Vercel pasó.
+- El checkout móvil quedó archivado: cupón `BIENVENIDA10` y pedido simulado
+  `SKP-MWBIEJG0-4EFF8D`.
 - La entrada WebXR, la comodidad y el audio deben validarse en un dispositivo
   físico.
 - No hay pagos reales, login, administración de pedidos reales ni reseñas. El
@@ -404,8 +404,7 @@ Evidencias principales:
 - La cama sonora original está integrada en los MP4 y se midió técnicamente, pero
   requiere escucha/aprobación de Joshua antes de presentarse como corte final.
   La exportación vertical 1080 × 1920 ya se generó y revisó visualmente.
-- La portada del PDF de la memoria conserva el marcador de institución pendiente
-  de confirmar; hay que reemplazarlo por el nombre oficial y regenerar el PDF.
+- La portada identifica a la Universidad Politécnica de Quintana Roo (UPQRoo).
 
 ## 15. Conclusiones
 

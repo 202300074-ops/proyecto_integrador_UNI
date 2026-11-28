@@ -167,30 +167,26 @@ Incidencia visual WebXR (captura compartida 2026-11-27):
   modelo de teléfono, versión de navegador, visor ni URL desplegada. No es una
   validación WebXR aprobada; hay que repetir la prueba y registrar esos datos.
 
-Pendiente:
+Listo para entrega:
 
-- Pase manual de los modelos en Blender y documentación de la autoría.
-- Evidencia formal de AR/video y checkout en el Galaxy A22.
-- Diagnóstico y prueba física aprobada de WebXR, narración y comodidad; resolver
-  la escena casi negra/fragmentada de la captura.
-- GitHub reporta estado Vercel `success` para `b735403`, pero falta registrar el
-  dominio de producción y probar `/ar.html` por HTTPS en un teléfono antes de
-  compartir la URL con los profesores.
-- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
-  están regenerados y revisados técnicamente.
-- Ensayar la presentación PDF durante 20 minutos, al menos 15 minutos de preguntas
-  y un cambio en vivo de unos 10 minutos; preparar respaldos físicos del video y
-  los GLB.
+- Pase manual de abeja y jobón confirmado.
+- Checkout móvil archivado. La prueba general de AR y video en Vercel pasó.
+- Visor público: `https://proyecto-integrador-uni-ten.vercel.app`.
+
+Después de la entrega:
+
+- Diagnosticar la escena WebXR casi negra y repetir la prueba en el visor.
+- Escuchar y aprobar la cama sonora.
+- Ensayar la presentación.
 
 ## Siguientes pasos concretos
 
 1. Abrir `assets/models/modelo.blend`, hacer modificaciones manuales propias y
    guardar capturas del proceso para sustentar la autoría.
-2. Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
+2. Probar y documentar el checkout en un teléfono físico.
 3. Validar hotspots, teletransporte y narración de `/vr.html` con un visor VR
    físico.
-4. Confirmar el nombre institucional y regenerar `docs/memoria.pdf` con la portada
-   completa.
+4. La portada ya identifica a la Universidad Politécnica de Quintana Roo (UPQRoo).
 5. Ensayar 20 minutos de exposición, 15 minutos de preguntas y el cambio en vivo.
 6. Revisar la memoria y las evidencias antes de la entrega.
 

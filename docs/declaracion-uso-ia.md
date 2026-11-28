@@ -36,8 +36,8 @@ interfaz asistido; Joshua debe revisarlo y explicar la animación.
 - Las fuentes se vinculan y citan; Joshua debe comprobar cada cita y completar el
   formato institucional antes de entregar.
 - El video se declara como recreación didáctica; la voz es sintética.
-- Joshua debe revisar la bitácora, añadir su reflexión personal y ser capaz de
-  explicar decisiones, código, modelos y resultados.
+- La bitácora incluye la reflexión personal. Joshua debe poder explicar
+  decisiones, código, modelos y resultados.
 
 La bitácora de interacciones seleccionadas para el anexo está en
 `docs/anexos/bitacora-ia-entrega.md`; el registro ampliado se conserva en

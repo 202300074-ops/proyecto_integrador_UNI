@@ -48,8 +48,8 @@
   reducido respetado en la tienda.
 - Manual técnico, manual de usuario, declaración de IA y anexo de bitácora en
   `docs/`.
-- Memoria Markdown/HTML y PDF generada; la portada conserva el campo de institución
-  pendiente de confirmar.
+- Memoria Markdown/HTML y PDF generada; portada: Universidad Politécnica de
+  Quintana Roo (UPQRoo).
 - Renders finales de miel, jabón, bálsamo y vela en
   `docs/evidencias/2026-11-10/producto-*-final.png`; escenas en
   `assets/models/producto-*.blend`.
@@ -70,10 +70,9 @@
   botones de texto «Cerrar» y «Volver a AR»; no tenían una X gráfica en el código.
   El video AR pausa MindAR y el render, y se reanuda al cerrar. Smoke y builds
   pasaron; la prueba física sigue pendiente.
-- GitHub confirmó público `202300074-ops/proyecto_integrador_UNI` el 2026-11-27.
-  El estado Vercel del commit `b735403` es `success`; el dominio de producción aún
-  no está registrado ni probado desde un teléfono. Los cambios locales posteriores
-  a `b735403` todavía no están publicados.
+- Visor público: `https://proyecto-integrador-uni-ten.vercel.app`. La prueba
+  general de AR y video pasó. Capturas en `docs/evidencias/2026-11-27/`. Los
+  cambios locales posteriores a `7eeb98f` todavía no están publicados.
 - Documentación actualizada en `README.md`, `PROJECT_CONTEXT.md`,
   `docs/diario.md`, `docs/bitacora-ia.md` y `docs/scrum/`.
 - Evidencias de compra, renders y catálogo responsivo en
@@ -85,26 +84,13 @@
   visor, `COMMERCE_SMOKE_OK`, `AR_PREVIEW_SMOKE_OK` y móvil a 390 px sin
   desbordamiento. Evidencias en `docs/evidencias/2026-11-25/`.
 
-## Pendientes inmediatos
+## Después de la entrega
 
-1. Revisar la tienda y los renders en un teléfono físico; probar checkout y
-   guardar evidencia.
-2. Grabar o capturar la validación de etiqueta AR y video en el Galaxy A22.
-3. Diagnosticar la escena casi negra/fragmentada vista en la captura WebXR y
-   repetir la prueba con datos del dispositivo, navegador y visor; no declarar
-   VR aprobada hasta verificar la imagen y la navegación.
-4. Hacer el pase manual de abeja y jobón en Blender, documentar las
-   modificaciones propias y registrar lmik3 solo como apoyo visual.
-5. Escuchar/aprobar la cama sonora; los MP4 maestro, móvil y vertical ya se
-   regeneraron con SRT y mezcla, y se revisaron visual y técnicamente.
-6. Ensayar 20 minutos de presentación, al menos 15 minutos de preguntas y un
-   cambio en vivo de unos 10 minutos; respaldar físicamente el video/GLB.
-7. Confirmar el nombre institucional oficial para la portada de la memoria.
-8. Obtener el dominio de producción de Vercel, probar `/ar.html` por HTTPS en un
-   teléfono y compartir la URL con los profesores.
-9. Completar con palabras propias la reflexión pendiente en `docs/bitacora-ia.md`.
-10. Publicar los cambios locales revisados en el repositorio público y comprobar
-    que el commit final esté visible antes de compartirlo como versión de entrega.
+1. Diagnosticar la escena casi negra/fragmentada vista en la captura WebXR y
+   repetir la prueba con datos del dispositivo, navegador y visor.
+2. Escuchar/aprobar la cama sonora. Los MP4 ya están regenerados y revisados
+   técnicamente.
+3. Ensayar 20 minutos de presentación, preguntas y el cambio en vivo.
 
 ## Archivos clave
 

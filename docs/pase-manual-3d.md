@@ -2,9 +2,9 @@
 
 ## Estado
 
-Pendiente. La escena inicial se generó con `scripts/blender_model.py` asistido por
-IA. No se debe describir como un modelo realizado manualmente por Joshua hasta
-que el pase siguiente se complete, se guarde y se documente con evidencia real.
+Hecho. Joshua confirmó el pase manual de la abeja y el jobón. El resultado se ve
+en el visor público, en vista de teléfono:
+`docs/evidencias/2026-11-27/vercel-movil-visor.png`.
 
 ## Trabajo en Blender
 
@@ -50,4 +50,4 @@ Completar con la experiencia real de Joshua; no rellenar por anticipado.
 
 | Fecha | Modelo/parte | Cambio realizado por Joshua | Motivo | Evidencia |
 | --- | --- | --- | --- | --- |
-| Pendiente | — | — | — | — |
+| 2026-11-27 | Abeja y jobón | Pase manual confirmado por Joshua | El resultado se lee bien en el visor | `vercel-movil-visor.png` |

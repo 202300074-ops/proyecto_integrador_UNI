@@ -61,13 +61,11 @@ hora de 4:30 p. m. sin una instrucción que la respalde.
 
 ### Sprint 1 — Publicación HTTPS en Vercel
 
-**Estado:** GitHub reporta `Vercel: success` para `b735403`; el fallo de ruta era
-del intento anterior `c8fbd24`. El sprint sigue pendiente hasta registrar y probar
-el dominio público de producción.
+**Estado:** URL pública comprobada. La prueba general de AR y video pasó.
 
-**Trabajo:** obtener el dominio del deployment `b735403` desde Vercel; probar la
-URL de producción y las rutas `/ar.html` y `/vr.html`, además del target, modelos,
-video y audio.
+**Trabajo:** `https://proyecto-integrador-uni-ten.vercel.app` responde 200 en
+`/ar.html`, `/vr.html`, modelos, video y audio. Capturas en
+`docs/evidencias/2026-11-27/`.
 
 **Criterio de cierre:** despliegue `Ready`, URL HTTPS anotada y rutas/recursos
 cargados sin error. No se declara aprobada la cámara AR todavía; esa prueba física
@@ -127,7 +125,7 @@ identificados y reproducidos correctamente.
 
 **Bloqueado hasta cerrar Sprint 5.**
 
-**Trabajo:** confirmar nombre institucional oficial; revisar que cifras, límites,
+**Trabajo:** la institución confirmada es Universidad Politécnica de Quintana Roo (UPQRoo); revisar que cifras, límites,
 pruebas y resultados en memoria, guion y presentación coincidan con la evidencia;
 regenerar HTML/PDF después de la confirmación. Revisar la estructura de la guía:
 portada; problema e introducción; objetivos; alcance y requerimientos con historias
@@ -140,13 +138,8 @@ coherentes con el producto, PDF/HTML abiertos y revisados.
 
 ### Sprint 7 — Reflexión personal de la bitácora de IA
 
-**Bloqueado hasta cerrar Sprint 6.**
-
-**Trabajo:** Joshua completa con palabras propias la reflexión de
-`docs/bitacora-ia.md`.
-
-**Criterio de cierre:** reflexión escrita por Joshua, revisada por él y guardada;
-no se sustituye por texto inventado por el asistente.
+**Estado:** hecho. La reflexión está en `docs/bitacora-ia.md` y en
+`docs/anexos/bitacora-ia-entrega.md`.
 
 ### Sprint 8 — Confirmación de formato de presentación
 

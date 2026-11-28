@@ -20,7 +20,7 @@ preguntas y cambio en vivo.
 | --- | --- | ---: | --- |
 | S4-01 Mapas y plan de mercadotecnia | Dos mapas y un plan con calendario, colaboración propuesta y medición sin datos inventados | 5 pts | Hecho |
 | S4-02 Panel de pedidos de prueba | Solo lectura, máximo 25, sin PII, dev-only y cubierto por smoke de comercio | 5 pts | Hecho; build y smoke de comercio pasaron |
-| S4-03 Manuales y anexos | Manual técnico, manual de usuario, declaración IA, 8–10 interacciones y memoria PDF/IEEE | 8 pts | Hecho en borrador; faltan reflexión de Joshua y nombre institucional |
+| S4-03 Manuales y anexos | Manual técnico, manual de usuario, declaración IA, 8–10 interacciones y memoria PDF/IEEE | 8 pts | Hecho en borrador; portada con UPQRoo |
 | S4-04 Cierre multimedia | Logo SVG animado; renderer genera SRT, cama original y deriva social | 5 pts | Hecho técnico: MP4 maestro, móvil y vertical regenerados con SRT y cama sonora; falta aprobación auditiva de Joshua |
 | S4-05 Evidencia y defensa | Evidencia física, presentación de 20 min, preguntas y cambio en vivo | 8 pts | Pendiente |
 
@@ -36,7 +36,7 @@ Las estimaciones son propuestas para el backlog y requieren validación de Joshu
 - Se implementó un panel local de pedidos `mock` de solo lectura; su endpoint
   omite datos personales y queda deshabilitado en producción.
 - Se prepararon los manuales, declaración IA, anexo seleccionado de bitácora y
-  memoria PDF. La portada conserva pendiente el nombre institucional oficial.
+  memoria PDF. La portada usa Universidad Politécnica de Quintana Roo (UPQRoo).
 - Se añadió animación SVG del símbolo, generador SRT, generador de cama original y
   una exportación vertical configurada para FFmpeg. En la sesión local posterior se
   regeneraron el máster, el móvil y el vertical con esa mezcla y subtítulos.
@@ -62,7 +62,7 @@ aprobación auditiva de Joshua. No se presenta ninguna prueba física como reali
   reservaron con suficiente antelación; el PDF todavía necesita datos oficiales
   de portada.
 - **Acción:** Joshua escucha y aprueba la cama sonora, completa el pase manual,
-  realiza las pruebas físicas y reemplaza el nombre institucional antes de cerrar
+  realiza las pruebas físicas antes de cerrar
   la defensa.
 
 Este cierre parcial se registra el 26 de noviembre; la retrospectiva final debe

@@ -44,9 +44,54 @@ fragmentada. Se registra como defecto visual observado, no como una causa
 diagnosticada ni como validación aprobada. La captura aún no está guardada como
 archivo dentro del repositorio y no identifica teléfono, navegador, visor ni URL.
 
-Antes de la defensa quedan pendientes: repetir la prueba y diagnosticar el
-renderizado; validar AR/video y checkout en teléfono usando una URL HTTPS de
-Vercel (GitHub reporta `success` para el deployment del commit `b735403`, pero el
-dominio público aún no está anotado ni probado en teléfono); escuchar y aprobar la
-cama sonora; y hacer el pase manual de los modelos en Blender. La prueba headless
-y el build no sustituyen estas comprobaciones físicas.
+## Despliegue HTTPS
+
+URL pública: <https://proyecto-integrador-uni-ten.vercel.app>
+
+Comprobado el 27 de noviembre de 2026 desde escritorio, con Edge headless:
+
+| Ruta | HTTP |
+| --- | --- |
+| `/` y `/ar.html` | 200 |
+| `/vr.html` | 200 |
+| `/index.html` | 200 |
+| `/video/cosecha-melipona-recreacion.mp4` | 200 |
+| `/video/cosecha-melipona-recreacion-mobile.mp4` | 200 |
+| `/models/abeja.glb` y `/models/jobon.glb` | 200 |
+| `/targets/etiqueta-sakpokaab.png` | 200 |
+| `/audio/narracion-recorrido-vr.mp3` | 200 |
+
+Capturas:
+
+- `vercel-ar.png`: `/ar.html` en la URL pública. La prueba general de etiqueta y
+  video en Vercel pasó.
+- `vercel-vr.png`: `/vr.html` carga jobón, abejas y fauna. No es modo WebXR
+  inmersivo; la escena casi negra del visor sigue sin diagnosticar.
+- `vercel-visor.png`: visor 3D con la escena lista.
+- `vercel-video.png`: el MP4 móvil se reproduce en el navegador y muestra el
+  rótulo de recreación didáctica.
+
+Esta publicación no incluye la tienda ni el checkout. Esas pruebas siguen
+requiriendo la API local.
+
+## Vista móvil del visor
+
+`vercel-movil-visor.png` es `/index.html` a 390 × 844. Cargan el jobón, las abejas,
+el árbol y las flores. Los botones de AR y VR caben. El texto superior se cortaba
+a la derecha; se ajustó en `apps/ar-preview/src/style.css` para el siguiente
+despliegue.
+
+## Checkout móvil
+
+La tienda no está en Vercel. La evidencia visible del teléfono ya estaba en:
+
+- `carrito-cupon-movil.png`: carrito, cupón `BIENVENIDA10` y total simulado de $288.00.
+- `pedido-simulado-movil.png`: pedido `SKP-MWBIEJG0-4EFF8D`, sin cobro real.
+
+## Pase manual
+
+Joshua confirmó el pase manual de la abeja y el jobón. El resultado se ve en el
+visor móvil.
+
+El diagnóstico WebXR del visor y la aprobación auditiva de la cama sonora quedan
+para después de la entrega.

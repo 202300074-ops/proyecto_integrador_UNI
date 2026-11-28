@@ -27,8 +27,8 @@ sprint. El orden prioriza lo que se necesita para la entrega y la defensa.
 | S2-01 | Como visitante quiero agregar productos al carrito. | Se agregan variantes, se cambia cantidad y se calcula el subtotal. | 5 | 2 | Hecho (UI y evidencia en `docs/evidencias/2026-11-10/`) |
 | S2-02 | Como visitante quiero aplicar un cupón. | `BIENVENIDA10` aplica 10 % desde $200 y muestra el descuento. | 3 | 2 | Hecho (validado en API y UI) |
 | S2-03 | Como visitante quiero simular un pedido. | Se guarda `orders` + `order_items` y se muestra confirmación. | 5 | 2 | Hecho (transacción, stock, cupón e historial) |
-| S2-04 | Como visitante quiero escanear la etiqueta y ver la abeja. | MindAR reconoce el target y muestra el GLB animado. | 8 | 2 | En curso (Joshua validó el target y la abeja en teléfono; falta archivar evidencia) |
-| S2-05 | Como visitante quiero ver el video de la cosecha en AR. | El video se reproduce dentro de la experiencia AR. | 5 | 2 | En curso (video validado en Galaxy A22 sin trabas; falta archivar evidencia) |
+| S2-04 | Como visitante quiero escanear la etiqueta y ver la abeja. | MindAR reconoce el target y muestra el GLB animado. | 8 | 2 | Hecho (prueba general en Vercel) |
+| S2-05 | Como visitante quiero ver el video de la cosecha en AR. | El video se reproduce dentro de la experiencia AR. | 5 | 2 | Hecho (prueba general en Vercel) |
 | S2-06 | Como equipo queremos el video editado con Python + FFmpeg. | MP4 reproducible, audio nivelado y rótulo de recreación didáctica. | 8 | 2 | Hecho (720p, narración sintética y fuentes documentadas) |
 | S3-01 | Como visitante quiero recorrer el meliponario en VR. | Escena A-Frame con jobón, abeja y hotspots navegables. | 8 | 3 | En curso (A-Frame 1.8, granja explorable con colisiones, cinco hotspots, cinco teletransportes, lago y fauna; falta prueba física) |
 | S3-02 | Como visitante quiero escuchar la narración del recorrido. | Audio integrado con control de reproducción. | 3 | 3 | En curso (narración sintética y controles integrados; falta validar en WebXR físico) |
@@ -36,7 +36,7 @@ sprint. El orden prioriza lo que se necesita para la entrega y la defensa.
 | S3-04 | Como equipo queremos preparar la defensa. | Presentación de 20 min, preguntas y cambio en vivo ensayados; respaldo del video/GLB. | 5 | 3 | En curso (guion/PDF listos; falta ensayo y respaldo físico) |
 | S4-01 | Como visitante quiero ver una estrategia digital comprensible. | Dos mapas conceptuales y un plan académico con calendario, colaboraciones propuestas y métricas no observadas. | 5* | 4 | Hecho (documentos en `docs/mercadotecnia/`) |
 | S4-02 | Como docente quiero revisar pedidos de demostración. | Panel local de solo lectura, máximo 25, sin datos personales y sin cambios de estado; ruta deshabilitada en producción. | 5* | 4 | Hecho (smoke de comercio pasó) |
-| S4-03 | Como alumno quiero entregar manuales y anexos. | Manuales, declaración de IA, 8–10 interacciones seleccionadas y memoria PDF con citas IEEE. | 8* | 4 | En curso (falta reflexión personal y nombre institucional oficial) |
+| S4-03 | Como alumno quiero entregar manuales y anexos. | Manuales, declaración de IA, 8–10 interacciones seleccionadas y memoria PDF con citas IEEE. | 8* | 4 | Hecho en borrador (portada: UPQRoo) |
 | S4-04 | Como visitante quiero ver el símbolo animado y el video accesible. | SVG con animación 2D y movimiento reducido; renderer genera SRT, cama original y exportación vertical. | 5* | 4 | Hecho técnico (MP4 maestro, móvil y vertical regenerados; falta aprobación auditiva de Joshua) |
 | S4-05 | Como alumno quiero cerrar la defensa con evidencia. | Pruebas físicas archivadas, ensayo de 20 min, 15 min de preguntas y cambio en vivo de 10 min. | 8* | 4 | Pendiente |
 

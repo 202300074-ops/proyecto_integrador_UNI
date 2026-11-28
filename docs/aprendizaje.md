@@ -122,4 +122,4 @@ Preguntas posibles:
 - [ ] Tengo un respaldo del video y del GLB en USB o nube.
 - [x] Tengo la presentación en PDF y en HTML navegable.
 - [ ] Confirmo si también se requiere PPTX.
-- [ ] Tengo la bitácora de IA revisada y con mi reflexión.
+- [x] Tengo la bitácora de IA revisada y con mi reflexión.

@@ -43,7 +43,7 @@ cama sonora por Joshua sigue pendiente antes de presentarla como corte final.
 
 ## Evidencia física pendiente
 
-- Galaxy A22: AR, video y checkout.
+- Checkout en teléfono físico. AR y video ya se probaron en Vercel.
 - Visor WebXR: entrada/salida, hotspots, teletransporte y narración.
 - Blender: modificaciones manuales de abeja y jobón por Joshua.
 - Video: escucha y aprobación de la cama sonora por Joshua.

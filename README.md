@@ -105,22 +105,16 @@ Cierre documental:
   y `python scripts/render_memory_pdf.py` (configura `INSTITUTION_NAME` primero).
 - Revisión móvil por CDP a 390 px sin desbordamiento horizontal.
 
-Pendiente de cierre:
+Listo para entrega:
 
-- Hacer el pase manual de los modelos y documentar las modificaciones propias.
-- Archivar la evidencia de la validación de AR/video y checkout en el Galaxy A22.
-- Diagnosticar y validar la calidad del recorrido WebXR con un casco/teléfono
-  compatible; guardar evidencia con modelo, navegador y visor identificados.
-- Obtener la URL de producción de Vercel y probar `/ar.html` por HTTPS con cámara
-  en un teléfono. GitHub reporta `success` para `b735403`; falta comprobar la ruta
-  publicada y la cámara en dispositivo.
-- Probar narración y controles de audio en el dispositivo WebXR.
-- Ensayar la presentación PDF y la demostración; preparar respaldos físicos del
-  video y los GLB.
-- Confirmar el nombre oficial de la institución para reemplazar el marcador de
-  portada del PDF.
-- Escuchar y aprobar la cama sonora; los MP4 con SRT y exportación vertical ya
-  están regenerados y revisados técnicamente.
+- Portada: Universidad Politécnica de Quintana Roo (UPQRoo).
+- Pase manual de abeja y jobón confirmado.
+- Checkout móvil archivado.
+- URL pública: <https://proyecto-integrador-uni-ten.vercel.app>. La prueba general
+  de AR y video pasó.
+
+Después de la entrega: diagnóstico WebXR del visor y aprobación auditiva de la
+cama sonora.
 
 ## Tecnologías
 

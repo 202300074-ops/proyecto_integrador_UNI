@@ -123,7 +123,7 @@ de exportar la portada:
 
 ```powershell
 python -m pip install -r requirements-docs.txt
-$env:INSTITUTION_NAME = "Nombre oficial de la institución"
+$env:INSTITUTION_NAME = "Universidad Politécnica de Quintana Roo (UPQRoo)"
 python scripts/render_memory_pdf.py
 ```
 

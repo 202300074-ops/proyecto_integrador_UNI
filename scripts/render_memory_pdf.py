@@ -92,7 +92,7 @@ def find_edge() -> Path:
 
 def main() -> None:
     source_text = SOURCE.read_text(encoding="utf-8")
-    institution = os.environ.get("INSTITUTION_NAME", "Institución: nombre oficial pendiente de confirmar")
+    institution = os.environ.get("INSTITUTION_NAME", "Universidad Politécnica de Quintana Roo (UPQRoo)")
     HTML_OUTPUT.write_text(build_html(source_text, institution), encoding="utf-8")
 
     edge = find_edge()

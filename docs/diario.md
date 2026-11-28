@@ -466,11 +466,10 @@ Hecho:
   comercio valida el campo resumido y limpia únicamente su pedido temporal.
 - Se añadió el símbolo animado 2D en SVG con respeto a `prefers-reduced-motion`.
 - Se redactaron manual técnico, manual de usuario, declaración de IA y anexo de
-  diez interacciones seleccionadas. La reflexión personal del alumno queda
-  pendiente.
+  diez interacciones seleccionadas, con la reflexión personal.
 - Se numeraron referencias y citas de la memoria; se generaron `docs/memoria.html`
-  y `docs/memoria.pdf`. La portada mantiene pendiente el nombre oficial de la
-  institución.
+  y `docs/memoria.pdf`. La portada usa Universidad Politécnica de Quintana Roo
+  (UPQRoo).
 - Se actualizó la presentación a 13 diapositivas y se exportó nuevamente a PDF.
 - El renderizador de video ahora prepara subtítulos SRT, una cama sonora original
   y una exportación vertical. Se generaron el SRT y el WAV candidato.
@@ -498,8 +497,7 @@ Problemas y pendientes:
   se registran como evidencia realizada.
 - La captura móvil directa de Edge no se conservó como evidencia porque el ancho
   mínimo de ventana en Windows no garantiza un viewport de 390 px.
-- La bitácora y la portada del PDF requieren la revisión personal del alumno y el
-  nombre institucional oficial, respectivamente.
+- La portada quedó después con Universidad Politécnica de Quintana Roo (UPQRoo).
 
 Decisión:
 
@@ -625,16 +623,15 @@ renderer o calidad gráfica según el resultado.
 
 - Hacer el pase manual de la abeja y el jobón en Blender y guardar evidencia de
   las modificaciones propias. Registrar lmik3 como apoyo de render, si se usa.
-- Archivar la evidencia de la prueba de etiqueta, video y checkout en el Galaxy
-  A22.
+- Probar y documentar el checkout en un teléfono físico. AR y video ya pasaron
+  en Vercel.
 - Diagnosticar y volver a probar `/vr.html` en modo WebXR: la captura compartida
   muestra una imagen casi negra y fragmentada; comprobar también comodidad/escala.
 - Validar narración y controles de audio en un dispositivo WebXR real.
-- GitHub reporta estado Vercel `success` para `b735403`; obtener el dominio de
-  producción y probar `/ar.html` por HTTPS antes de compartir la URL.
+- La prueba general de AR y video en
+  `https://proyecto-integrador-uni-ten.vercel.app` pasó.
 - Guardar la captura WebXR como evidencia e identificar dispositivo, navegador,
   visor y URL usados.
-- Completar la reflexión personal pendiente en `docs/bitacora-ia.md`.
 - Ensayar `docs/defensa.md` y la presentación durante 20 minutos; reservar al
   menos 15 minutos de preguntas y practicar el cambio en vivo de unos 10 minutos.
 - Hacer el commit solo cuando Joshua lo solicite.

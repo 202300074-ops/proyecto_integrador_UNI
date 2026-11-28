@@ -57,7 +57,7 @@ las evidencias y el ensayo de defensa antes de la entrega del 26–27 de noviemb
    cursor de mirada y teletransporte.
 2. Ajustar escala, altura de cámara y distancias de hotspots con el dispositivo.
 3. Probar la narración y sus controles en WebXR físico.
-4. Archivar la evidencia de AR/video y checkout en el Galaxy A22.
+4. Probar y documentar el checkout en un teléfono físico.
 5. Completar el pase manual en Blender y registrar lmik3 solo como apoyo visual.
 6. Ensayar la presentación durante 20 minutos y preparar
    respaldos físicos del video y los GLB.
@@ -87,4 +87,3 @@ coincidía con la guía actual de 20 minutos.
 
 **Acción propuesta para el sprint siguiente:** usar la guía oficial de 20 minutos,
 reservar pruebas físicas y ensayo con tiempo y hacer un cambio en vivo de práctica.
-Joshua debe revisar este borrador y añadir su reflexión personal.

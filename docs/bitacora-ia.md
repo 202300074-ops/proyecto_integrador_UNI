@@ -1,14 +1,12 @@
 # Bitácora de uso de IA
 
-Borrador basado en las interacciones reales de las sesiones de trabajo. Antes de
-entregar, Joshua debe revisarlo, corregir lo que no coincida con su memoria y
-agregar su reflexión personal en cada entrada.
+Registro de las interacciones reales de las sesiones de trabajo.
 
 Este registro ampliado conserva las sesiones hasta el 25 de noviembre. Para el
 anexo de entrega se seleccionaron diez interacciones en
 `docs/anexos/bitacora-ia-entrega.md`; la sesión de cierre del 26 de noviembre está
-identificada en esa selección. Joshua debe completar la reflexión personal del
-anexo antes de entregarlo.
+identificada en esa selección. La reflexión personal está en este archivo y en
+el anexo.
 
 Herramienta usada: asistente de código en la terminal (opencode).
 Modelo: DeepSeek V4.1 Flash Free.
@@ -225,8 +223,7 @@ unificó con `export_anim_scene_split_object=False`. Los renders de detalle aún
 muestran una transición piso/mundo. En ese momento, el GLB aún no se había probado
 en A-Frame ni en teléfono; la entrada 13 registra el visor local posterior. Los
 modelos generados por script no son evidencia suficiente de autoría manual:
-Joshua debe modificarlos directamente en Blender, conservar capturas del proceso
-y corregir esta bitácora con su reflexión personal.
+Joshua debe modificarlos directamente en Blender y conservar capturas del proceso.
 
 ## 13. Visor A-Frame para probar los GLB
 
@@ -521,11 +518,30 @@ ejecutan smoke y build del visor.
 **Límite:** esta comprobación de código no sustituye la validación física de AR ni
 la prueba WebXR, cuya captura anterior mostró un render casi negro y fragmentado.
 
-## Reflexión personal pendiente
+## Reflexión personal
 
-Escribe aquí, con tus palabras:
+La verdad Docker al principio me dio lata. Yo traía la idea de que con XAMPP ya
+la armaba, pero no era el mismo MySQL y se me iba a hacer un relajo de versiones.
+Al final lo dejé en el contenedor y ya, cuando dice `healthy` sí confío más. De la
+base entendí lo básico: productos, variantes, stock y que el pedido no se guarda
+suelto, va con sus items. Lo del cupón y el stock me quedó más claro cuando vi
+que la prueba no debe borrar los pedidos que yo dejé a mano.
 
-- ¿Qué aprendiste de la base de datos y de Docker?
-- ¿Qué te costó más del catálogo?
-- ¿Qué harías distinto en el siguiente sprint?
-- ¿Qué parte del código puedes explicar sin ayuda y cuál necesitas repasar?
+Lo que más me costó del catálogo no fue pintarlo, fue el teléfono. En la compu se
+veía bien y en el cel se salía o los acentos salían feos. También me pasó con la
+AR: por la IP de la red la cámara ni abría, tenía que ser localhost o HTTPS. El
+video se trababa y pensé que el MP4 estaba pesado, pero era la cámara y el visor
+siguiendo atrás. Las fichas amarillas del recorrido se quedaban pegadas y no había
+forma fácil de quitarlas. Esas cosas no salen en un build.
+
+La IA me ayudó un buen, sobre todo a no empezar de cero, pero varias veces me
+entregó algo que en el cel no servía. Si lo volviera a hacer, grabaría evidencia
+del teléfono desde la primera semana y no dejaría Blender, el audio y el visor
+para el cierre. El pase de la abeja y el jobón todavía lo tengo que hacer yo en
+Blender; si no, no puedo decir que el modelo es mío.
+
+Sin papel puedo explicar la tienda, el carrito, el cupón `BIENVENIDA10` y que el
+pago es simulado. También por qué el video dice recreación y no documental. Lo
+que tengo que repasar es MindAR, el target y cómo se pausa la escena cuando abre
+el video. Y la narración del VR, porque en el visor la imagen me salió casi negra
+y todavía no la doy por buena.

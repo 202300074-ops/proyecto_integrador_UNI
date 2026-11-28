@@ -17,5 +17,4 @@ se reasignan fechas ni se completan días de burndown sin evidencia.
 `burndown.csv` contiene huecos históricos en Sprint 1 y no cubre Sprints 2–3. El
 burndown de Sprint 4 se lleva en `burndown-sprint-4.csv`; sus puntos son
 estimaciones propuestas y los valores reales se rellenan conforme se cierra cada
-día. Joshua debe validar las estimaciones y añadir sus retrospectivas/reflexiones
-personales.
+día. Joshua debe validar las estimaciones.

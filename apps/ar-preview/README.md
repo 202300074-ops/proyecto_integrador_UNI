@@ -43,6 +43,8 @@ La tienda y la API no forman parte de este despliegue. Las rutas directas
 `/ar.html` y `/vr.html` también quedan disponibles. Vercel entrega HTTPS,
 necesario para pedir permiso de cámara desde celulares que acceden por internet.
 
+URL pública actual: <https://proyecto-integrador-uni-ten.vercel.app>.
+
 Después del primer despliegue, abre la URL HTTPS en cada teléfono, concede el
 permiso de cámara y visita la página de AR. Comprueba la URL en Wi-Fi y datos
 móviles antes de compartirla; la detección de MindAR necesita que el teléfono
