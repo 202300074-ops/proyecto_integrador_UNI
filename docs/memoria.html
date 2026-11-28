@@ -89,8 +89,10 @@ cinco hotspots (uno escondido), cinco teletransportes y narración. El video
 explica el proceso de cosecha como recreación didáctica.</p>
 <p>El proyecto se verificó con pruebas de API, una prueba automatizada de comercio,
 build de producción, smoke test del visor AR/VR y capturas en escritorio y
-teléfono. Las pruebas físicas de AR, checkout y WebXR siguen siendo tareas de
-cierre que requieren el dispositivo y la evidencia correspondiente.</p>
+teléfono. La prueba general de AR y video pasó en
+<a href="https://proyecto-integrador-uni-ten.vercel.app">https://proyecto-integrador-uni-ten.vercel.app</a>. El checkout móvil quedó
+archivado. El diagnóstico del visor WebXR y la escucha de la cama sonora quedan
+para después de la entrega.</p>
 <h2 id="2-planteamiento">2. Planteamiento</h2>
 <h3 id="21-contexto">2.1 Contexto</h3>
 <p>La abeja melipona, conocida en maya como <code>xunáan kaab</code>, es una abeja sin
@@ -360,10 +362,10 @@ re-renderizó con un punto de foco separado del punto de mira para que la etique
 frontal quedara nítida sin cambiar la composición; evidencia en
 <code>docs/evidencias/2026-11-25/producto-vela-final-foco.png</code>. Las escenas se guardan
 en <code>assets/models/producto-*.blend</code> y las versiones WebP se integran en la tienda.</p>
-<p>La autoría manual se documenta en <code>docs/pase-manual-3d.md</code>. El pase pendiente
-incluye cambios visibles de geometría, materiales o detalles en Blender, capturas
-del proceso y exportación de los GLB actualizados. Hasta completarlo, la memoria
-distingue entre la base asistida y la edición manual.</p>
+<p>La autoría manual se documenta en <code>docs/pase-manual-3d.md</code>. El pase de la abeja
+y el jobón quedó confirmado. El resultado se ve en el visor público, en
+<code>docs/evidencias/2026-11-27/vercel-movil-visor.png</code>. La base inicial sigue siendo
+asistida; el pase manual es el cierre de esa autoría.</p>
 <h2 id="9-realidad-aumentada">9. Realidad aumentada</h2>
 <p>La experiencia AR usa:</p>
 <ul>
@@ -411,8 +413,8 @@ documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNA
 vertical para redes. En la sesión local del 26 de noviembre de 2026 se regeneraron
 con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el vertical 1080 × 1920; los
 tres incluyen la cama sonora y la pista de subtítulos. La medición del máster fue
--16.05 LUFS, -1.49 dBTP y LRA 3.40. La cama sonora sigue pendiente de escucha y
-aprobación de Joshua antes de la defensa.</p>
+-16.05 LUFS, -1.49 dBTP y LRA 3.40. La escucha final de esa mezcla queda para
+después de la entrega; técnicamente ya está integrada.</p>
 <h2 id="12-mercadotecnia-digital-y-comercio-electronico">12. Mercadotecnia digital y comercio electrónico</h2>
 <p><code>docs/mercadotecnia/plan.md</code> contiene una propuesta académica con posicionamiento,
 perfiles hipotéticos, calendario editorial, criterios para una colaboración
@@ -453,29 +455,40 @@ pero no están instrumentados [7].</p>
 <li><code>docs/evidencias/2026-11-08/</code>: AR, VR, fauna y storyboard.</li>
 <li><code>docs/evidencias/2026-11-10/</code>: compra simulada, renders de producto y catálogo.</li>
 <li><code>docs/evidencias/2026-11-25/</code>: cierre, build, smoke test y capturas finales.</li>
-<li><code>docs/evidencias/2026-11-26/</code>: cierre documental del día; las pruebas físicas
-  solo se marcarán después de capturarlas en el dispositivo.</li>
+<li><code>docs/evidencias/2026-11-26/</code>: cierre documental del día.</li>
+<li><code>docs/evidencias/2026-11-27/</code>: visor público en Vercel, vista móvil y checkout.</li>
 <li>Manuales y declaración: <code>docs/manual-tecnico.md</code>, <code>docs/manual-usuario.md</code> y
   <code>docs/declaracion-uso-ia.md</code>; bitácora seleccionada en
   <code>docs/anexos/bitacora-ia-entrega.md</code>.</li>
 </ul>
-<h2 id="14-limitaciones-y-trabajo-pendiente">14. Limitaciones y trabajo pendiente</h2>
+<h2 id="14-limitaciones">14. Limitaciones</h2>
+<p>Cerrado para la entrega:</p>
 <ul>
-<li>El pase manual de abeja y jobón en Blender sigue pendiente de ejecución y
-  documentación.</li>
-<li>La prueba general de AR y video en Vercel pasó.</li>
-<li>El checkout en teléfono físico debe probarse y documentarse.</li>
-<li>La entrada WebXR, la comodidad y el audio deben validarse en un dispositivo
-  físico.</li>
+<li>Portada: Universidad Politécnica de Quintana Roo (UPQRoo).</li>
+<li>Pase manual de abeja y jobón confirmado. El visor móvil lo muestra en
+  <code>docs/evidencias/2026-11-27/vercel-movil-visor.png</code>.</li>
+<li>Prueba general de AR y video en
+  <a href="https://proyecto-integrador-uni-ten.vercel.app">https://proyecto-integrador-uni-ten.vercel.app</a>.</li>
+<li>Checkout móvil archivado: cupón <code>BIENVENIDA10</code> y pedido simulado
+  <code>SKP-MWBIEJG0-4EFF8D</code>.</li>
+<li>Video máster, móvil y vertical regenerados, con SRT y cama sonora medida en
+  -16.05 LUFS y -1.49 dBTP.</li>
+</ul>
+<p>Después de la entrega:</p>
+<ul>
+<li>Diagnosticar la escena WebXR que se vio casi negra y fragmentada.</li>
+<li>Escuchar y aprobar la cama sonora.</li>
+<li>Ensayar la defensa.</li>
+</ul>
+<p>Límites del caso:</p>
+<ul>
 <li>No hay pagos reales, login, administración de pedidos reales ni reseñas. El
   panel local de pedidos <code>mock</code> es de solo lectura y no se incluye en producción.</li>
 <li>El caso es simulado y no representa una empresa o comunidad real.</li>
 <li>No se realizó un estudio de mercado primario; cualquier dato de mercado debe
   citarse de fuentes reales.</li>
-<li>La cama sonora original está integrada en los MP4 y se midió técnicamente, pero
-  requiere escucha/aprobación de Joshua antes de presentarse como corte final.
-  La exportación vertical 1080 × 1920 ya se generó y revisó visualmente.</li>
-<li>La portada identifica a la Universidad Politécnica de Quintana Roo (UPQRoo).</li>
+<li>Vercel publica el visor, no la tienda. El catálogo y el checkout se demuestran
+  en local, con la API y MySQL.</li>
 </ul>
 <h2 id="15-conclusiones">15. Conclusiones</h2>
 <p>El proyecto logra integrar en una sola experiencia una tienda funcional, una base
@@ -483,12 +496,11 @@ de datos relacional, una API transaccional, AR, VR, modelado 3D y video. La
 arquitectura permite explicar el flujo completo desde la interfaz hasta MySQL y
 demostrar cada componente por separado.</p>
 <p>La decisión más importante fue mantener la transparencia: el caso es simulado, el
-video es una recreación, la voz es sintética y la autoría manual de los modelos
-se documenta solo cuando el pase en Blender esté completo. Esa honestidad
-fortalece la defensa porque permite explicar qué se hizo, con qué herramientas y
-cuáles son los límites.</p>
-<p>El siguiente paso es cerrar las pruebas físicas, completar el pase manual y
-ensayar la demostración con respaldos del video, los GLB y las capturas.</p>
+video es una recreación, la voz es sintética y el pase manual de los modelos ya
+quedó confirmado. Esa honestidad fortalece la defensa porque permite explicar qué
+se hizo, con qué herramientas y cuáles son los límites.</p>
+<p>Después de la entrega quedan el diagnóstico WebXR del visor, la escucha de la
+cama sonora y el ensayo de la demostración.</p>
 <h2 id="16-referencias">16. Referencias</h2>
 <p>[1] Secretaría de Medio Ambiente y Recursos Naturales, <em>La meliponicultura en
 México: un acercamiento a las prácticas tradicionales y a las perspectivas de su

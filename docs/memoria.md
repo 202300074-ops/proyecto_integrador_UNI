@@ -46,8 +46,10 @@ explica el proceso de cosecha como recreación didáctica.
 
 El proyecto se verificó con pruebas de API, una prueba automatizada de comercio,
 build de producción, smoke test del visor AR/VR y capturas en escritorio y
-teléfono. Las pruebas físicas de AR, checkout y WebXR siguen siendo tareas de
-cierre que requieren el dispositivo y la evidencia correspondiente.
+teléfono. La prueba general de AR y video pasó en
+<https://proyecto-integrador-uni-ten.vercel.app>. El checkout móvil quedó
+archivado. El diagnóstico del visor WebXR y la escucha de la cama sonora quedan
+para después de la entrega.
 
 ## 2. Planteamiento
 
@@ -276,10 +278,10 @@ frontal quedara nítida sin cambiar la composición; evidencia en
 `docs/evidencias/2026-11-25/producto-vela-final-foco.png`. Las escenas se guardan
 en `assets/models/producto-*.blend` y las versiones WebP se integran en la tienda.
 
-La autoría manual se documenta en `docs/pase-manual-3d.md`. El pase pendiente
-incluye cambios visibles de geometría, materiales o detalles en Blender, capturas
-del proceso y exportación de los GLB actualizados. Hasta completarlo, la memoria
-distingue entre la base asistida y la edición manual.
+La autoría manual se documenta en `docs/pase-manual-3d.md`. El pase de la abeja
+y el jobón quedó confirmado. El resultado se ve en el visor público, en
+`docs/evidencias/2026-11-27/vercel-movil-visor.png`. La base inicial sigue siendo
+asistida; el pase manual es el cierre de esa autoría.
 
 ## 9. Realidad aumentada
 
@@ -334,8 +336,8 @@ documental. Las fuentes de contexto son The Nature Conservancy México y SEMARNA
 vertical para redes. En la sesión local del 26 de noviembre de 2026 se regeneraron
 con FFmpeg 9.0.2 el máster 720p, el derivado móvil y el vertical 1080 × 1920; los
 tres incluyen la cama sonora y la pista de subtítulos. La medición del máster fue
--16.05 LUFS, -1.49 dBTP y LRA 3.40. La cama sonora sigue pendiente de escucha y
-aprobación de Joshua antes de la defensa.
+-16.05 LUFS, -1.49 dBTP y LRA 3.40. La escucha final de esa mezcla queda para
+después de la entrega; técnicamente ya está integrada.
 
 ## 12. Mercadotecnia digital y comercio electrónico
 
@@ -381,30 +383,41 @@ Evidencias principales:
 - `docs/evidencias/2026-11-08/`: AR, VR, fauna y storyboard.
 - `docs/evidencias/2026-11-10/`: compra simulada, renders de producto y catálogo.
 - `docs/evidencias/2026-11-25/`: cierre, build, smoke test y capturas finales.
-- `docs/evidencias/2026-11-26/`: cierre documental del día; las pruebas físicas
-  solo se marcarán después de capturarlas en el dispositivo.
+- `docs/evidencias/2026-11-26/`: cierre documental del día.
+- `docs/evidencias/2026-11-27/`: visor público en Vercel, vista móvil y checkout.
 - Manuales y declaración: `docs/manual-tecnico.md`, `docs/manual-usuario.md` y
   `docs/declaracion-uso-ia.md`; bitácora seleccionada en
   `docs/anexos/bitacora-ia-entrega.md`.
 
-## 14. Limitaciones y trabajo pendiente
+## 14. Limitaciones
 
-- El pase manual de abeja y jobón quedó confirmado. El visor móvil lo muestra en
+Cerrado para la entrega:
+
+- Portada: Universidad Politécnica de Quintana Roo (UPQRoo).
+- Pase manual de abeja y jobón confirmado. El visor móvil lo muestra en
   `docs/evidencias/2026-11-27/vercel-movil-visor.png`.
-- La prueba general de AR y video en Vercel pasó.
-- El checkout móvil quedó archivado: cupón `BIENVENIDA10` y pedido simulado
+- Prueba general de AR y video en
+  <https://proyecto-integrador-uni-ten.vercel.app>.
+- Checkout móvil archivado: cupón `BIENVENIDA10` y pedido simulado
   `SKP-MWBIEJG0-4EFF8D`.
-- La entrada WebXR, la comodidad y el audio deben validarse en un dispositivo
-  físico.
+- Video máster, móvil y vertical regenerados, con SRT y cama sonora medida en
+  -16.05 LUFS y -1.49 dBTP.
+
+Después de la entrega:
+
+- Diagnosticar la escena WebXR que se vio casi negra y fragmentada.
+- Escuchar y aprobar la cama sonora.
+- Ensayar la defensa.
+
+Límites del caso:
+
 - No hay pagos reales, login, administración de pedidos reales ni reseñas. El
   panel local de pedidos `mock` es de solo lectura y no se incluye en producción.
 - El caso es simulado y no representa una empresa o comunidad real.
 - No se realizó un estudio de mercado primario; cualquier dato de mercado debe
   citarse de fuentes reales.
-- La cama sonora original está integrada en los MP4 y se midió técnicamente, pero
-  requiere escucha/aprobación de Joshua antes de presentarse como corte final.
-  La exportación vertical 1080 × 1920 ya se generó y revisó visualmente.
-- La portada identifica a la Universidad Politécnica de Quintana Roo (UPQRoo).
+- Vercel publica el visor, no la tienda. El catálogo y el checkout se demuestran
+  en local, con la API y MySQL.
 
 ## 15. Conclusiones
 
@@ -414,13 +427,12 @@ arquitectura permite explicar el flujo completo desde la interfaz hasta MySQL y
 demostrar cada componente por separado.
 
 La decisión más importante fue mantener la transparencia: el caso es simulado, el
-video es una recreación, la voz es sintética y la autoría manual de los modelos
-se documenta solo cuando el pase en Blender esté completo. Esa honestidad
-fortalece la defensa porque permite explicar qué se hizo, con qué herramientas y
-cuáles son los límites.
+video es una recreación, la voz es sintética y el pase manual de los modelos ya
+quedó confirmado. Esa honestidad fortalece la defensa porque permite explicar qué
+se hizo, con qué herramientas y cuáles son los límites.
 
-El siguiente paso es cerrar las pruebas físicas, completar el pase manual y
-ensayar la demostración con respaldos del video, los GLB y las capturas.
+Después de la entrega quedan el diagnóstico WebXR del visor, la escucha de la
+cama sonora y el ensayo de la demostración.
 
 ## 16. Referencias
 
